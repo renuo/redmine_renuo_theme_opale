@@ -3,7 +3,8 @@ Opale
 
 A Redmine theme written in SCSS.
 
-![AGPL-3.0](https://img.shields.io/badge/license-AGPL-3.0-663366.svg) [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://standardjs.com/)
 
 ---
 
@@ -45,7 +46,7 @@ The path `src/sass/_custom-variables.scss` is added to `.gitignore` so it should
 
 ## Changelog
 
-[Changelog](./CHANGELOG.md).
+[Changelog](./CHANGELOG.md)
 
 [SCSS]: http://sass-lang.com/
 [normalize.css]: https://github.com/necolas/normalize.css
