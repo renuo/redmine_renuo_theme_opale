@@ -1,6 +1,6 @@
-var PurpleMine = PurpleMine || {} // eslint-disable-line no-use-before-define
+var Opale = Opale || {} // eslint-disable-line no-use-before-define
 
-PurpleMine.SidebarToggler = (function () {
+Opale.SidebarToggler = (function () {
   'use strict'
 
   var instance
@@ -55,7 +55,7 @@ PurpleMine.SidebarToggler = (function () {
   function handleSidebar () {
     if (window.localStorage) {
       instance.sidebarVisible =
-        localStorage.getItem('PurpleMine:sidebarHidden') === null
+        localStorage.getItem('Opale:sidebarHidden') === null
     }
 
     if (
@@ -122,7 +122,7 @@ PurpleMine.SidebarToggler = (function () {
     this.sidebarVisible = false
 
     if (window.localStorage) {
-      localStorage.setItem('PurpleMine:sidebarHidden', 'x')
+      localStorage.setItem('Opale:sidebarHidden', 'x')
     }
   }
 
@@ -138,7 +138,7 @@ PurpleMine.SidebarToggler = (function () {
     this.sidebarVisible = true
 
     if (window.localStorage) {
-      localStorage.removeItem('PurpleMine:sidebarHidden')
+      localStorage.removeItem('Opale:sidebarHidden')
     }
   }
 

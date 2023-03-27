@@ -1,6 +1,6 @@
-var PurpleMine = PurpleMine || {} // eslint-disable-line no-use-before-define
+var Opale = Opale || {} // eslint-disable-line no-use-before-define
 
-PurpleMine.HistoryTabs = (function () {
+Opale.HistoryTabs = (function () {
   'use strict'
 
   var instance

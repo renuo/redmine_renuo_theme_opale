@@ -1,7 +1,7 @@
-var PurpleMine = PurpleMine || {} // eslint-disable-line no-use-before-define
+var Opale = Opale || {} // eslint-disable-line no-use-before-define
 /* global Raphael: false, revisionGraph: true */
 
-PurpleMine.RevisionGraph = function (holder, commitsHash, graphSpace) {
+Opale.RevisionGraph = function (holder, commitsHash, graphSpace) {
   'use strict'
 
   var XSTEP = 20
@@ -136,7 +136,7 @@ $(function () {
 
   if (window.drawRevisionGraph) {
     // override Redmine's function
-    window.drawRevisionGraph = PurpleMine.RevisionGraph
+    window.drawRevisionGraph = Opale.RevisionGraph
     // make graph redraw itself
     $(window).resize()
   }

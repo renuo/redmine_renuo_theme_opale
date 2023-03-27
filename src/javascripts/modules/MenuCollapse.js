@@ -1,6 +1,6 @@
-var PurpleMine = PurpleMine || {} // eslint-disable-line no-use-before-define
+var Opale = Opale || {} // eslint-disable-line no-use-before-define
 
-PurpleMine.MenuCollapse = (function () {
+Opale.MenuCollapse = (function () {
   'use strict'
 
   var instance
@@ -74,7 +74,7 @@ PurpleMine.MenuCollapse = (function () {
   }
 
   function getMenuStorageKey (menu) {
-    return 'PurpleMine:' + menu + 'MenuExpanded'
+    return 'Opale:' + menu + 'MenuExpanded'
   }
 
   function buildToggleButton (menu) {
