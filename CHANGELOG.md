@@ -2,11 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## Unreleased
 
-- Fix issues with Redmine 4.2 and 5.0
+- Fix issues with Redmine 5.0
 - Add styles for missing plugins
 - Remove styles for unmaintained plugins
 - Change colors to Redmine's default ones
-- Update Font-Awesome
-- Update dependencies
+
+## 0.1.0 (unreleased)
+
+### Changed
+
+- Update building dependencies
+- Update Font Awesome to version 6
