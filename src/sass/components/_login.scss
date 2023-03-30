@@ -1,10 +1,13 @@
-//
-// Login form
-// --------------------------------------------------
+@use "../variables";
+@use "../mixins/forms";
+
+/*
+/* Login form
+/* -------------------------------------------------- */
 
 #login-form {
   box-sizing: border-box;
-  margin: $line-height-computed * 2 auto $line-height-computed;
+  margin: variables.$line-height-computed * 2 auto variables.$line-height-computed;
 
   label,
   input:not([type="checkbox"]) {
@@ -13,29 +16,30 @@
 
   label {
     display: block;
-    margin-bottom: $padding-base-vertical;
-    font-weight: $font-weight-bold;
+    margin-bottom: variables.$padding-base-vertical;
+    font-weight: variables.$font-weight-bold;
     line-height: inherit;
 
     &[for="autologin"] {
-      @include check;
-      margin-bottom: $line-height-computed;
+      @include forms.check;
+
+      margin-bottom: variables.$line-height-computed;
     }
 
     > a {
       float: right;
-      font-weight: $font-weight-normal;
+      font-weight: variables.$font-weight-normal;
     }
   }
 
   input[type="text"],
   input[type="password"] {
-    margin-bottom: $panel-body-padding-vertical;
+    margin-bottom: variables.$panel-body-padding-vertical;
   }
 
   #login-submit {
-    padding-top: $padding-base-vertical;
-    padding-bottom: $padding-base-vertical;
+    padding-top: variables.$padding-base-vertical;
+    padding-bottom: variables.$padding-base-vertical;
   }
 
   table {
@@ -47,13 +51,13 @@
     padding: 0;
 
     &:first-child {
-      width: $login-form-label-width;
-      padding-right: $table-cell-padding;
+      width: variables.$login-form-label-width;
+      padding-right: variables.$table-cell-padding;
       white-space: nowrap;
     }
 
     > label {
-      margin-bottom: $panel-body-padding-vertical;
+      margin-bottom: variables.$panel-body-padding-vertical;
     }
 
     > input[type="submit"] {
@@ -62,40 +66,40 @@
     }
   }
 
-  @media screen and (min-width: $login-form-box-breakpoint) {
-    width: $login-form-width;
-    padding: $padding-side;
-    border: 1px solid $panel-border;
-    border-radius: $border-radius-base;
-    background-color: $panel-bg;
-    box-shadow: $panel-shadow;
-    color: $panel-color;
+  @media screen and (min-width: variables.$login-form-box-breakpoint) {
+    width: variables.$login-form-width;
+    padding: variables.$padding-side;
+    border: 1px solid variables.$panel-border;
+    border-radius: variables.$border-radius-base;
+    background-color: variables.$panel-bg;
+    box-shadow: variables.$panel-shadow;
+    color: variables.$panel-color;
 
     table {
       width: 100%;
     }
   }
 
-  @each $adjustment, $languages in $login-form-adjustments-map {
+  @each $adjustment, $languages in variables.$login-form-adjustments-map {
     @each $language in $languages {
       html[lang="#{$language}"] & td:first-child {
-        width: $login-form-label-width + $adjustment * 1em;
+        width: variables.$login-form-label-width + $adjustment * 1em;
       }
     }
   }
 }
 
 #openid_url {
-  padding-right: $input-padding-horizontal + 24px;
+  padding-right: variables.$input-padding-horizontal + 24px;
   background-image: url("../../../images/openid-bg.gif");
   background-repeat: no-repeat;
-  background-position: right $input-padding-horizontal center;
+  background-position: right variables.$input-padding-horizontal center;
 }
 
 
-//
-// Two-factor authentication
-// --------------------------------------------------
+/*
+/* Two-factor authentication
+/* -------------------------------------------------- */
 
 .controller-twofa {
   .splitcontentleft {

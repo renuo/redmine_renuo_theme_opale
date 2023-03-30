@@ -1,6 +1,8 @@
-//
-// Syntax highlight - CodeRay
-// --------------------------------------------------
+@use "../variables";
+
+/*
+/* Syntax highlight - CodeRay
+/* -------------------------------------------------- */
 
 .syntaxhl {
   div {
@@ -18,7 +20,7 @@
   }
 
   .debug {
-    // stylelint-disable declaration-no-important
+    /* stylelint-disable declaration-no-important */
     background: #00f !important;
     color: #fff !important;
   }
@@ -53,7 +55,7 @@
 
   .class {
     color: #795da3;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .class-variable {
@@ -87,7 +89,7 @@
 
   .definition {
     color: #099;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .delimiter {
@@ -96,7 +98,7 @@
 
   .directive {
     color: #088;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .doc {
@@ -105,7 +107,7 @@
 
   .doc-string {
     color: #d42;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .doctype {
@@ -114,7 +116,7 @@
 
   .entity {
     color: #800;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .error {
@@ -128,7 +130,7 @@
 
   .exception {
     color: #c00;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .float {
@@ -137,7 +139,7 @@
 
   .function {
     color: #06b;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .global-variable {
@@ -154,7 +156,7 @@
 
   .include {
     color: #b44;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .inline {
@@ -164,7 +166,7 @@
 
   .inline-delimiter {
     color: #666;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .instance-variable {
@@ -189,12 +191,12 @@
 
   .keyword {
     color: #b3113e;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .label {
     color: #970;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .local-variable {
@@ -203,7 +205,7 @@
 
   .namespace {
     color: #707;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .octal {
@@ -220,7 +222,7 @@
 
   .predefined-type {
     color: #0a5;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .preprocessor {
@@ -229,11 +231,11 @@
 
   .pseudo-class {
     color: #00c;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .regexp {
-    background-color: hsla(300, 100%, 50%, .06);
+    background-color: hsla(300deg 100% 50% / .06);
 
     .content {
       color: #808;
@@ -250,11 +252,11 @@
 
   .reserved {
     color: #080;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .shell {
-    background-color: hsla(120, 100%, 50%, .06);
+    background-color: hsla(120deg 100% 50% / .06);
 
     .content {
       color: #2b2;
@@ -289,7 +291,7 @@
 
   .type {
     color: #339;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   .value {
@@ -301,40 +303,40 @@
   }
 
   .insert {
-    background: hsla(120, 100%, 50%, .12);
+    background: hsla(120deg 100% 50% / .12);
 
     .insert {
       background: transparent;
       color: #0c0;
-      font-weight: $font-weight-bold;
+      font-weight: variables.$font-weight-bold;
     }
 
     .eyecatcher {
       margin: -1px;
-      border: 1px solid hsla(120, 100%, 25%, .5);
+      border: 1px solid hsla(120deg 100% 25% / .5);
       border-top: 0 none;
-      border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
-      background-color: hsla(120, 100%, 50%, .2);
+      border-bottom-left-radius: 5px;
+      background-color: hsla(120deg 100% 50% / .2);
     }
   }
 
   .delete {
-    background: hsla(0, 100%, 50%, .12);
+    background: hsla(0deg 100% 50% / .12);
 
     .delete {
       background: transparent;
       color: #c00;
-      font-weight: $font-weight-bold;
+      font-weight: variables.$font-weight-bold;
     }
 
     .eyecatcher {
       margin: -1px;
-      border: 1px solid hsla(0, 100%, 45%, .5);
+      border: 1px solid hsla(0deg 100% 45% / .5);
       border-bottom: 0 none;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
-      background-color: hsla(0, 100%, 50%, .2);
+      background-color: hsla(0deg 100% 50% / .2);
     }
   }
 

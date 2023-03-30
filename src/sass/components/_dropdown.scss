@@ -1,3 +1,9 @@
+@use "sass:map";
+@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../lib/font-awesome/mixins" as font-awesome-mixins;
+@use "../variables";
+@use "../mixins/shadows";
+
 .drdn {
   position: relative;
 
@@ -16,22 +22,23 @@
   }
 
   &-content {
-    @include nice-shadow(2);
+    @include shadows.nice-shadow(2);
+
     display: none;
     position: absolute;
     z-index: 1002;
-    top: $input-height-base + $btn-padding-vertical;
+    top: variables.$input-height-base + variables.$btn-padding-vertical;
     right: 0;
     min-width: 150px;
     overflow: hidden;
-    border-radius: $border-radius-base;
-    background: $body-bg;
+    border-radius: variables.$border-radius-base;
+    background: variables.$body-bg;
   }
 
   &-items {
     max-height: 400px;
     overflow: auto;
-    color: $gray-600;
+    color: variables.$gray-600;
 
     &:empty {
       border: 0;
@@ -40,32 +47,29 @@
     &.selection {
       > a,
       > span {
-        @extend %fa-icon;
-
         &::before {
+          @include font-awesome-mixins.fa-icon;
+
           content: " ";
-          display: inline-block;
-          width: 1em;
-          font-weight: $font-weight-bold;
         }
       }
 
       > .selected::before {
-        content: $fa-var-check;
+        content: "#{font-awesome-variables.$fa-var-check}";
       }
     }
 
     > * {
       display: block;
       margin: 1px;
-      padding: ($btn-padding-vertical - 1px) ($btn-padding-horizontal-small - 1px);
-      border-radius: $border-radius-base - 1px;
+      padding: (variables.$btn-padding-vertical - 1px) (variables.$btn-padding-horizontal-small - 1px);
+      border-radius: variables.$border-radius-base - 1px;
 
       &.icon {
-        padding-left: $icon-width + $btn-padding-horizontal-small;
+        padding-left: variables.$icon-width + variables.$btn-padding-horizontal-small;
 
         &::before {
-          width: $icon-width;
+          width: variables.$icon-width;
           margin-top: 3px;
           float: left;
           text-align: center;
@@ -81,21 +85,21 @@
 
     a,
     span {
-      padding-top: $pagination-padding-vertical;
-      padding-bottom: $pagination-padding-vertical;
+      padding-top: variables.$pagination-padding-vertical;
+      padding-bottom: variables.$pagination-padding-vertical;
       border: 1px solid transparent;
-      border-radius: $border-radius-small;
-      color: $pagination-color;
+      border-radius: variables.$border-radius-small;
+      color: variables.$pagination-color;
 
       &:hover,
       &:focus {
-        border-color: $pagination-hover-border;
-        background-color: $pagination-hover-bg;
-        color: $pagination-hover-color;
+        border-color: variables.$pagination-hover-border;
+        background-color: variables.$pagination-hover-bg;
+        color: variables.$pagination-hover-color;
         text-decoration: none;
 
         &.icon-del {
-          color: map-get(map-get($icon-color-map, danger), normal);
+          color: map.get(map.get(variables.$icon-color-map, danger), normal);
         }
       }
     }
@@ -104,19 +108,19 @@
   &:not(.journal-actions) > .drdn {
     &.expanded {
       > .drdn-trigger {
-        border-color: $pagination-active-border;
-        background-color: $pagination-active-bg;
-        color: $pagination-active-color;
+        border-color: variables.$pagination-active-border;
+        background-color: variables.$pagination-active-bg;
+        color: variables.$pagination-active-color;
       }
     }
 
     .drdn-trigger {
-      padding: $btn-padding-vertical $btn-padding-horizontal-small;
-      border: 1px solid $pagination-border;
-      border-radius: $border-radius-base;
-      background-color: $pagination-bg;
+      padding: variables.$btn-padding-vertical variables.$btn-padding-horizontal-small;
+      border: 1px solid variables.$pagination-border;
+      border-radius: variables.$border-radius-base;
+      background-color: variables.$pagination-bg;
       box-shadow: none;
-      color: $pagination-color;
+      color: variables.$pagination-color;
       text-align: center;
 
       > .icon-only {
@@ -125,9 +129,9 @@
 
       &:hover,
       &:focus {
-        border-color: $pagination-hover-border;
-        background-color: $pagination-hover-bg;
-        color: $pagination-hover-color;
+        border-color: variables.$pagination-hover-border;
+        background-color: variables.$pagination-hover-bg;
+        color: variables.$pagination-hover-color;
       }
     }
   }
@@ -135,15 +139,15 @@
 
 .journal-actions {
   .drdn-trigger {
-    color: map-get(map-get($icon-color-map, default), normal);
+    color: map.get(map.get(variables.$icon-color-map, default), normal);
   }
 
   .drdn-trigger:hover,
   .drdn.expanded .drdn-trigger {
-    color: map-get(map-get($icon-color-map, default), hover);
+    color: map.get(map.get(variables.$icon-color-map, default), hover);
   }
 
   .drdn-content {
-    top: $input-height-base;
+    top: variables.$input-height-base;
   }
 }

@@ -1,3 +1,8 @@
+@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../lib/font-awesome/mixins" as font-awesome-mixins;
+@use "../variables";
+@use "../mixins/text-overflow";
+
 .hidden,
 .mobile-show {
   display: none;
@@ -11,37 +16,37 @@
   }
 }
 
-// stylelint-disable selector-max-compound-selectors
+/* stylelint-disable selector-max-compound-selectors */
 body {
-  @media screen and (max-width: $redmine-responsive-max) {
+  @media screen and (max-width: variables.$redmine-responsive-max) {
     .flyout-menu + div {
       #header {
-        height: $responsive-header-height;
-        background-color: $header-bg;
+        height: variables.$responsive-header-height;
+        background-color: variables.$header-bg;
 
         .jump-box-arrow {
           &::before {
-            line-height: $responsive-header-height;
+            line-height: variables.$responsive-header-height;
           }
         }
 
         #quick-search {
           select {
             top: 0;
-            height: $responsive-header-height;
+            height: variables.$responsive-header-height;
             box-shadow: none;
           }
         }
       }
 
       #main {
-        padding-top: $responsive-header-height;
+        padding-top: variables.$responsive-header-height;
       }
     }
 
     #header {
       #project-jump {
-        padding: 0 $responsive-header-height 0 0;
+        padding: 0 variables.$responsive-header-height 0 0;
 
         &.expanded {
           .drdn-trigger {
@@ -53,22 +58,24 @@ body {
         }
 
         .drdn-trigger {
-          @include text-overflow;
+          @include text-overflow.text-overflow;
+
           display: block;
-          height: $responsive-header-height;
+          height: variables.$responsive-header-height;
           padding: 0;
           background-color: transparent;
           box-shadow: none;
-          font-size: $font-size-large;
-          font-weight: $font-weight-normal;
-          line-height: $responsive-header-height;
+          font-size: variables.$font-size-large;
+          font-weight: variables.$font-weight-normal;
+          line-height: variables.$responsive-header-height;
 
           &::before {
-            @include fa-icon;
-            content: $fa-var-chevron-down;
+            @include font-awesome-mixins.fa-icon;
+
+            content: font-awesome-variables.$fa-var-chevron-down;
             position: relative;
             top: -.1em;
-            width: $responsive-header-height * .75;
+            width: variables.$responsive-header-height * .75;
             padding: 0;
             transform: none;
             font-size: .8em;
@@ -81,8 +88,8 @@ body {
         }
 
         .drdn-content {
-          top: $responsive-header-height;
-          font-size: $font-size-base;
+          top: variables.$responsive-header-height;
+          font-size: variables.$font-size-base;
         }
       }
     }
@@ -97,9 +104,9 @@ body {
     }
 
     .mobile-toggle-button {
-      width: $responsive-header-height;
-      height: $responsive-header-height;
-      line-height: $responsive-header-height;
+      width: variables.$responsive-header-height;
+      height: variables.$responsive-header-height;
+      line-height: variables.$responsive-header-height;
 
       &:focus {
         text-decoration: none;
@@ -107,21 +114,21 @@ body {
     }
 
     .flyout-menu {
-      background-color: $flyout-menu-bg;
-      color: $flyout-menu-text;
+      background-color: variables.$flyout-menu-bg;
+      color: variables.$flyout-menu-text;
 
       .search-magnifier {
         left: 18px;
       }
 
       &__search {
-        height: $responsive-header-height;
-        padding: ($padding-side * .5);
+        height: variables.$responsive-header-height;
+        padding: (variables.$padding-side * .5);
         line-height: normal;
 
         input[type="text"] {
-          height: $responsive-header-height - $padding-side;
-          line-height: $responsive-header-height - $padding-side;
+          height: variables.$responsive-header-height - variables.$padding-side;
+          line-height: variables.$responsive-header-height - variables.$padding-side;
         }
       }
 
@@ -133,7 +140,7 @@ body {
 
       &__sidebar {
         p {
-          padding-left: $padding-large-horizontal;
+          padding-left: variables.$padding-large-horizontal;
         }
       }
 
@@ -141,8 +148,8 @@ body {
         li:nth-child(n) {
           a:not(.icon-only) {
             height: auto;
-            padding: $padding-large-vertical $padding-large-horizontal;
-            line-height: $line-height-base;
+            padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
+            line-height: variables.$line-height-base;
           }
         }
 
@@ -174,17 +181,17 @@ body {
         &,
         &:hover,
         &:focus {
-          color: $flyout-menu-link;
+          color: variables.$flyout-menu-link;
 
           &::before,
           span {
-            color: inherit !important; // stylelint-disable-line declaration-no-important
+            color: inherit !important; /* stylelint-disable-line declaration-no-important */
           }
         }
 
         &.selected {
-          background-color: $flyout-menu-link-active-bg;
-          color: $flyout-menu-link-active;
+          background-color: variables.$flyout-menu-link-active-bg;
+          color: variables.$flyout-menu-link-active;
         }
       }
 
@@ -192,20 +199,20 @@ body {
       h4 {
         height: auto;
         margin: 0;
-        padding: $padding-base-vertical $padding-base-horizontal;
-        border-top: 1px solid $flyout-menu-header-border;
-        border-bottom: 1px solid $flyout-menu-header-border;
-        background-color: $flyout-menu-header-bg;
-        color: $flyout-menu-header-text;
-        line-height: $line-height-base;
+        padding: variables.$padding-base-vertical variables.$padding-base-horizontal;
+        border-top: 1px solid variables.$flyout-menu-header-border;
+        border-bottom: 1px solid variables.$flyout-menu-header-border;
+        background-color: variables.$flyout-menu-header-bg;
+        color: variables.$flyout-menu-header-text;
+        line-height: variables.$line-height-base;
 
         + p {
-          margin-top: $padding-large-vertical;
+          margin-top: variables.$padding-large-vertical;
         }
       }
 
       h4 {
-        padding: 0 $padding-base-horizontal;
+        padding: 0 variables.$padding-base-horizontal;
       }
 
       form {
@@ -215,33 +222,32 @@ body {
           margin-left: 0;
 
           li:nth-child(n) {
-            padding-left: $padding-large-horizontal;
+            padding-left: variables.$padding-large-horizontal;
             line-height: inherit;
 
             label {
               a {
                 display: block;
-                padding: $padding-base-vertical $padding-base-horizontal;
+                padding: variables.$padding-base-vertical variables.$padding-base-horizontal;
               }
             }
           }
 
           + p {
-            margin-top: $padding-large-vertical;
+            margin-top: variables.$padding-large-vertical;
           }
         }
       }
 
       #admin-menu {
         a {
-          background-position: 8px center !important; // stylelint-disable-line declaration-no-important
+          background-position: 8px center !important; /* stylelint-disable-line declaration-no-important */
 
           &.additionals {
-            padding-left: 32px !important; // stylelint-disable-line declaration-no-important
+            padding-left: 32px !important; /* stylelint-disable-line declaration-no-important */
 
             &::before {
-              margin-right: $padding-small-vertical;
-              font-size: $fa-font-size-base;
+              margin-right: variables.$padding-small-vertical;
             }
           }
         }
@@ -249,13 +255,13 @@ body {
 
       #watchers {
         .contextual {
-          padding-top: $line-height-computed * .5;
-          padding-bottom: $line-height-computed * .5;
+          padding-top: variables.$line-height-computed * .5;
+          padding-bottom: variables.$line-height-computed * .5;
         }
 
         .watchers {
           li {
-            margin: ($line-height-computed * .5) 0 0;
+            margin: (variables.$line-height-computed * .5) 0 0;
             padding: 0;
 
             img.gravatar {
@@ -269,7 +275,7 @@ body {
             }
 
             .delete {
-              margin-right: $padding-large-vertical;
+              margin-right: variables.$padding-large-vertical;
               margin-left: auto;
               float: none;
               text-align: center;
@@ -282,7 +288,7 @@ body {
 
     #query_form_content {
       fieldset {
-        margin-bottom: $line-height-computed;
+        margin-bottom: variables.$line-height-computed;
       }
     }
 
@@ -293,7 +299,7 @@ body {
     }
 
     .splitcontentleft {
-      margin-bottom: $line-height-computed;
+      margin-bottom: variables.$line-height-computed;
       padding-right: 0;
       float: none;
     }
@@ -333,30 +339,30 @@ body {
     #content > .contextual > span,
     #query_form > .contextual,
     #query_form_with_buttons > .contextual {
-      margin-bottom: $line-height-computed - $padding-small-horizontal;
+      margin-bottom: variables.$line-height-computed - variables.$padding-small-horizontal;
       padding: 0;
       float: none;
       text-align: left;
 
       a {
-        padding: $btn-padding-vertical $btn-padding-horizontal-small;
-        border: 1px solid $pagination-border;
-        border-radius: $border-radius-base;
-        background-color: $pagination-bg;
-        color: $pagination-color;
-        font-weight: $font-weight-normal;
+        padding: variables.$btn-padding-vertical variables.$btn-padding-horizontal-small;
+        border: 1px solid variables.$pagination-border;
+        border-radius: variables.$border-radius-base;
+        background-color: variables.$pagination-bg;
+        color: variables.$pagination-color;
+        font-weight: variables.$font-weight-normal;
 
         &:hover,
         &:focus {
-          border-color: $pagination-hover-border;
-          background-color: $pagination-hover-bg;
-          color: $pagination-hover-color;
+          border-color: variables.$pagination-hover-border;
+          background-color: variables.$pagination-hover-bg;
+          color: variables.$pagination-hover-color;
           text-decoration: none;
         }
 
         &.icon {
-          padding-left: 20px + $btn-padding-horizontal-small;
-          background-position: $btn-padding-horizontal-small 50%;
+          padding-left: 20px + variables.$btn-padding-horizontal-small;
+          background-position: variables.$btn-padding-horizontal-small 50%;
         }
       }
 
@@ -373,7 +379,7 @@ body {
 
         input[type="checkbox"],
         input[type="radio"] {
-          margin-top: $check-input-margin-btn-v;
+          margin-top: variables.$check-input-margin-btn-v;
         }
       }
     }
@@ -390,20 +396,20 @@ body {
       float: none;
     }
 
-    // For Redmine 4.0+
+    /* For Redmine 4.0+ */
     #content > .contextual .drdn {
       padding: 0;
       border: 0;
 
       .drdn-trigger {
-        padding: $btn-padding-vertical $btn-padding-horizontal;
+        padding: variables.$btn-padding-vertical variables.$btn-padding-horizontal;
       }
 
       .drdn-items {
         a {
           margin: 3px 0 0;
-          padding-top: $btn-padding-vertical;
-          padding-bottom: $btn-padding-vertical;
+          padding-top: variables.$btn-padding-vertical;
+          padding-bottom: variables.$btn-padding-vertical;
 
           &:first-child {
             margin-top: 0;
@@ -412,7 +418,7 @@ body {
       }
     }
 
-    // For Redmine 3.4+
+    /* For Redmine 3.4+ */
     #my-page {
       #list-left {
         width: 100%;
@@ -437,12 +443,12 @@ body {
       padding: 0;
 
       a {
-        background-position: 8px center !important; // stylelint-disable-line declaration-no-important
+        background-position: 8px center !important; /* stylelint-disable-line declaration-no-important */
       }
     }
   }
 
-  // Tweaks for smartphones, touchscreens
+  /* Tweaks for smartphones, touchscreens */
   @media (hover: none) and (pointer: coarse) {
     .mobile-toggle-button::after {
       margin-top: 0;
@@ -451,7 +457,7 @@ body {
     .query-columns {
       span {
         display: block;
-        margin-bottom: $line-height-computed * .5;
+        margin-bottom: variables.$line-height-computed * .5;
       }
 
       .buttons {

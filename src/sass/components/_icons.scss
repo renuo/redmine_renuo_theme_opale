@@ -1,136 +1,176 @@
+@use "sass:list";
+@use "sass:string";
+@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../lib/font-awesome/mixins" as font-awesome-mixins;
+@use "../variables";
+@use "../mixins/link-variant";
+
+.#{font-awesome-variables.$fa-css-prefix} {
+  font-family: font-awesome-variables.$fa-style-family;
+  font-weight: font-awesome-variables.$fa-style;
+}
+
+.#{font-awesome-variables.$fa-css-prefix},
+.#{font-awesome-variables.$fa-css-prefix}-classic,
+.#{font-awesome-variables.$fa-css-prefix}-sharp,
+.fas,
+.#{font-awesome-variables.$fa-css-prefix}-solid,
+.far,
+.#{font-awesome-variables.$fa-css-prefix}-regular,
+.fab,
+.#{font-awesome-variables.$fa-css-prefix}-brands {
+  display: font-awesome-variables.$fa-display;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+
+.fas,
+.#{font-awesome-variables.$fa-css-prefix}-classic,
+.#{font-awesome-variables.$fa-css-prefix}-solid,
+.far,
+.#{font-awesome-variables.$fa-css-prefix}-regular {
+  font-family: 'Font Awesome 6 Free';
+}
+
+.fab,
+.#{font-awesome-variables.$fa-css-prefix}-brands {
+  font-family: 'Font Awesome 6 Brands';
+}
+
 %fa-icon {
   &::before {
-    @include fa-icon;
-    margin-right: $padding-small-vertical;
+    @include font-awesome-mixins.fa-icon;
+
+    margin-right: .6em;
   }
 }
 
 %fa-icon-after {
   &::after {
-    display: inline-block;
-    margin-left: $padding-small-vertical;
-    font: normal normal normal 14px/1 FontAwesome; // shortening font declaration
-    font-size: inherit; // can't have font-size inherit on line above, so need to override
-    text-rendering: auto; // optimizelegibility throws things off #1094
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @include font-awesome-mixins.fa-icon;
+
+    margin-left: .6em;
   }
 }
 
 $icon-map: (
-  icon-add:                     $fa-var-plus-square,
-  icon-edit:                    $fa-var-pencil,
-  icon-copy:                    $fa-var-copy,
-  icon-duplicate:               $fa-var-clipboard,
-  icon-del:                     $fa-var-trash,
-  icon-move:                    $fa-var-arrows,
-  icon-save:                    $fa-var-save,
-  icon-download:                $fa-var-download,
-  icon-cancel:                  $fa-var-ban,
-  icon-multiple:                $fa-var-plus-circle,
-  icon-folder:                  $fa-var-folder,
-  icon-package:                 $fa-var-cube,
-  icon-user:                    $fa-var-user,
-  icon-project:                 $fa-var-cube,
-  icon-projects:                $fa-var-cubes,
-  icon-help:                    $fa-var-info-circle,
-  icon-attachment:              $fa-var-paperclip,
-  icon-history:                 $fa-var-history,
-  icon-time-entry:              $fa-var-clock-o,
-  icon-time:                    $fa-var-clock-o,
-  icon-time-add:                $fa-var-clock-o,
-  icon-stats:                   $fa-var-line-chart,
-  icon-warning:                 $fa-var-warning,
-  icon-error:                   $fa-var-exclamation,
-  icon-fav:                     $fa-var-star,
-  icon-fav-off:                 $fa-var-star-o,
-  icon-heart:                   $fa-var-heart,
-  icon-heart-off:               $fa-var-heart-o,
-  icon-reload:                  $fa-var-refresh,
-  icon-locked:                  $fa-var-lock,
-  icon-lock:                    $fa-var-lock,
-  icon-unlock:                  $fa-var-unlock,
-  icon-checked:                 $fa-var-check,
-  icon-details:                 $fa-var-search-plus,
-  icon-report:                  $fa-var-pie-chart,
-  icon-comments:                $fa-var-comment,
-  icon-comment:                 $fa-var-comment,
-  icon-summary:                 $fa-var-file-text,
-  icon-server-authentication:   $fa-var-key,
-  icon-issue:                   $fa-var-ticket,
-  icon-zoom-in:                 $fa-var-search-plus,
-  icon-zoom-out:                $fa-var-search-minus,
-  icon-magnifier:               $fa-var-search,
-  icon-passwd:                  $fa-var-key,
-  icon-arrow-right:             $fa-var-arrow-right,
-  icon-test:                    $fa-var-arrow-circle-right,
-  icon-sticky:                  $fa-var-thumb-tack,
-  icon-email:                   $fa-var-envelope,
-  icon-email-disabled:          $fa-var-envelope-o,
-  icon-email-add:               $fa-var-envelope,
-  icon-ok:                      $fa-var-check,
-  icon-not-ok:                  $fa-var-times,
-  icon-link-break:              $fa-var-chain-broken,
-  icon-list:                    $fa-var-list-ul,
-  icon-close:                   $fa-var-times-circle,
-  icon-settings:                $fa-var-cog,
-  icon-group:                   $fa-var-users,
-  icon-groupnonmember:          $fa-var-users,
-  icon-groupanonymous:          $fa-var-users,
-  icon-roles:                   $fa-var-eye,
-  icon-issue-edit:              $fa-var-edit,
-  icon-workflows:               $fa-var-sitemap,
-  icon-custom-fields:           $fa-var-edit,
-  icon-plugins:                 $fa-var-puzzle-piece,
-  icon-news:                    $fa-var-newspaper-o,
-  icon-issue-closed:            $fa-var-ticket,
-  icon-issue-note:              $fa-var-comment,
-  icon-changeset:               $fa-var-upload,
-  icon-message:                 $fa-var-comment,
-  icon-reply:                   $fa-var-comment-o,
-  icon-wiki-page:               $fa-var-file-text-o,
-  icon-document:                $fa-var-file-text,
-  icon-add-bullet:              $fa-var-plus-circle,
-  icon-shared:                  $fa-var-link,
-  icon-actions:                 $fa-var-ellipsis-h,
-  icon-sort-handle:             $fa-var-arrows-v,
-  icon-expended:                $fa-var-chevron-down,
-  icon-collapsed:               $fa-var-chevron-right,
-  icon-bookmark:                $fa-var-bookmark,
-  icon-bookmark-off:            $fa-var-bookmark-o,
-  icon-sorted-asc:              $fa-var-sort-amount-asc,
-  icon-sorted-desc:             $fa-var-sort-amount-desc,
-  icon-toggle-plus:             $fa-var-plus-square,
-  icon-toggle-minus:            $fa-var-minus-square,
-  icon-clear-query:             $fa-var-times,
-  icon-import:                  $fa-var-cloud-upload,
-  icon-bookmarked-project:      $fa-var-tag,
-  icon-copy-link:               $fa-var-clipboard,
+  icon-add:                     font-awesome-variables.$fa-var-plus-square,
+  icon-edit:                    font-awesome-variables.$fa-var-pencil,
+  icon-copy:                    font-awesome-variables.$fa-var-copy,
+  icon-duplicate:               font-awesome-variables.$fa-var-clipboard,
+  icon-del:                     font-awesome-variables.$fa-var-trash,
+  icon-move:                    font-awesome-variables.$fa-var-arrows,
+  icon-save:                    font-awesome-variables.$fa-var-save,
+  icon-download:                font-awesome-variables.$fa-var-download,
+  icon-cancel:                  font-awesome-variables.$fa-var-ban,
+  icon-multiple:                font-awesome-variables.$fa-var-plus-circle,
+  icon-folder:                  font-awesome-variables.$fa-var-folder,
+  icon-package:                 font-awesome-variables.$fa-var-cube,
+  icon-user:                    font-awesome-variables.$fa-var-user,
+  icon-project:                 font-awesome-variables.$fa-var-cube,
+  icon-projects:                font-awesome-variables.$fa-var-cubes,
+  icon-help:                    font-awesome-variables.$fa-var-info-circle,
+  icon-attachment:              font-awesome-variables.$fa-var-paperclip,
+  icon-history:                 font-awesome-variables.$fa-var-history,
+  icon-time-entry:              font-awesome-variables.$fa-var-clock,
+  icon-time:                    font-awesome-variables.$fa-var-clock,
+  icon-time-add:                font-awesome-variables.$fa-var-clock,
+  icon-stats:                   font-awesome-variables.$fa-var-line-chart,
+  icon-warning:                 font-awesome-variables.$fa-var-warning,
+  icon-error:                   font-awesome-variables.$fa-var-exclamation,
+  icon-fav:                     font-awesome-variables.$fa-var-star,
+  icon-fav-off:                 font-awesome-variables.$fa-var-star,
+  icon-heart:                   font-awesome-variables.$fa-var-heart,
+  icon-heart-off:               font-awesome-variables.$fa-var-heart,
+  icon-reload:                  font-awesome-variables.$fa-var-refresh,
+  icon-locked:                  font-awesome-variables.$fa-var-lock,
+  icon-lock:                    font-awesome-variables.$fa-var-lock,
+  icon-unlock:                  font-awesome-variables.$fa-var-unlock,
+  icon-checked:                 font-awesome-variables.$fa-var-check,
+  icon-details:                 font-awesome-variables.$fa-var-search-plus,
+  icon-report:                  font-awesome-variables.$fa-var-pie-chart,
+  icon-comments:                font-awesome-variables.$fa-var-comment,
+  icon-comment:                 font-awesome-variables.$fa-var-comment,
+  icon-summary:                 font-awesome-variables.$fa-var-file-text,
+  icon-server-authentication:   font-awesome-variables.$fa-var-key,
+  icon-issue:                   font-awesome-variables.$fa-var-ticket,
+  icon-zoom-in:                 font-awesome-variables.$fa-var-search-plus,
+  icon-zoom-out:                font-awesome-variables.$fa-var-search-minus,
+  icon-magnifier:               font-awesome-variables.$fa-var-search,
+  icon-passwd:                  font-awesome-variables.$fa-var-key,
+  icon-arrow-right:             font-awesome-variables.$fa-var-arrow-right,
+  icon-test:                    font-awesome-variables.$fa-var-arrow-circle-right,
+  icon-sticky:                  font-awesome-variables.$fa-var-thumb-tack,
+  icon-email:                   font-awesome-variables.$fa-var-envelope,
+  icon-email-disabled:          font-awesome-variables.$fa-var-envelope,
+  icon-email-add:               font-awesome-variables.$fa-var-envelope,
+  icon-ok:                      font-awesome-variables.$fa-var-check,
+  icon-not-ok:                  font-awesome-variables.$fa-var-times,
+  icon-link-break:              font-awesome-variables.$fa-var-chain-broken,
+  icon-list:                    font-awesome-variables.$fa-var-list-ul,
+  icon-close:                   font-awesome-variables.$fa-var-times-circle,
+  icon-settings:                font-awesome-variables.$fa-var-cog,
+  icon-group:                   font-awesome-variables.$fa-var-users,
+  icon-groupnonmember:          font-awesome-variables.$fa-var-users,
+  icon-groupanonymous:          font-awesome-variables.$fa-var-users,
+  icon-roles:                   font-awesome-variables.$fa-var-eye,
+  icon-issue-edit:              font-awesome-variables.$fa-var-edit,
+  icon-workflows:               font-awesome-variables.$fa-var-sitemap,
+  icon-custom-fields:           font-awesome-variables.$fa-var-edit,
+  icon-plugins:                 font-awesome-variables.$fa-var-puzzle-piece,
+  icon-news:                    font-awesome-variables.$fa-var-newspaper,
+  icon-issue-closed:            font-awesome-variables.$fa-var-ticket,
+  icon-issue-note:              font-awesome-variables.$fa-var-comment,
+  icon-changeset:               font-awesome-variables.$fa-var-upload,
+  icon-message:                 font-awesome-variables.$fa-var-comment,
+  icon-reply:                   font-awesome-variables.$fa-var-comment,
+  icon-wiki-page:               font-awesome-variables.$fa-var-file-text,
+  icon-document:                font-awesome-variables.$fa-var-file-text,
+  icon-add-bullet:              font-awesome-variables.$fa-var-plus-circle,
+  icon-shared:                  font-awesome-variables.$fa-var-link,
+  icon-actions:                 font-awesome-variables.$fa-var-ellipsis-h,
+  icon-sort-handle:             font-awesome-variables.$fa-var-arrows-v,
+  icon-expended:                font-awesome-variables.$fa-var-chevron-down,
+  icon-collapsed:               font-awesome-variables.$fa-var-chevron-right,
+  icon-bookmark:                font-awesome-variables.$fa-var-bookmark,
+  icon-bookmark-off:            font-awesome-variables.$fa-var-bookmark,
+  icon-sorted-asc:              font-awesome-variables.$fa-var-sort-amount-asc,
+  icon-sorted-desc:             font-awesome-variables.$fa-var-sort-amount-desc,
+  icon-toggle-plus:             font-awesome-variables.$fa-var-plus-square,
+  icon-toggle-minus:            font-awesome-variables.$fa-var-minus-square,
+  icon-clear-query:             font-awesome-variables.$fa-var-times,
+  icon-import:                  font-awesome-variables.$fa-var-cloud-upload,
+  icon-bookmarked-project:      font-awesome-variables.$fa-var-tag,
+  icon-copy-link:               font-awesome-variables.$fa-var-clipboard,
 
-  // Plugin icons
-  icon-call:                    $fa-var-phone,
-  icon-contact:                 $fa-var-vcard,
-  icon-erase:                   $fa-var-eraser,
-  icon-facebook:                $fa-var-facebook-square,
-  icon-fullscreen:              $fa-var-arrows-alt,
-  icon-linkedin:                $fa-var-linkedin-square,
-  icon-meeting:                 $fa-var-calendar-check-o,
-  icon-merge:                   $fa-var-code-fork,
-  icon-money-dollar:            $fa-var-usd,
-  icon-money-euro:              $fa-var-eur,
-  icon-money-pound:             $fa-var-gbp,
-  icon-money-yen:               $fa-var-jpy,
-  icon-move-bottom:             $fa-var-angle-double-down,
-  icon-move-down:               $fa-var-angle-down,
-  icon-move-top:                $fa-var-angle-double-up,
-  icon-move-up:                 $fa-var-angle-up,
-  icon-phone:                   $fa-var-phone,
-  icon-skype:                   $fa-var-skype,
-  icon-tags:                    $fa-var-tags,
-  icon-twitter:                 $fa-var-twitter-square,
-  icon-vcard:                   $fa-var-vcard,
-  banner-icon-edit:             $fa-var-edit,
-  banner-icon-off:              $fa-var-times,
+  /* Plugin icons */
+  icon-call:                    font-awesome-variables.$fa-var-phone,
+  icon-contact:                 font-awesome-variables.$fa-var-vcard,
+  icon-erase:                   font-awesome-variables.$fa-var-eraser,
+  icon-facebook:                font-awesome-variables.$fa-var-facebook-square,
+  icon-fullscreen:              font-awesome-variables.$fa-var-arrows-alt,
+  icon-linkedin:                font-awesome-variables.$fa-var-linkedin,
+  icon-meeting:                 font-awesome-variables.$fa-var-calendar-check,
+  icon-merge:                   font-awesome-variables.$fa-var-code-fork,
+  icon-money-dollar:            font-awesome-variables.$fa-var-usd,
+  icon-money-euro:              font-awesome-variables.$fa-var-eur,
+  icon-money-pound:             font-awesome-variables.$fa-var-gbp,
+  icon-money-yen:               font-awesome-variables.$fa-var-jpy,
+  icon-move-bottom:             font-awesome-variables.$fa-var-angle-double-down,
+  icon-move-down:               font-awesome-variables.$fa-var-angle-down,
+  icon-move-top:                font-awesome-variables.$fa-var-angle-double-up,
+  icon-move-up:                 font-awesome-variables.$fa-var-angle-up,
+  icon-phone:                   font-awesome-variables.$fa-var-phone,
+  icon-skype:                   font-awesome-variables.$fa-var-skype,
+  icon-tags:                    font-awesome-variables.$fa-var-tags,
+  icon-twitter:                 font-awesome-variables.$fa-var-twitter-square,
+  icon-vcard:                   font-awesome-variables.$fa-var-vcard,
+  banner-icon-edit:             font-awesome-variables.$fa-var-edit,
+  banner-icon-off:              font-awesome-variables.$fa-var-times,
 );
 
 @keyframes spin {
@@ -143,72 +183,61 @@ $icon-map: (
   }
 }
 
-table.list .buttons > a::before {
-  font-size: $fa-font-size-base;
-}
 
-
-//== Buttons icons
-//
+/* Buttons icons */
 
 .icon,
 .icon-only:not(.toggle-multiselect) {
   @extend %fa-icon;
-  padding-left: $icon-width;
-  background-repeat: no-repeat;
-  background-position: 0% 50%;
-
-  &::before {
-    margin-left: -$icon-width;
-  }
 }
 
 .icon-only {
   display: inline-block;
-  width: 0;
+  width: variables.$icon-width;
   overflow: hidden;
   vertical-align: top;
   white-space: nowrap;
 
   &::before {
-    width: $icon-width;
+    width: variables.$icon-width;
     text-align: center;
   }
 }
 
-// A empty icon should behave more like icon-only
+/* A empty icon should behave more like icon-only */
 a.icon:empty {
   display: inline-block;
 }
 
 span.icon + span.icon {
-  margin-left: $padding-small-vertical;
+  margin-left: variables.$padding-small-vertical;
 }
 
 $icons-selector: ();
+
 @each $class, $icon in $icon-map {
-  $icons-selector: append($icons-selector, unquote(".#{$class}"), "comma");
+  $icons-selector: list.append($icons-selector, string.unquote(".#{$class}"), "comma");
 
   .#{$class} {
     &::before {
-      content: $icon;
+      content: "#{$icon}";
 
       @if $class == "icon-fav" {
-        color: $orange;
+        color: variables.$orange;
       } @else if $class == "icon-heart" {
-        color: $pink;
+        color: variables.$pink;
       } @else if $class == "icon-bookmarked-project" {
-        color: $blue;
+        color: variables.$blue;
       }
     }
 
     @if $class == "icon-close" {
       &:hover::before {
-        content: $fa-var-times-circle-o;
+        content: "#{font-awesome-variables.$fa-var-times-circle}";
       }
     } @else if $class == "icon-folder" {
       .open &::before {
-        content: $fa-var-folder-open;
+        content: "#{font-awesome-variables.$fa-var-folder-open}";
       }
     }
   }
@@ -220,89 +249,86 @@ $icons-selector: ();
   }
 }
 
-//== Checkbox toggler
-//
+/* Checkbox toggler */
 
 a.toggle-checkboxes {
   @extend %fa-icon;
 
   &::before {
-    content: $fa-var-check-square-o;
+    content: "#{font-awesome-variables.$fa-var-square-check}";
   }
 }
 
 
-//== Colorize some actions
-//
+/* Colorize some actions */
 
 a.icon,
 a.icon-only {
-  @include link-variant(default);
+  @include link-variant.link-variant(default);
 }
 
 .icon-checked {
-  @include link-variant(success, false);
+  @include link-variant.link-variant(success, false);
 }
 
 a.icon-add,
 a.icon-save,
 a.icon-checked {
-  @include link-variant(success);
+  @include link-variant.link-variant(success);
 }
 
 a.icon-del {
-  @include link-variant(danger);
+  @include link-variant.link-variant(danger);
 }
 
 
-//== File types
-//
+/* File types */
 
 .icon-folder,
 .icon-file {
   &::before {
-    width: $icon-width;
+    width: variables.$icon-width;
     text-align: center;
   }
 }
 
 .icon-file {
   &::before {
-    content: $fa-var-file-o;
-    color: $gray-700;
+    content: "#{font-awesome-variables.$fa-var-file}";
+    color: variables.$gray-700;
   }
 
-  &.text-plain::before         { content: $fa-var-file-text-o; }
-  &.text-x-c::before           { content: $fa-var-file-code-o; }
-  &.text-x-csharp::before      { content: $fa-var-file-code-o; }
-  &.text-x-java::before        { content: $fa-var-file-code-o; }
-  &.text-x-php::before         { content: $fa-var-file-code-o; }
-  &.text-x-ruby::before        { content: $fa-var-file-code-o; }
-  &.text-xml::before           { content: $fa-var-file-code-o; }
-  &.text-css::before           { content: $fa-var-file-code-o; }
-  &.text-html::before          { content: $fa-var-file-code-o; }
-  &.text-x-sh::before          { content: $fa-var-file-text-o; }
+  &.text-plain::before         { content: "#{font-awesome-variables.$fa-var-file-text}"; }
+  &.text-x-c::before           { content: "#{font-awesome-variables.$fa-var-file-code}"; }
+  &.text-x-csharp::before      { content: "#{font-awesome-variables.$fa-var-file-code}"; }
+  &.text-x-java::before        { content: "#{font-awesome-variables.$fa-var-file-code}"; }
+  &.text-x-php::before         { content: "#{font-awesome-variables.$fa-var-file-code}"; }
+  &.text-x-ruby::before        { content: "#{font-awesome-variables.$fa-var-file-code}"; }
+  &.text-xml::before           { content: "#{font-awesome-variables.$fa-var-file-code}"; }
+  &.text-css::before           { content: "#{font-awesome-variables.$fa-var-file-code}"; }
+  &.text-html::before          { content: "#{font-awesome-variables.$fa-var-file-code}"; }
+  &.text-x-sh::before          { content: "#{font-awesome-variables.$fa-var-file-text}"; }
 
   &.application-javascript::before,
-  &.text-x-javascript::before { content: $fa-var-file-code-o; }
+  &.text-x-javascript::before { content: "#{font-awesome-variables.$fa-var-file-code}"; }
 
-  &.application-pdf::before    { content: $fa-var-file-pdf-o; }
-  &.application-msword::before { content: $fa-var-file-word-o; }
+  &.application-pdf::before    { content: "#{font-awesome-variables.$fa-var-file-pdf}"; }
+  &.application-msword::before { content: "#{font-awesome-variables.$fa-var-file-word}"; }
 
   &.application-vnd\.openxmlformats-officedocument\.spreadsheetml\.sheet::before,
-  &.application-vnd\.ms-excel::before { content: $fa-var-file-excel-o; }
+  &.application-vnd\.ms-excel::before { content: "#{font-awesome-variables.$fa-var-file-excel}"; }
 
   &.image-vnd\.microsoft\.icon::before,
   &.image-gif::before,
   &.image-jpeg::before,
   &.image-png::before,
   &.image-tiff::before {
-    content: $fa-var-file-image-o;
+    content: "#{font-awesome-variables.$fa-var-file-image}";
   }
 
   &.application-zip::before,
   &.application-x-gzip::before {
-    content: $fa-var-file-zip-o;
+    content: "#{font-awesome-variables.$fa-var-file-zipper}";
   }
 }
 
@@ -312,53 +338,48 @@ a.icon-del {
     text-align: center;
   }
 
-  &.icon {
-    padding-left: $icon-width;
-  }
-
   &.expander {
     background-image: none;
   }
 }
 
 .icon-zoom-in + .icon-zoom-out {
-  margin-left: $padding-small-vertical;
+  margin-left: variables.$padding-small-vertical;
 }
 
 
-//== Administration menu sections
-//
+/* Administration menu sections */
 
 %admin-icon {
   @extend %fa-icon;
 
   &:hover::before {
-    color: $gray-900;
+    color: variables.$gray-900;
   }
 
   &.selected::before {
-    color: $gray-950;
+    color: variables.$gray-950;
   }
 }
 
 #admin-menu {
   #admin-index > & {
     a {
-      padding-left: 5px + $icon-width;
+      padding-left: 5px + variables.$icon-width;
     }
   }
 
   li {
     > a {
-      padding-left: $sidebar-padding-horizontal + 5px + $icon-width;
+      padding-left: variables.$sidebar-padding-horizontal + 5px + variables.$icon-width;
 
       &::before {
         display: inline-block;
-        width: $icon-width;
+        width: variables.$icon-width;
         margin: 0;
-        margin-left: -(5px + $icon-width);
+        margin-left: -(5px + variables.$icon-width);
         padding: 0;
-        color: $gray-700;
+        color: variables.$gray-700;
         text-align: center;
       }
     }
@@ -367,110 +388,109 @@ a.icon-del {
   .projects {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-cubes; }
+    &::before { content: "#{font-awesome-variables.$fa-var-cubes}"; }
   }
 
   .users {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-user; }
+    &::before { content: "#{font-awesome-variables.$fa-var-user}"; }
   }
 
   .groups {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-group; }
+    &::before { content: "#{font-awesome-variables.$fa-var-people-group}"; }
   }
 
   .roles {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-eye; }
+    &::before { content: "#{font-awesome-variables.$fa-var-eye}"; }
   }
 
   .trackers {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-ticket; }
+    &::before { content: "#{font-awesome-variables.$fa-var-ticket}"; }
   }
 
   .issue-statuses,
   .issue_statuses {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-pencil-square; }
+    &::before { content: "#{font-awesome-variables.$fa-var-pencil-square}"; }
   }
 
   .workflows {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-sitemap; }
+    &::before { content: "#{font-awesome-variables.$fa-var-sitemap}"; }
   }
 
   .custom-fields,
   .custom_fields {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-edit; }
+    &::before { content: "#{font-awesome-variables.$fa-var-edit}"; }
   }
 
   .enumerations {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-list; }
+    &::before { content: "#{font-awesome-variables.$fa-var-list}"; }
   }
 
   .settings {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-gear; }
+    &::before { content: "#{font-awesome-variables.$fa-var-gear}"; }
   }
 
   .plugins {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-puzzle-piece; }
+    &::before { content: "#{font-awesome-variables.$fa-var-puzzle-piece}"; }
   }
 
   .info {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-info-circle; }
+    &::before { content: "#{font-awesome-variables.$fa-var-info-circle}"; }
   }
 
   .ldap-authentication,
   .server_authentication {
     @extend %admin-icon;
 
-    &::before { content: $fa-var-key; }
+    &::before { content: "#{font-awesome-variables.$fa-var-key}"; }
   }
 }
 
 
-//== Drag-and-drop sorting
-//
+/* Drag-and-drop sorting */
 
 .sort-handle {
   @extend %fa-icon;
+
   text-align: center;
   cursor: move;
 
   &::before {
-    content: $fa-var-arrows-v;
+    content: "#{font-awesome-variables.$fa-var-arrows-v}";
   }
 
   &.ajax-loading {
     &::before {
-      content: $fa-var-refresh;
+      content: "#{font-awesome-variables.$fa-var-refresh}";
       animation: spin 1s linear infinite;
-      color: $gray-700;
+      color: variables.$gray-700;
     }
   }
 }
 
 
-//== Headers with icons
-//
+/* Headers with icons */
 
 h3.icon,
 h3.version,
@@ -480,27 +500,27 @@ div.members h3,
 div.news h3,
 div.projects h3 {
   @extend %fa-icon;
-  color: $gray-900;
+
+  color: variables.$gray-900;
 
   &::before {
-    width: $icon-width;
-    margin-right: $padding-small-vertical;
+    width: variables.$icon-width;
+    margin-right: variables.$padding-small-vertical;
     transform: translateY(-.1em);
-    color: $gray-700;
+    color: variables.$gray-700;
     text-align: center;
   }
 }
 
-h3.version::before      { content: $fa-var-cube; }
-h3.comments::before     { content: $fa-var-comments; }
-div.issues h3::before   { content: $fa-var-ticket; }
-div.members h3::before  { content: $fa-var-users; }
-div.news h3::before     { content: $fa-var-newspaper-o; }
-div.projects h3::before { content: $fa-var-cubes; }
+h3.version::before      { content: "#{font-awesome-variables.$fa-var-cube}"; }
+h3.comments::before     { content: "#{font-awesome-variables.$fa-var-comments}"; }
+div.issues h3::before   { content: "#{font-awesome-variables.$fa-var-ticket}"; }
+div.members h3::before  { content: "#{font-awesome-variables.$fa-var-users}"; }
+div.news h3::before     { content: "#{font-awesome-variables.$fa-var-newspaper}"; }
+div.projects h3::before { content: "#{font-awesome-variables.$fa-var-cubes}"; }
 
 
-//== Activity types icons
-//
+/* Activity types icons */
 
 dt {
   &.issue,
@@ -520,38 +540,37 @@ dt {
     @extend %fa-icon;
 
     &::before {
-      margin-left: -$padding-side;
+      margin-left: -(variables.$padding-side);
       float: left;
-      line-height: $line-height-computed;
+      line-height: variables.$line-height-computed;
     }
   }
 
-  &.issue::before        { content: $fa-var-ticket; }
-  &.issue-edit::before   { content: $fa-var-edit; }
-  &.issue.closed::before { content: $fa-var-ticket; }
-  &.issue-closed::before { content: $fa-var-ticket; }
-  &.issue-note::before   { content: $fa-var-comment; }
-  &.changeset::before    { content: $fa-var-upload; }
-  &.news::before         { content: $fa-var-newspaper-o; }
-  &.message::before      { content: $fa-var-comment; }
-  &.reply::before        { content: $fa-var-comment-o; }
-  &.wiki-page::before    { content: $fa-var-file-text-o; }
-  &.attachment::before   { content: $fa-var-paperclip; }
-  &.document::before     { content: $fa-var-file-text; }
-  &.project::before      { content: $fa-var-cube; }
-  &.time-entry::before   { content: $fa-var-clock-o; }
+  &.issue::before        { content: "#{font-awesome-variables.$fa-var-ticket}"; }
+  &.issue-edit::before   { content: "#{font-awesome-variables.$fa-var-edit}"; }
+  &.issue.closed::before { content: "#{font-awesome-variables.$fa-var-ticket}"; }
+  &.issue-closed::before { content: "#{font-awesome-variables.$fa-var-ticket}"; }
+  &.issue-note::before   { content: "#{font-awesome-variables.$fa-var-comment}"; }
+  &.changeset::before    { content: "#{font-awesome-variables.$fa-var-upload}"; }
+  &.news::before         { content: "#{font-awesome-variables.$fa-var-newspaper}"; }
+  &.message::before      { content: "#{font-awesome-variables.$fa-var-comment}"; }
+  &.reply::before        { content: "#{font-awesome-variables.$fa-var-comment}"; }
+  &.wiki-page::before    { content: "#{font-awesome-variables.$fa-var-file-text}"; }
+  &.attachment::before   { content: "#{font-awesome-variables.$fa-var-paperclip}"; }
+  &.document::before     { content: "#{font-awesome-variables.$fa-var-file-text}"; }
+  &.project::before      { content: "#{font-awesome-variables.$fa-var-cube}"; }
+  &.time-entry::before   { content: "#{font-awesome-variables.$fa-var-clock}"; }
 }
 
 
-//== Alternative icons
-//
+/* Alternative icons */
 
 .search_for_watchers > a {
   @extend %fa-icon;
-  @include icon-variant(success);
+  @include link-variant.icon-variant(success);
 
   &::before {
-    content: $fa-var-plus;
+    content: "#{font-awesome-variables.$fa-var-plus}";
   }
 
   img {
@@ -563,7 +582,7 @@ dt {
   @extend %fa-icon;
 
   &::before {
-    content: $fa-var-rss-square;
+    content: "#{font-awesome-variables.$fa-var-rss-square}";
   }
 }
 
@@ -573,7 +592,7 @@ dt {
     @extend %fa-icon;
 
     &::before {
-      content: $fa-var-chain-broken;
+      content: "#{font-awesome-variables.$fa-var-chain-broken}";
     }
 
     img {
@@ -584,21 +603,24 @@ dt {
 
 #main a.close-icon {
   @extend %fa-icon;
-  @include link-variant(danger);
+  @include link-variant.link-variant(danger);
+
   width: auto;
   height: auto;
   background: transparent;
 
   &::before {
-    content: $fa-var-remove;
+    content: "#{font-awesome-variables.$fa-var-remove}";
   }
 }
 
 a.project {
-  $svg-star: inline-svg("icon-star.svg", (path: (fill: $orange)));
-  $svg-tag: inline-svg("icon-tag.svg", (path: (fill: $blue)));
+  $svg-star: font-awesome-variables.$fa-var-star;
+  $svg-tag: font-awesome-variables.$fa-var-tag;
 
   &.icon {
+    @extend %fa-icon-after;
+
     padding-left: 0;
 
     &::before {
@@ -611,19 +633,37 @@ a.project {
   &.my-project,
   &.icon-user,
   &.icon-bookmarked-project {
-    padding-right: $icon-width;
-    background-image: $svg-star;
-    background-repeat: no-repeat;
-    background-position: bottom .2em right 0, bottom .2em right $icon-width;
+    &::after {
+      content: "#{$svg-star}";
+      color: variables.$orange;
+    }
   }
 
   &.icon-bookmarked-project {
-    background-image: $svg-tag;
+    &::after {
+      content: "#{$svg-tag}";
+      color: variables.$blue;
+    }
   }
 
   &.icon-user.icon-bookmarked-project {
-    padding-right: $icon-width * 2;
-    background-image: $svg-tag, $svg-star;
+    @extend %fa-icon;
+
+    position: relative;
+
+    &::before {
+      content: "#{$svg-tag}";
+      position: absolute;
+      top: 9px;
+      right: 0;
+      margin: 0 -20px 0 0;
+      color: variables.$blue;
+    }
+
+    &::after {
+      content: "#{$svg-star}";
+      color: variables.$orange;
+    }
   }
 }
 
@@ -631,16 +671,17 @@ span.my-project {
   @extend %fa-icon;
 
   &::before {
-    content: $fa-var-star;
-    width: $icon-width;
+    content: "#{font-awesome-variables.$fa-var-star}";
+    width: variables.$icon-width;
     margin-right: 0;
-    color: $orange;
+    color: variables.$orange;
     text-align: center;
   }
 }
 
 .sort {
   @extend %fa-icon-after;
+
   padding-left: 0;
 
   &::before {
@@ -657,42 +698,43 @@ span.my-project {
   }
 
   &.asc::after {
-    content: $fa-var-sort-amount-asc;
+    content: "#{font-awesome-variables.$fa-var-sort-amount-asc}";
   }
 
   &.desc::after {
-    content: $fa-var-sort-amount-desc;
+    content: "#{font-awesome-variables.$fa-var-sort-amount-desc}";
   }
 
   .sort-by-id &,
   .sort-by-done-ratio &,
   .sort-by-estimated-hours &,
   .sort-by-spent-hours & {
-    &.asc::after  { content: $fa-var-sort-numeric-asc; }
-    &.desc::after { content: $fa-var-sort-numeric-desc; }
+    &.asc::after  { content: "#{font-awesome-variables.$fa-var-sort-numeric-asc}"; }
+    &.desc::after { content: "#{font-awesome-variables.$fa-var-sort-numeric-desc}"; }
   }
 
   .sort-by-assigned-to &,
   .sort-by-subject & {
-    &.asc::after  { content: $fa-var-sort-alpha-asc; }
-    &.desc::after { content: $fa-var-sort-alpha-desc; }
+    &.asc::after  { content: "#{font-awesome-variables.$fa-var-sort-alpha-asc}"; }
+    &.desc::after { content: "#{font-awesome-variables.$fa-var-sort-alpha-desc}"; }
   }
 }
 
 a.remove-upload {
   @extend %fa-icon;
-  @include link-variant(danger);
-  opacity: $icon-opacity;
+  @include link-variant.link-variant(danger);
+
+  opacity: variables.$icon-opacity;
   text-align: center;
 
   &:hover,
   &:focus {
-    opacity: $icon-hover-opacity;
+    opacity: variables.$icon-hover-opacity;
     text-decoration: none;
   }
 
   &::before {
-    content: $fa-var-trash;
+    content: "#{font-awesome-variables.$fa-var-trash}";
   }
 }
 
@@ -700,7 +742,7 @@ em.info.error {
   @extend %fa-icon;
 
   &::before {
-    content: $fa-var-exclamation-circle;
+    content: "#{font-awesome-variables.$fa-var-exclamation-circle}";
   }
 }
 
@@ -708,6 +750,7 @@ em.info.error {
   .contextual {
     a {
       @extend %fa-icon;
+
       opacity: .7;
 
       &:hover,
@@ -725,19 +768,19 @@ em.info.error {
     a {
       &:nth-child(1) {
         &::before {
-          content: $fa-var-comment;
+          content: "#{font-awesome-variables.$fa-var-comment}";
         }
       }
 
       &:nth-child(2) {
         &::before {
-          content: $fa-var-pencil;
+          content: "#{font-awesome-variables.$fa-var-pencil}";
         }
       }
 
       &:nth-child(3) {
         &::before {
-          content: $fa-var-trash;
+          content: "#{font-awesome-variables.$fa-var-trash}";
         }
       }
     }
@@ -751,20 +794,20 @@ tr.message {
   }
 
   &.locked {
-    color: $gray-700;
+    color: variables.$gray-700;
 
     td.subject {
       &::before {
-        content: $fa-var-lock;
+        content: "#{font-awesome-variables.$fa-var-lock}";
       }
     }
   }
 
   &.sticky td.subject {
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
 
     &::before {
-      content: $fa-var-bookmark;
+      content: "#{font-awesome-variables.$fa-var-bookmark}";
     }
   }
 }
@@ -773,7 +816,7 @@ tr.version.shared td.name {
   @extend %fa-icon;
 
   &::before {
-    content: $fa-var-link;
+    content: "#{font-awesome-variables.$fa-var-link}";
   }
 }
 
@@ -782,7 +825,7 @@ table.boards {
     @extend %fa-icon;
 
     &::before {
-      content: $fa-var-comments;
+      content: "#{font-awesome-variables.$fa-var-comments}";
     }
   }
 }
@@ -794,7 +837,7 @@ table.members {
     @extend %fa-icon;
 
     &::before {
-      content: $fa-var-group;
+      content: "#{font-awesome-variables.$fa-var-people-group}";
     }
   }
 }
@@ -804,7 +847,7 @@ div.wiki {
     @extend %fa-icon;
 
     &::before {
-      content: $fa-var-external-link;
+      content: "#{font-awesome-variables.$fa-var-external-link}";
       display: inline;
       margin-right: 3px;
       font-size: 10px;
@@ -816,7 +859,7 @@ div.wiki {
   @extend %fa-icon;
 
   &::before {
-    content: $fa-var-pencil;
+    content: "#{font-awesome-variables.$fa-var-pencil}";
   }
 
   img {
@@ -828,7 +871,7 @@ div.wiki {
   @extend %fa-icon;
 
   &::before {
-    content: $fa-var-plus;
+    content: "#{font-awesome-variables.$fa-var-plus}";
     margin-right: .3em;
   }
 }
@@ -836,6 +879,7 @@ div.wiki {
 .other-formats {
   %other-format {
     @extend %fa-icon;
+
     background-image: none;
 
     &::before {
@@ -847,7 +891,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      content: $fa-var-file-pdf-o;
+      content: "#{font-awesome-variables.$fa-var-file-pdf}";
     }
   }
 
@@ -855,7 +899,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      content: $fa-var-file-code-o;
+      content: "#{font-awesome-variables.$fa-var-file-code}";
     }
   }
 
@@ -863,7 +907,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      content: $fa-var-file-text-o;
+      content: "#{font-awesome-variables.$fa-var-file-text}";
     }
   }
 
@@ -871,7 +915,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      content: $fa-var-file-excel-o;
+      content: "#{font-awesome-variables.$fa-var-file-excel}";
     }
   }
 
@@ -879,25 +923,24 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      content: $fa-var-file-image-o;
+      content: "#{font-awesome-variables.$fa-var-file-image}";
     }
   }
 }
 
 
-//== Hacks and overrides for Font Awesome
-//
+/* Hacks and overrides for Font Awesome */
 
-// Attachments and watchers delete icon
+/* Attachments and watchers delete icon */
 
 .attachments,
 .watchers {
   a.delete {
     @extend %fa-icon;
-    @include icon-variant(danger);
+    @include link-variant.icon-variant(danger);
 
     &::before {
-      content: $fa-var-trash;
+      content: "#{font-awesome-variables.$fa-var-trash}";
     }
 
     img {
@@ -907,13 +950,13 @@ div.wiki {
 }
 
 
-// Issue edit form icon
+/* Issue edit form icon */
 
 #all_attributes label[for="issue_description"] + a {
   @extend %fa-icon;
 
   &::before {
-    content: $fa-var-pencil;
+    content: "#{font-awesome-variables.$fa-var-pencil}";
   }
 
   .icon {
@@ -931,32 +974,32 @@ div.wiki {
 }
 
 
-// Issue journal contextual icons
+/* Issue journal contextual icons */
 
 .journal .wiki .contextual {
   > a {
     @extend %fa-icon;
 
     &::before {
-      width: $icon-width;
+      width: variables.$icon-width;
       margin-right: 0;
       text-align: center;
     }
 
     &:not([class*="icon"]) {
       &::before {
-        content: $fa-var-comment;
+        content: "#{font-awesome-variables.$fa-var-comment}";
       }
 
       &:nth-child(2) {
         &::before {
-          content: $fa-var-pencil;
+          content: "#{font-awesome-variables.$fa-var-pencil}";
         }
       }
 
       &:nth-child(3) {
         &::before {
-          content: $fa-var-trash;
+          content: "#{font-awesome-variables.$fa-var-trash}";
         }
       }
     }
@@ -968,15 +1011,15 @@ div.wiki {
 }
 
 
-// Category and target vesion add icon
+/* Category and target vesion add icon */
 
 #issue_category_id + a,
 #issue_fixed_version_id + a {
   @extend %fa-icon;
-  @include icon-variant(success);
+  @include link-variant.icon-variant(success);
 
   &::before {
-    content: $fa-var-plus-square;
+    content: "#{font-awesome-variables.$fa-var-plus-square}";
   }
 
   img {
@@ -985,29 +1028,14 @@ div.wiki {
 }
 
 
-// jQuery UI datepicker trigger button
-
-img.ui-datepicker-trigger {
-  position: relative;
-  top: -1px;
-  box-sizing: border-box;
-  width: 14px;
-  height: 14px;
-  padding-left: 14px;
-  background-image: inline-svg("calendar.svg", (path: (fill: $btn-default-icon-color)));
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-
-// Lists toggle checkbox icon
+/* Lists toggle checkbox icon */
 
 table.list th.checkbox > a {
   @extend %fa-icon;
-  @include icon-variant(success);
+  @include link-variant.icon-variant(success);
 
   &::before {
-    content: $fa-var-check;
+    content: "#{font-awesome-variables.$fa-var-check}";
     margin-right: 0;
   }
 
@@ -1017,17 +1045,17 @@ table.list th.checkbox > a {
 }
 
 
-// Time entries list icons
+/* Time entries list icons */
 
 .time-entry .buttons > a {
   @extend %fa-icon;
 
   &[href*="edit"]::before {
-    content: $fa-var-pencil;
+    content: "#{font-awesome-variables.$fa-var-pencil}";
   }
 
   &[data-method="delete"]::before {
-    content: $fa-var-trash;
+    content: "#{font-awesome-variables.$fa-var-trash}";
   }
 
   img {
@@ -1036,16 +1064,16 @@ table.list th.checkbox > a {
 }
 
 
-// Files list
+/* Files list */
 
 .file .buttons > a {
   @extend %fa-icon;
 
   &[data-method="delete"] {
-    @include icon-variant(danger);
+    @include link-variant.icon-variant(danger);
 
     &::before {
-      content: $fa-var-trash;
+      content: "#{font-awesome-variables.$fa-var-trash}";
     }
   }
 
@@ -1055,15 +1083,16 @@ table.list th.checkbox > a {
 }
 
 
-// Commit keywords
+/* Commit keywords */
 
 .delete-commit-keywords {
   @extend %fa-icon;
-  @include icon-variant(danger);
-  font-size: $font-size-base;
+  @include link-variant.icon-variant(danger);
+
+  font-size: variables.$font-size-base;
 
   &::before {
-    content: $fa-var-trash;
+    content: "#{font-awesome-variables.$fa-var-trash}";
   }
 
   img {
@@ -1073,11 +1102,12 @@ table.list th.checkbox > a {
 
 .add-commit-keywords {
   @extend %fa-icon;
-  @include icon-variant(success);
-  font-size: $font-size-base;
+  @include link-variant.icon-variant(success);
+
+  font-size: variables.$font-size-base;
 
   &::before {
-    content: $fa-var-plus-square;
+    content: "#{font-awesome-variables.$fa-var-plus-square}";
   }
 
   img {

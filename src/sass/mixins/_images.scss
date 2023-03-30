@@ -1,10 +1,9 @@
-// Retina image
-//
+/* Retina image */
 
 @mixin img-retina($file-2x, $width-1x, $height-1x) {
   @media
     only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-moz-min-device-pixel-ratio: 2),
     only screen and (-o-min-device-pixel-ratio: 2 / 1),
     only screen and (min-device-pixel-ratio: 2),
     only screen and (min-resolution: 192dpi),
@@ -12,4 +11,10 @@
     background-image: url("#{$file-2x}");
     background-size: $width-1x $height-1x;
   }
+}
+
+/* ACI = AutoComplete Indicator */
+
+@mixin img-aci {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAKBAMAAAAnY0GXAAAAD1BMVEUAAACzs7Ozs7Ozs7Ozs7NJvZFvAAAABHRSTlMA5kpJG2qUMwAAABtJREFUCNdjIBMYCkMRDIg4QhBuAUUhKCIPAAAlaQNk5qF21gAAAABJRU5ErkJggg==");
 }

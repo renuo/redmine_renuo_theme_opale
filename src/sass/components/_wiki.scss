@@ -1,9 +1,13 @@
-.wiki.wiki-page {
-  margin-bottom: $line-height-computed;
-  font-size: $wiki-font-size;
+@use "sass:color";
+@use "sass:math";
+@use "../variables";
 
-  @if $wiki-page-more-vertical-space {
-    // Add some space between list items
+.wiki.wiki-page {
+  margin-bottom: variables.$line-height-computed;
+  font-size: variables.$wiki-font-size;
+
+  @if variables.$wiki-page-more-vertical-space {
+    /* Add some space between list items */
     ul,
     ol {
       li {
@@ -26,15 +30,15 @@
 .controller-wiki {
   .wiki > .preview,
   .wiki.wiki-preview {
-    font-size: $wiki-font-size;
+    font-size: variables.$wiki-font-size;
   }
 }
 
 div.wiki {
-  color: $wiki-text;
-  line-height: $wiki-line-height;
+  color: variables.$wiki-text;
+  line-height: variables.$wiki-line-height;
 
-  // stylelint-disable selector-list-comma-newline-after
+  /* stylelint-disable selector-list-comma-newline-after */
   h1, .h1,
   h2, .h2,
   h3, .h3,
@@ -42,45 +46,45 @@ div.wiki {
   h5, .h5,
   h6, .h6 {
     margin-top: 1em;
-    margin-bottom: $wiki-font-size;
-    font-weight: $headings-font-weight;
-    line-height: $headings-line-height;
+    margin-bottom: variables.$wiki-font-size;
+    font-weight: variables.$headings-font-weight;
+    line-height: variables.$headings-line-height;
   }
 
   h1, .h1 {
     padding-bottom: .3em;
-    border-bottom: 1px solid $gray-400;
-    font-size: $font-size-h1;
+    border-bottom: 1px solid variables.$gray-400;
+    font-size: variables.$font-size-h1;
     line-height: 1.2;
   }
 
   h2, .h2 {
     padding-bottom: .3em;
-    border-bottom: 1px solid $gray-400;
-    font-size: $font-size-h2;
+    border-bottom: 1px solid variables.$gray-400;
+    font-size: variables.$font-size-h2;
     line-height: 1.225;
   }
 
   h3, .h3 {
-    font-size: $font-size-h3;
+    font-size: variables.$font-size-h3;
     line-height: 1.43;
   }
 
   h4, .h4 {
-    font-size: $font-size-h4;
+    font-size: variables.$font-size-h4;
   }
 
   h5, .h5 {
-    font-size: $font-size-h5;
+    font-size: variables.$font-size-h5;
   }
 
   h6, .h6 {
-    color: $gray-700;
-    font-size: $font-size-h6;
+    color: variables.$gray-700;
+    font-size: variables.$font-size-h6;
   }
 
   .text-normal {
-    font-weight: $font-weight-normal;
+    font-weight: variables.$font-weight-normal;
   }
 
   > a:first-child {
@@ -105,8 +109,8 @@ div.wiki {
         display: inline-block;
         width: .7em;
         margin-left: -.7em;
-        color: $headings-anchor-color-active;
-        font-weight: $font-weight-normal;
+        color: variables.$headings-anchor-color-active;
+        font-weight: variables.$font-weight-normal;
       }
     }
   }
@@ -129,10 +133,10 @@ div.wiki {
 
   .contextual {
     a {
-      opacity: $icon-opacity;
+      opacity: variables.$icon-opacity;
 
       &:hover {
-        opacity: $icon-hover-opacity;
+        opacity: variables.$icon-hover-opacity;
       }
     }
   }
@@ -166,23 +170,23 @@ div.wiki {
   table {
     display: block;
     width: 100%;
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
     overflow: auto;
     word-break: normal;
     word-break: keep-all;
   }
 
-  // Textile
+  /* Textile */
   tbody:first-child tr:nth-child(2n),
-  // Markdown
+  /* Markdown */
   thead + tbody tr:nth-child(2n-1) {
-    background-color: $table-bg-accent;
+    background-color: variables.$table-bg-accent;
   }
 
   td,
   th {
-    padding: $table-cell-padding;
-    border: 1px solid $table-border-color;
+    padding: variables.$table-cell-padding;
+    border: 1px solid variables.$table-border-color;
   }
 
   .noborder,
@@ -196,14 +200,14 @@ div.wiki {
   }
 
   a.new {
-    color: $brand-danger;
+    color: variables.$brand-danger;
   }
 
   code {
     padding: .2em .33em;
-    border-radius: $border-radius-base;
-    background-color: rgba($gray-500, .3);
-    font-size: $font-size-small;
+    border-radius: variables.$border-radius-base;
+    background-color: color.adjust(variables.$gray-500, $alpha: .3);
+    font-size: variables.$font-size-small;
   }
 
   pre {
@@ -212,9 +216,9 @@ div.wiki {
     padding: 12px 15px;
     overflow-x: auto;
     overflow-y: hidden;
-    border-radius: $border-radius-base;
-    background-color: rgba($gray-500, .15);
-    font-size: $font-size-small;
+    border-radius: variables.$border-radius-base;
+    background-color: color.adjust(variables.$gray-500, $alpha: .15);
+    font-size: variables.$font-size-small;
 
     code {
       padding: 0;
@@ -232,36 +236,36 @@ div.wiki {
   .toc {
     display: table;
     max-width: 45%;
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
     margin-left: 0;
-    padding: $padding-small-vertical $padding-small-horizontal;
+    padding: variables.$padding-small-vertical variables.$padding-small-horizontal;
     list-style-type: none;
-    border: 1px solid $toc-border;
-    border-radius: $border-radius-base;
-    background-color: $toc-bg;
-    box-shadow: $toc-shadow;
-    color: $toc-text;
-    font-size: $font-size-small;
+    border: 1px solid variables.$toc-border;
+    border-radius: variables.$border-radius-base;
+    background-color: variables.$toc-bg;
+    box-shadow: variables.$toc-shadow;
+    color: variables.$toc-text;
+    font-size: variables.$font-size-small;
 
     a {
-      color: $toc-link;
-      font-weight: $font-weight-normal;
+      color: variables.$toc-link;
+      font-weight: variables.$font-weight-normal;
       text-decoration: none;
 
       &:hover {
-        color: $toc-link-hover;
+        color: variables.$toc-link-hover;
         text-decoration: underline;
       }
     }
 
     &.right {
       margin-right: 0;
-      margin-left: $line-height-computed;
+      margin-left: variables.$line-height-computed;
       float: right;
     }
 
     &.left {
-      margin-right: $line-height-computed;
+      margin-right: variables.$line-height-computed;
       margin-left: 0;
       float: left;
     }
@@ -269,7 +273,7 @@ div.wiki {
     ul {
       margin: 0;
       padding: 0;
-      font-size: $font-size-small;
+      font-size: variables.$font-size-small;
 
       ul {
         font-size: 1em;
@@ -277,7 +281,7 @@ div.wiki {
     }
 
     li {
-      // stylelint-disable selector-max-compound-selectors
+      /* stylelint-disable selector-max-compound-selectors */
       margin: 0;
 
       li {
@@ -296,15 +300,15 @@ div.wiki {
   }
 
   .toc-active-prev + .toc {
-    padding-left: $padding-large-horizontal;
-    border-left: 4px solid $toc-active-border;
+    padding-left: variables.$padding-large-horizontal;
+    border-left: 4px solid variables.$toc-active-border;
 
     a {
-      color: $toc-active-link;
+      color: variables.$toc-active-link;
 
       &:focus,
       &:hover {
-        color: $toc-active-link-hover;
+        color: variables.$toc-active-link-hover;
       }
     }
   }
@@ -319,8 +323,8 @@ h6 {
   .wiki-anchor {
     display: none;
     margin-left: 5px;
-    color: $headings-anchor-color !important; // stylelint-disable-line declaration-no-important
-    text-decoration: none !important; // stylelint-disable-line declaration-no-important
+    color: variables.$headings-anchor-color !important; /* stylelint-disable-line declaration-no-important */
+    text-decoration: none !important; /* stylelint-disable-line declaration-no-important */
   }
 
   &:hover {
@@ -343,9 +347,9 @@ p.footnote {
     content: "";
     display: block;
     width: 300px;
-    margin-top: $line-height-computed;
-    padding-top: $line-height-computed * .5;
-    border-top: 1px solid $gray-400;
+    margin-top: variables.$line-height-computed;
+    padding-top: variables.$line-height-computed * .5;
+    border-top: 1px solid variables.$gray-400;
   }
 
   + p.footnote::before {
@@ -364,15 +368,15 @@ p.footnote {
 }
 
 .preview {
-  margin-top: $line-height-computed;
-  padding: $padding-wiki;
-  border: 1px solid $gray-400;
-  background-color: $body-bg;
+  margin-top: variables.$line-height-computed;
+  padding: variables.$padding-wiki;
+  border: 1px solid variables.$gray-400;
+  background-color: variables.$body-bg;
 }
 
 #wiki_add_attachment {
-  padding-top: $line-height-computed;
-  border-top: 1px solid $gray-400;
+  padding-top: variables.$line-height-computed;
+  border-top: 1px solid variables.$gray-400;
 
   > p {
     margin-bottom: 0;
@@ -380,7 +384,7 @@ p.footnote {
   }
 
   > form {
-    padding-top: $line-height-computed;
+    padding-top: variables.$line-height-computed;
     clear: left;
   }
 
@@ -395,28 +399,28 @@ p.footnote {
 }
 
 
-//
-// Custom classes for Bootstrap-like features
-// --------------------------------------------------
+/*
+/* Custom classes for Bootstrap-like features
+/* -------------------------------------------------- */
 
 
-// Pager
-// see: http://getbootstrap.com/components/#pagination-pager
+/* Pager
+/* see: http://getbootstrap.com/components/#pagination-pager */
 
 .wiki-pager {
   > a {
     display: inline-block;
-    padding: $padding-base-vertical $padding-base-horizontal;
-    border: 1px solid $btn-default-border;
-    border-radius: ceil($font-size-base + ($padding-base-vertical + 1px) * 2) * .5;
-    background-color: $body-bg;
+    padding: variables.$padding-base-vertical variables.$padding-base-horizontal;
+    border: 1px solid variables.$btn-default-border;
+    border-radius: math.ceil(variables.$font-size-base + (variables.$padding-base-vertical + 1px) * 2) * .5;
+    background-color: variables.$body-bg;
     line-height: 1;
     white-space: nowrap;
 
     &:hover,
     &:focus,
     &:active {
-      background-color: $btn-default-bg;
+      background-color: variables.$btn-default-bg;
       text-decoration: none;
     }
   }
@@ -435,26 +439,25 @@ p.footnote {
 }
 
 
-//== Typographic helper classes
-//
+/* Typographic helper classes */
 
-// Lead body copy
-// see: http://getbootstrap.com/css/#lead-body-copy
+/* Lead body copy
+/* see: http://getbootstrap.com/css/#lead-body-copy */
 
 .lead {
-  margin-bottom: $line-height-computed;
-  font-size: floor(($font-size-base * 1.15));
+  margin-bottom: variables.$line-height-computed;
+  font-size: math.floor((variables.$font-size-base * 1.15));
   font-weight: 300;
   line-height: 1.4;
 
-  @media (min-width: $screen-sm-min) {
-    font-size: ($font-size-base * 1.5);
+  @media (min-width: variables.$screen-sm-min) {
+    font-size: (variables.$font-size-base * 1.5);
   }
 }
 
 
-// Alignment
-// see: http://getbootstrap.com/css/#type-alignment
+/* Alignment
+/* see: http://getbootstrap.com/css/#type-alignment */
 
 .text-left       { text-align: left; }
 .text-right      { text-align: right; }
@@ -463,29 +466,29 @@ p.footnote {
 .text-nowrap     { white-space: nowrap; }
 
 
-// Transformation
-// see: http://getbootstrap.com/css/#type-transformation
+/* Transformation
+/* see: http://getbootstrap.com/css/#type-transformation */
 
 .text-lowercase  { text-transform: lowercase; }
 .text-uppercase  { text-transform: uppercase; }
 .text-capitalize { text-transform: capitalize; }
 
 
-// Other helper classes
-// see: http://getbootstrap.com/css/#helper-classes
+/* Other helper classes
+/* see: http://getbootstrap.com/css/#helper-classes */
 
-.text-muted      { color: $gray-600; }
-.text-primary    { color: $brand-primary; }
-.text-success    { color: $brand-success; }
-.text-info       { color: $brand-info; }
-.text-warning    { color: $brand-warning; }
-.text-danger     { color: $brand-danger; }
+.text-muted      { color: variables.$gray-600; }
+.text-primary    { color: variables.$brand-primary; }
+.text-success    { color: variables.$brand-success; }
+.text-info       { color: variables.$brand-info; }
+.text-warning    { color: variables.$brand-warning; }
+.text-danger     { color: variables.$brand-danger; }
 
-.bg-primary      { background-color: $brand-primary; color: $brand-text; }
-.bg-success      { background-color: $state-success; }
-.bg-info         { background-color: $state-info; }
-.bg-warning      { background-color: $state-warning; }
-.bg-danger       { background-color: $state-danger; }
+.bg-primary      { background-color: variables.$brand-primary; color: variables.$brand-text; }
+.bg-success      { background-color: variables.$state-success; }
+.bg-info         { background-color: variables.$state-info; }
+.bg-warning      { background-color: variables.$state-warning; }
+.bg-danger       { background-color: variables.$state-danger; }
 
 p {
   &.bg-primary,
@@ -493,6 +496,6 @@ p {
   &.bg-info,
   &.bg-warning,
   &.bg-danger {
-    padding: $panel-body-padding;
+    padding: variables.$panel-body-padding;
   }
 }

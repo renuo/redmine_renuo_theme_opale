@@ -1,6 +1,8 @@
-//
-// Media print specific styles
-// --------------------------------------------------
+@use "../variables";
+
+/*
+/* Media print specific styles
+/* -------------------------------------------------- */
 
 @media print {
   #top-menu,
@@ -24,17 +26,17 @@
 
   #main {
     display: block;
-    overflow: visible !important; // stylelint-disable-line declaration-no-important
-    background: $white;
+    overflow: visible !important; /* stylelint-disable-line declaration-no-important */
+    background: variables.$white;
   }
 
   #content {
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow: visible !important; // stylelint-disable-line declaration-no-important
+    overflow: visible !important; /* stylelint-disable-line declaration-no-important */
     border: 0;
-    background: $white;
+    background: variables.$white;
   }
 
   .autoscroll {
@@ -42,10 +44,10 @@
   }
 
   a {
-    // stylelint-disable declaration-no-important
+    /* stylelint-disable declaration-no-important */
     padding: 0 !important;
     background-color: transparent !important;
-    color: $black !important;
+    color: variables.$black !important;
 
     &::before,
     &::after {
@@ -64,7 +66,7 @@
 
     th,
     td {
-      border: 1px solid $gray-500;
+      border: 1px solid variables.$gray-500;
       background-color: transparent;
 
       &.buttons {

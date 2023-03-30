@@ -6,13 +6,7 @@ module.exports = function (grunt) {
       options: {
         implementation: require('sass'),
         sourceMap: false,
-        outputStyle: 'compressed',
-        functions: {
-          'inline-svg($path, $selectors: null)': require('@liquid-js/sass-inline-svg')('./svg', {
-            optimize: true,
-            encodingFormat: 'uri'
-          })
-        }
+        outputStyle: 'compressed'
       },
 
       theme: {
@@ -20,19 +14,6 @@ module.exports = function (grunt) {
           'stylesheets/application.css': '<%= src %>sass/application.scss'
         }
       },
-
-      plugins: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= src %>sass/plugins/',
-            src: '**/*.scss',
-            dest: 'plugins/',
-            ext: '.css',
-            extDot: 'last'
-          }
-        ]
-      }
     },
 
     postcss: {
@@ -74,7 +55,7 @@ module.exports = function (grunt) {
   })
 
   grunt.loadNpmTasks('grunt-sass')
-  grunt.loadNpmTasks('grunt-postcss')
+  grunt.loadNpmTasks('@lodder/grunt-postcss')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-contrib-uglify')
 

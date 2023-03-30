@@ -1,17 +1,21 @@
-//
-// Calendar
-// --------------------------------------------------
+@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../lib/font-awesome/mixins" as font-awesome-mixins;
+@use "../variables";
+
+/*
+/* Calendar
+/* -------------------------------------------------- */
 
 
 table.cal {
   width: 100%;
-  margin-bottom: $line-height-computed;
-  border: 1px solid $table-border-color;
+  margin-bottom: variables.$line-height-computed;
+  border: 1px solid variables.$table-border-color;
 
   thead th {
     width: 14%;
-    padding: $table-condensed-cell-padding;
-    background-color: $table-bg-active;
+    padding: variables.$table-condensed-cell-padding;
+    background-color: variables.$table-bg-active;
 
     &.week-number {
       width: auto;
@@ -23,37 +27,37 @@ table.cal {
   }
 
   td {
-    padding: $table-condensed-cell-padding;
-    border: 1px solid $table-border-color;
-    font-size: $font-size-small;
+    padding: variables.$table-condensed-cell-padding;
+    border: 1px solid variables.$table-border-color;
+    font-size: variables.$font-size-small;
     vertical-align: top;
 
     &.week-number {
       border: 0 none;
-      background-color: $table-bg-active;
+      background-color: variables.$table-bg-active;
       font-size: 1em;
       text-align: right;
     }
 
     p.day-num {
       float: right;
-      font-size: $font-size-large;
+      font-size: variables.$font-size-large;
       text-align: right;
     }
 
     &.odd p.day-num {
-      color: $gray-600;
+      color: variables.$gray-600;
     }
 
     &.nwday {
-      background: $table-bg-accent;
+      background: variables.$table-bg-accent;
     }
 
     &.today {
-      background: $highlight-bg;
+      background: variables.$highlight-bg;
 
       p.day-num {
-        font-weight: $font-weight-bold;
+        font-weight: variables.$font-weight-bold;
       }
     }
   }
@@ -63,10 +67,10 @@ table.cal .starting a,
 p.cal.legend .starting,
 table.cal .ending a,
 p.cal.legend .ending {
-  @extend %fa-icon;
-
   &::before {
-    content: $fa-var-caret-right;
+    @include font-awesome-mixins.fa-icon;
+
+    content: font-awesome-variables.$fa-var-caret-right;
     width: 10px;
     text-align: right;
   }
@@ -75,7 +79,7 @@ p.cal.legend .ending {
 table.cal .ending a,
 p.cal.legend .ending {
   &::before {
-    content: $fa-var-caret-left;
+    content: font-awesome-variables.$fa-var-caret-left;
     text-align: left;
   }
 }
@@ -83,7 +87,7 @@ p.cal.legend .ending {
 table.cal .starting.ending a,
 p.cal.legend .starting.ending {
   &::before {
-    content: $fa-var-square;
+    content: font-awesome-variables.$fa-var-square;
     transform: scale(.6) rotate(45deg);
     text-align: center;
   }

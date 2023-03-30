@@ -1,10 +1,10 @@
-var Opale = Opale || {} // eslint-disable-line no-use-before-define
+var Opale = Opale || {} /* eslint no-var: "off", no-use-before-define: "off" */
 
 Opale.HistoryTabs = (function () {
   'use strict'
 
-  var instance
-  var translations = {
+  let instance
+  const translations = {
     en: {
       all: 'All',
       notes: 'Notes',
@@ -62,10 +62,10 @@ Opale.HistoryTabs = (function () {
   }
 
   function buildTabs () {
-    var html = ''
-    var liStart = '<li><a href="javascript:;" class="'
-    var liMid = 'history-tab" data-tab="'
-    var liEnd = '</a></li>'
+    let html = ''
+    const liStart = '<li><a href="javascript:;" class="'
+    const liMid = 'history-tab" data-tab="'
+    const liEnd = '</a></li>'
 
     html += '<div class="tabs"><ul>'
     html += liStart + 'selected ' + liMid + 'all">' + instance._.all + liEnd
@@ -85,9 +85,9 @@ Opale.HistoryTabs = (function () {
     instance.$history.find('.has-details:first').addClass('first-of-details')
   }
 
-  var tabClick = function () {
-    var $this = $(this)
-    var tab = $this.attr('data-tab')
+  const tabClick = function () {
+    const $this = $(this)
+    const tab = $this.attr('data-tab')
 
     instance.$tabs.removeClass('selected')
     $this.addClass('selected')

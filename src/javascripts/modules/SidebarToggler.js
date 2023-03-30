@@ -1,10 +1,10 @@
-var Opale = Opale || {} // eslint-disable-line no-use-before-define
+var Opale = Opale || {} /* eslint no-var: "off", no-use-before-define: "off" */
 
 Opale.SidebarToggler = (function () {
   'use strict'
 
-  var instance
-  var translations = {
+  let instance
+  const translations = {
     en: {
       toggler: 'Toggle sidebar'
     },
@@ -72,7 +72,7 @@ Opale.SidebarToggler = (function () {
   }
 
   function bindKeyHandler () {
-    var body = document.getElementsByTagName('body')[0]
+    const body = document.getElementsByTagName('body')[0]
 
     window.onkeydown = function (event) {
       if (
@@ -88,8 +88,8 @@ Opale.SidebarToggler = (function () {
   }
 
   function buildButton () {
-    var togglerClass = 'sidebar-toggler'
-    var togglerHtml = '<a href="javascript:;" class="' +
+    const togglerClass = 'sidebar-toggler'
+    const togglerHtml = '<a href="javascript:;" class="' +
       togglerClass +
       '" title="' +
       instance._.toggler +

@@ -1,8 +1,13 @@
-//
-// Tabs
-// --------------------------------------------------
+@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../variables";
+@use "../mixins/forms";
+@use "../components/icons";
 
-$tabs-height: $line-height-computed + $tab-padding-vertical * 2 + 1px + 1px;
+/*
+/* Tabs
+/* -------------------------------------------------- */
+
+$tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical * 2 + 1px + 1px;
 
 .tabs {
   $tabs-buttons-width: 40px;
@@ -10,7 +15,7 @@ $tabs-height: $line-height-computed + $tab-padding-vertical * 2 + 1px + 1px;
   position: relative;
   overflow: hidden;
 
-  @if not $flexbox-layout {
+  @if not variables.$flexbox-layout {
     padding-right: $tabs-buttons-width;
   }
 
@@ -20,17 +25,18 @@ $tabs-height: $line-height-computed + $tab-padding-vertical * 2 + 1px + 1px;
     padding-left: 0;
     list-style: none;
 
-    @if $flexbox-layout {
+    @if variables.$flexbox-layout {
       display: flex;
       flex-wrap: nowrap;
       height: $tabs-height;
     } @else {
       width: 2000px;
+
       @extend %clearfix;
     }
 
     > li {
-      @if $flexbox-layout {
+      @if variables.$flexbox-layout {
         flex: 0 1 auto;
       } @else {
         float: left;
@@ -42,9 +48,9 @@ $tabs-height: $line-height-computed + $tab-padding-vertical * 2 + 1px + 1px;
         min-width: 3em;
         height: $tabs-height;
         margin-right: 2px;
-        padding: $tab-padding-vertical $tab-padding-horizontal;
+        padding: variables.$tab-padding-vertical variables.$tab-padding-horizontal;
         border: 1px solid transparent;
-        border-radius: $border-radius-base $border-radius-base 0 0;
+        border-radius: variables.$border-radius-base variables.$border-radius-base 0 0;
         text-align: center;
         white-space: nowrap;
       }
@@ -56,8 +62,8 @@ $tabs-height: $line-height-computed + $tab-padding-vertical * 2 + 1px + 1px;
     top: 0;
     right: 0;
     width: $tabs-buttons-width;
-    border-bottom: 1px solid $tab-border;
-    background-color: $body-bg;
+    border-bottom: 1px solid variables.$tab-border;
+    background-color: variables.$body-bg;
 
     > button {
       width: 50%;
@@ -65,79 +71,89 @@ $tabs-height: $line-height-computed + $tab-padding-vertical * 2 + 1px + 1px;
       margin: 0;
       padding: 0;
       float: left;
-      transition: opacity $transition-time;
+      transition: opacity variables.$transition-time;
       border: 0 none;
       border-radius: 0;
-      opacity: $icon-opacity;
-      background-color: $body-bg;
+      opacity: variables.$icon-opacity;
+      background-color: variables.$body-bg;
       background-repeat: no-repeat;
       background-position: center center;
       box-shadow: none;
+      color: variables.$legend-color;
 
       &:hover,
       &:active {
-        opacity: $icon-hover-opacity;
+        opacity: variables.$icon-hover-opacity;
+        color: variables.$pagination-color;
       }
 
       &:active {
-        background-color: $tab-hover-bg;
+        background-color: variables.$tab-hover-bg;
       }
 
       &.disabled {
-        opacity: $icon-opacity * .5;
+        opacity: variables.$icon-opacity * .5;
+        color: variables.$pagination-inactive-color;
       }
     }
 
     .tab-left {
-      background-image: inline-svg("chevron-left.svg", (path: (fill: $btn-default-icon-color)));
+      &::before {
+        @extend %fa-icon;
+
+        content: "#{font-awesome-variables.$fa-var-chevron-left}";
+      }
     }
 
     .tab-right {
-      background-image: inline-svg("chevron-right.svg", (path: (fill: $btn-default-icon-color)));
+      &::before {
+        @extend %fa-icon;
+
+        content: "#{font-awesome-variables.$fa-var-chevron-right}";
+      }
     }
   }
 }
 
 div.tabs:not(#main-menu) {
   height: $tabs-height;
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
 
   > ul {
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid $tab-border;
+    border-bottom: 1px solid variables.$tab-border;
 
     > li {
       margin: 0 0 -1px;
       background: transparent;
 
       > a {
-        padding: $tab-padding-vertical $tab-padding-horizontal;
+        padding: variables.$tab-padding-vertical variables.$tab-padding-horizontal;
         border-color: transparent;
         background: transparent;
-        color: $link-color;
+        color: variables.$link-color;
         font: inherit;
 
         &:hover,
         &:focus {
-          border-color: $tab-hover-border $tab-hover-border $tab-border;
-          background-color: $tab-hover-bg;
-          color: $tab-hover-text;
+          border-color: variables.$tab-hover-border variables.$tab-hover-border variables.$tab-border;
+          background-color: variables.$tab-hover-bg;
+          color: variables.$tab-hover-text;
           text-decoration: none;
         }
 
         &.selected {
-          border-color: $tab-active-border $tab-active-border $tab-active-bg;
-          background: $tab-active-bg;
-          color: $tab-active-text;
+          border-color: variables.$tab-active-border variables.$tab-active-border variables.$tab-active-bg;
+          background: variables.$tab-active-bg;
+          color: variables.$tab-active-text;
         }
       }
     }
   }
 }
 
-//== Specific tabs content layout
-//
+/* Specific tabs content layout */
 
 #tab-content-modules fieldset p {
   margin: 3px 0 4px;
@@ -155,14 +171,15 @@ div.tabs:not(#main-menu) {
   }
 
   fieldset {
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
 
     legend {
-      font-weight: $font-weight-bold;
+      font-weight: variables.$font-weight-bold;
     }
 
     label {
-      @include check;
+      @include forms.check;
+
       display: block;
       margin-bottom: 3px;
     }

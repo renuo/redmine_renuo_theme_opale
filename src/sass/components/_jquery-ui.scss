@@ -1,10 +1,15 @@
-//
-// Tweaks for jQuery UI
-// --------------------------------------------------
+@use "sass:color";
+@use "../variables";
+@use "../mixins/buttons";
+@use "../mixins/clearfix";
+@use "../mixins/shadows";
+
+/*
+/* Tweaks for jQuery UI
+/* -------------------------------------------------- */
 
 
-//== Component containers
-//
+/* Component containers */
 
 .ui-widget {
   &,
@@ -18,36 +23,35 @@
 }
 
 
-//== Widgets
-//
+/* Widgets */
 
 .ui-widget-content {
-  border: 1px solid $panel-border;
-  background: $body-bg;
-  color: $text-color;
+  border: 1px solid variables.$panel-border;
+  background: variables.$body-bg;
+  color: variables.$text-color;
 
   a {
-    color: $text-color;
+    color: variables.$text-color;
   }
 }
 
 .ui-widget-header {
   border: 0 none;
-  background: $header-bg;
-  color: $header-text;
-  font-weight: $font-weight-bold;
+  background: variables.$header-bg;
+  color: variables.$header-text;
+  font-weight: variables.$font-weight-bold;
 
   a {
-    color: $header-text;
+    color: variables.$header-text;
   }
 
   a,
   button {
     &.ui-button {
-      border-color: $header-bg;
-      background: $header-bg;
+      border-color: variables.$header-bg;
+      background: variables.$header-bg;
       box-shadow: none;
-      color: $header-text;
+      color: variables.$header-text;
 
       .ui-icon {
         background-image: url("../../../stylesheets/jquery/images/ui-icons_ffffff_256x240.png");
@@ -55,30 +59,29 @@
     }
 
     &.ui-button:hover {
-      border-color: darken($header-bg, 12%);
-      background: darken($header-bg, 10%);
+      border-color: color.adjust(variables.$header-bg, $lightness: -12%);
+      background: color.adjust(variables.$header-bg, $lightness: -10%);
     }
   }
 }
 
 
-//== Interaction states
-//
+/* Interaction states */
 
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-  border: 1px solid $component-border;
-  background: $component-bg;
+  border: 1px solid variables.$component-border;
+  background: variables.$component-bg;
   box-shadow: none;
-  color: $component-color;
-  font-weight: $font-weight-normal;
+  color: variables.$component-color;
+  font-weight: variables.$font-weight-normal;
 }
 
 .ui-state-default a,
 .ui-state-default a:link,
 .ui-state-default a:visited {
-  color: $component-color;
+  color: variables.$component-color;
   text-decoration: none;
 }
 
@@ -88,10 +91,10 @@
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-  border: 1px solid $component-active-border;
-  background: $component-active-bg;
-  color: $component-active-color;
-  font-weight: $font-weight-normal;
+  border: 1px solid variables.$component-active-border;
+  background: variables.$component-active-bg;
+  color: variables.$component-active-color;
+  font-weight: variables.$font-weight-normal;
 }
 
 .ui-state-hover a,
@@ -102,17 +105,17 @@
 .ui-state-focus a:hover,
 .ui-state-focus a:link,
 .ui-state-focus a:visited {
-  color: $component-active-color;
+  color: variables.$component-active-color;
   text-decoration: none;
 }
 
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-  border: 1px solid $component-active-border;
-  background: $component-active-bg;
-  color: $component-active-color;
-  font-weight: $font-weight-normal;
+  border: 1px solid variables.$component-active-border;
+  background: variables.$component-active-bg;
+  color: variables.$component-active-color;
+  font-weight: variables.$font-weight-normal;
 
   .ui-icon {
     background-image: url("../../../stylesheets/jquery/images/ui-icons_ffffff_256x240.png");
@@ -122,33 +125,34 @@
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-  color: $component-active-color;
+  color: variables.$component-active-color;
   text-decoration: none;
 }
 
 .ui-sortable-helper {
-  background-color: $body-bg;
-  @include nice-shadow(4);
+  background-color: variables.$body-bg;
+
+  @include shadows.nice-shadow(4);
 }
 
 
-//== Menu (e.g. autocomplete)
-//
+/* Menu (e.g. autocomplete) */
 
 .ui-menu {
-  @include nice-shadow(2);
+  @include shadows.nice-shadow(2);
+
   padding: 3px;
-  border-radius: $panel-border-radius;
+  border-radius: variables.$panel-border-radius;
 
   .ui-menu-item {
     &.ui-state-focus,
     &.ui-state-active {
-      border-color: $pagination-hover-border;
-      background-color: $pagination-hover-bg;
-      color: $pagination-hover-color;
+      border-color: variables.$pagination-hover-border;
+      background-color: variables.$pagination-hover-bg;
+      color: variables.$pagination-hover-color;
 
       a {
-        color: $pagination-hover-color;
+        color: variables.$pagination-hover-color;
       }
 
       .ui-icon {
@@ -159,16 +163,15 @@
 }
 
 .ui-menu-item {
-  border-radius: $panel-border-radius;
+  border-radius: variables.$panel-border-radius;
 }
 
 
-//== Dialogs
-//
+/* Dialogs */
 
 .modal {
   z-index: 50;
-  background: $body-bg;
+  background: variables.$body-bg;
 
   h3.title {
     display: none;
@@ -182,7 +185,8 @@
 
 .ui-dialog {
   &.ui-widget-content {
-    @include nice-shadow(5);
+    @include shadows.nice-shadow(5);
+
     padding: 3px;
     border: 0 none;
 
@@ -196,7 +200,7 @@
   }
 
   input[type="button"] {
-    @include button-variant($btn-link-color, $btn-link-bg, $btn-link-border);
+    @include buttons.button-variant(variables.$btn-link-color, variables.$btn-link-bg, variables.$btn-link-border);
   }
 }
 
@@ -205,8 +209,7 @@
 }
 
 
-//== Datepicker
-//
+/* Datepicker */
 
 img.ui-datepicker-trigger {
   margin-left: 4px;
@@ -215,7 +218,8 @@ img.ui-datepicker-trigger {
 }
 
 .ui-datepicker {
-  @include nice-shadow(3);
+  @include shadows.nice-shadow(3);
+
   padding: .3em .6em .6em;
   border: 0 none;
 
@@ -259,32 +263,32 @@ img.ui-datepicker-trigger {
     table-layout: fixed;
 
     .ui-state-default {
-      border-color: $body-bg;
-      background: $body-bg;
+      border-color: variables.$body-bg;
+      background: variables.$body-bg;
     }
 
     .ui-state-focus,
     .ui-state-hover {
-      border-color: $component-active-bg;
-      background: $component-active-bg;
-      color: $component-active-color;
+      border-color: variables.$component-active-bg;
+      background: variables.$component-active-bg;
+      color: variables.$component-active-color;
     }
 
     .ui-state-active {
-      border-color: $highlight-border;
-      background: $highlight-bg;
-      color: $highlight-text;
+      border-color: variables.$highlight-border;
+      background: variables.$highlight-bg;
+      color: variables.$highlight-text;
     }
 
     .ui-datepicker-today {
       .ui-state-highlight {
-        border-color: $component-active-border;
+        border-color: variables.$component-active-border;
       }
     }
 
     .ui-datepicker-current-day {
       .ui-state-active {
-        border-color: $highlight-border;
+        border-color: variables.$highlight-border;
       }
     }
 
@@ -295,35 +299,37 @@ img.ui-datepicker-trigger {
       a {
         padding-right: .4em;
         padding-left: 0;
-        border-radius: $border-radius-base;
+        border-radius: variables.$border-radius-base;
       }
 
       &.ui-datepicker-week-col {
-        padding-right: $table-condensed-cell-padding;
-        color: $gray-600;
+        padding-right: variables.$table-condensed-cell-padding;
+        color: variables.$gray-600;
       }
     }
   }
 
   .ui-datepicker-buttonpane {
-    @include clearfix;
+    @include clearfix.clearfix;
+
     margin: .6em 0 0;
     padding: .6em 0 0;
 
     button {
       margin: 0;
-      padding: $btn-padding-vertical $btn-padding-horizontal;
+      padding: variables.$btn-padding-vertical variables.$btn-padding-horizontal;
     }
   }
 }
 
 .ui-tooltip {
-  @include nice-shadow(1);
-  padding: $padding-small-vertical $padding-small-horizontal;
+  @include shadows.nice-shadow(1);
+
+  padding: variables.$padding-small-vertical variables.$padding-small-horizontal;
   border: 0 none;
-  background: $black;
-  color: $white;
-  font-size: $font-size-small-px;
+  background: variables.$black;
+  color: variables.$white;
+  font-size: variables.$font-size-small-px;
   pointer-events: none;
 
   &.qtip {

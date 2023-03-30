@@ -1,10 +1,10 @@
-var Opale = Opale || {} // eslint-disable-line no-use-before-define
+var Opale = Opale || {} /* eslint no-var: "off", no-use-before-define: "off" */
 
 Opale.MenuCollapse = (function () {
   'use strict'
 
-  var instance
-  var translations = {
+  let instance
+  const translations = {
     en: {
       topMenuToggler: 'Expand/collapse top menu'
     },
@@ -46,7 +46,7 @@ Opale.MenuCollapse = (function () {
       }
     }
 
-    for (var menu in this.menus) {
+    for (const menu in this.menus) {
       // eslint-disable-next-line no-prototype-builtins
       if (this.menus.hasOwnProperty(menu) && this.menus[menu].$el.length > 0) {
         handleMenu(menu)
@@ -78,9 +78,9 @@ Opale.MenuCollapse = (function () {
   }
 
   function buildToggleButton (menu) {
-    var togglerClass = menu + '-menu-toggler'
-    var togglerLabel = instance._[menu + 'MenuToggler']
-    var togglerHtml = '<a href="javascript:;" class="' +
+    const togglerClass = menu + '-menu-toggler'
+    const togglerLabel = instance._[menu + 'MenuToggler']
+    const togglerHtml = '<a href="javascript:;" class="' +
       togglerClass +
       '" title="' +
       togglerLabel +
@@ -88,11 +88,11 @@ Opale.MenuCollapse = (function () {
     instance.menus[menu].$toggler = $(togglerHtml)
 
     instance.menus[menu].$el.prepend(instance.menus[menu].$toggler)
-    instance.menus[menu].$toggler.on('click', { menu: menu }, instance.toggleMenu)
+    instance.menus[menu].$toggler.on('click', { menu }, instance.toggleMenu)
   }
 
   MenuCollapse.prototype.toggleMenu = function (event) {
-    var menu = event.data.menu || ''
+    const menu = event.data.menu || ''
 
     if (instance.isCollapsed(menu)) {
       instance.expandMenu(menu)

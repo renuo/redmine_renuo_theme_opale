@@ -1,3 +1,5 @@
+@use "../variables";
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -84,7 +86,7 @@ abbr[title] {
 
 b,
 strong {
-  font-weight: $font-weight-bold;
+  font-weight: variables.$font-weight-bold;
 }
 
 /**

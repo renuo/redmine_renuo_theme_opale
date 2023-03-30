@@ -1,29 +1,32 @@
-// Link variant
+@use "sass:map";
+@use "../variables";
+
+/* Link variant */
 
 @mixin link-variant($variant, $focus-hover: true) {
-  $colors: map-get($icon-color-map, $variant);
+  $colors: map.get(variables.$icon-color-map, $variant);
 
-  color: map-get($colors, normal);
+  color: map.get($colors, normal);
 
   @if $focus-hover {
     &:focus,
     &:hover {
-      color: map-get($colors, hover);
+      color: map.get($colors, hover);
     }
   }
 }
 
 @mixin icon-variant($variant) {
-  $colors: map-get($icon-color-map, $variant);
+  $colors: map.get(variables.$icon-color-map, $variant);
 
   &::before {
-    color: map-get($colors, normal);
+    color: map.get($colors, normal);
   }
 
   &:focus,
   &:hover {
     &::before {
-      color: map-get($colors, hover);
+      color: map.get($colors, hover);
     }
   }
 }

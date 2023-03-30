@@ -1,21 +1,25 @@
-//
-// Activity and search results list
-// --------------------------------------------------
+@use "sass:color";
+@use "../variables";
+@use "../mixins/forms";
+
+/*
+/* Activity and search results list
+/* -------------------------------------------------- */
 
 #activity dl,
 #search-results {
-  margin-left: $padding-side;
+  margin-left: variables.$padding-side;
 }
 
 #activity,
 #search-results {
   dd {
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
     padding-top: .1em;
   }
 
   dt {
-    padding-left: $padding-side;
+    padding-left: variables.$padding-side;
     background-repeat: no-repeat;
     background-position: 0 center;
   }
@@ -26,7 +30,7 @@
 
   span.description {
     display: block;
-    color: $gray-700;
+    color: variables.$gray-700;
     font-style: italic;
   }
 }
@@ -36,17 +40,17 @@
   $activity-avatar-space: 5px;
   $activity-indent: 20px;
 
-  @if $use-gravatars {
+  @if variables.$use-gravatars {
     $activity-indent: $activity-indent + $activity-avatar + $activity-avatar-space;
   }
 
   h3,
   h4 {
-    margin: 0 0 $line-height-computed;
+    margin: 0 0 variables.$line-height-computed;
     padding-bottom: .2em;
-    border-bottom: 1px dotted $gray-600;
-    font-size: $font-size-h4;
-    font-weight: $font-weight-normal;
+    border-bottom: 1px dotted variables.$gray-600;
+    font-size: variables.$font-size-h4;
+    font-weight: variables.$font-weight-normal;
   }
 
   dt {
@@ -55,14 +59,14 @@
     }
 
     &.me .time {
-      border-bottom: 1px solid $gray-400;
+      border-bottom: 1px solid variables.$gray-400;
     }
 
     .time {
-      color: $gray-700;
+      color: variables.$gray-700;
     }
 
-    @if $use-gravatars {
+    @if variables.$use-gravatars {
       .gravatar {
         top: 0;
         margin-top: -2px;
@@ -74,7 +78,7 @@
 
   dd {
     overflow: hidden;
-    font-size: $font-size-small;
+    font-size: variables.$font-size-small;
 
     &.grouped {
       margin-left: $activity-indent;
@@ -97,24 +101,25 @@
 }
 
 
-// Search form
+/* Search form */
 
 #search-form {
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
 
   input,
   select {
     margin-right: 5px;
-    margin-bottom: $line-height-computed * .5;
+    margin-bottom: variables.$line-height-computed * .5;
   }
 
   label {
-    @include check-inline;
-    line-height: $input-height-base;
+    @include forms.check-inline;
+
+    line-height: variables.$input-height-base;
 
     input[type="checkbox"],
     input[type="radio"] {
-      margin-top: $check-input-margin-btn-v;
+      margin-top: variables.$check-input-margin-btn-v;
     }
   }
 
@@ -124,24 +129,24 @@
 }
 
 
-// Search results highlight
+/* Search results highlight */
 
 .highlight {
-  background-color: saturate(shade($yellow, 100), 25%);
-  color: saturate(shade($yellow, 800), 25%);
+  background-color: color.adjust(variables.shade(variables.$yellow, 100), $saturation: 25%);
+  color: color.adjust(variables.shade(variables.$yellow, 800), $saturation: 25%);
 
   &.token-1 {
-    background-color: saturate(shade($red, 100), 25%);
-    color: saturate(shade($red, 800), 25%);
+    background-color: color.adjust(variables.shade(variables.$red, 100), $saturation: 25%);
+    color: color.adjust(variables.shade(variables.$red, 800), $saturation: 25%);
   }
 
   &.token-2 {
-    background-color: saturate(shade($green, 100), 25%);
-    color: saturate(shade($green, 800), 25%);
+    background-color: color.adjust(variables.shade(variables.$green, 100), $saturation: 25%);
+    color: color.adjust(variables.shade(variables.$green, 800), $saturation: 25%);
   }
 
   &.token-3 {
-    background-color: saturate(shade($blue, 100), 25%);
-    color: saturate(shade($blue, 800), 25%);
+    background-color: color.adjust(variables.shade(variables.$blue, 100), $saturation: 25%);
+    color: color.adjust(variables.shade(variables.$blue, 800), $saturation: 25%);
   }
 }

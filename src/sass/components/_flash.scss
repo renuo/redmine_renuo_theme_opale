@@ -1,6 +1,10 @@
-//
-// Flash & error messages
-// --------------------------------------------------
+@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../lib/font-awesome/mixins" as font-awesome-mixins;
+@use "../variables";
+
+/*
+/* Flash & error messages
+/* -------------------------------------------------- */
 
 
 #errorExplanation,
@@ -8,19 +12,20 @@
 .nodata,
 .warning,
 .conflict {
-  @extend %fa-icon;
-  margin-bottom: $line-height-computed;
-  padding: $padding-large-vertical $padding-large-horizontal;
-  padding-left: $padding-large-horizontal + 8px + 16px;
+  margin-bottom: variables.$line-height-computed;
+  padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
+  padding-left: variables.$padding-large-horizontal + 8px + 16px;
   border: 1px solid;
-  border-radius: $border-radius-large;
+  border-radius: variables.$border-radius-large;
   background-repeat: no-repeat;
-  background-position: $padding-large-horizontal 50%;
+  background-position: variables.$padding-large-horizontal 50%;
 
   &::before {
+    @include font-awesome-mixins.fa-icon;
+
     margin-left: -(8px + 16px);
     float: left;
-    line-height: $line-height-computed;
+    line-height: variables.$line-height-computed;
   }
 
   > :last-child {
@@ -34,11 +39,11 @@
   color: $color;
 
   @if $icon == "true" {
-    $icon: $fa-var-check;
+    $icon: font-awesome-variables.$fa-var-check;
   } @else if $icon == "warning" {
-    $icon: $fa-var-warning;
+    $icon: font-awesome-variables.$fa-var-warning;
   } @else if $icon == "exclamation" {
-    $icon: $fa-var-exclamation-circle;
+    $icon: font-awesome-variables.$fa-var-exclamation-circle;
   }
 
   &::before {
@@ -47,27 +52,27 @@
 
   a {
     color: $link;
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 }
 
 .warning,
 .conflict,
 .nodata {
-  @include flash($flash-warning-text, $flash-warning-bg, $flash-warning-border, $flash-warning-link, "warning");
+  @include flash(variables.$flash-warning-text, variables.$flash-warning-bg, variables.$flash-warning-border, variables.$flash-warning-link, "warning");
 }
 
 .flash.notice {
-  @include flash($flash-success-text, $flash-success-bg, $flash-success-border, $flash-success-link, "true");
+  @include flash(variables.$flash-success-text, variables.$flash-success-bg, variables.$flash-success-border, variables.$flash-success-link, "true");
 }
 
 #errorExplanation,
 .flash.error {
-  @include flash($flash-error-text, $flash-error-bg, $flash-error-border, $flash-error-link, "exclamation");
+  @include flash(variables.$flash-error-text, variables.$flash-error-bg, variables.$flash-error-border, variables.$flash-error-link, "exclamation");
 }
 
 .nodata {
-  padding-left: $padding-large-horizontal;
+  padding-left: variables.$padding-large-horizontal;
   text-align: center;
 
   &.nodata-left {

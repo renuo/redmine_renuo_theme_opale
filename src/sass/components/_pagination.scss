@@ -1,6 +1,8 @@
-//
-// Pagination (multiple pages)
-// --------------------------------------------------
+@use "../variables";
+
+/*
+/* Pagination (multiple pages)
+/* -------------------------------------------------- */
 .pagination {
   .pages {
     display: inline-block;
@@ -20,19 +22,19 @@
   > .next,
   > .page {
     display: inline-block;
-    padding: $pagination-padding-vertical $pagination-padding-horizontal;
-    border: 1px solid $pagination-border;
-    border-radius: $border-radius-base;
-    background-color: $pagination-bg;
-    color: $pagination-color;
+    padding: variables.$pagination-padding-vertical variables.$pagination-padding-horizontal;
+    border: 1px solid variables.$pagination-border;
+    border-radius: variables.$border-radius-base;
+    background-color: variables.$pagination-bg;
+    color: variables.$pagination-color;
     text-decoration: none;
     white-space: nowrap;
   }
 
   li > span {
-    border-color: $pagination-inactive-border;
-    background-color: $pagination-inactive-bg;
-    color: $pagination-inactive-color;
+    border-color: variables.$pagination-inactive-border;
+    background-color: variables.$pagination-inactive-bg;
+    color: variables.$pagination-inactive-color;
     cursor: default;
   }
 
@@ -40,31 +42,31 @@
     padding: 0;
     border: 0 none;
     background: transparent;
-    color: $text-color;
+    color: variables.$text-color;
   }
 
   a {
     &:hover,
     &:focus {
-      border-color: $pagination-hover-border;
-      background-color: $pagination-hover-bg;
-      color: $pagination-hover-color;
+      border-color: variables.$pagination-hover-border;
+      background-color: variables.$pagination-hover-bg;
+      color: variables.$pagination-hover-color;
     }
   }
 
   .page.current,
   .current > span {
     z-index: 2;
-    border-color: $pagination-active-border;
-    background-color: $pagination-active-bg;
-    color: $pagination-active-color;
+    border-color: variables.$pagination-active-border;
+    background-color: variables.$pagination-active-bg;
+    color: variables.$pagination-active-color;
     cursor: default;
   }
 
   .items,
   .per-page {
     display: inline-block;
-    margin: ($pagination-padding-vertical + 1px) 0 ($pagination-padding-vertical + 1px) $pagination-padding-vertical;
+    margin: (variables.$pagination-padding-vertical + 1px) 0 (variables.$pagination-padding-vertical + 1px) variables.$pagination-padding-vertical;
   }
 }
 

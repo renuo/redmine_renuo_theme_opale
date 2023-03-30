@@ -1,25 +1,39 @@
-// Form control focus state
-//
-@mixin form-control-focus($color: $input-border-focus) {
+@use "sass:color";
+@use "../variables";
+@use "../mixins/clearfix";
+
+@mixin form-field {
+  height: variables.$input-height-base;
+  padding: variables.$input-padding-vertical variables.$input-padding-horizontal;
+  border: 1px solid variables.$input-border;
+  border-radius: variables.$input-border-radius;
+  background-color: variables.$input-bg;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / .075);
+  color: variables.$input-color;
+}
+
+/* Form control focus state */
+
+@mixin form-control-focus($color: variables.$input-border-focus) {
   &:focus {
-    border-color: rgba($input-border-focus, $input-border-focus-alpha);
+    border-color: color.adjust(variables.$input-border-focus, $alpha: variables.$input-border-focus-alpha);
     outline: 0;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .075), 0 0 0 2px rgba($input-border-focus, $input-shadow-focus-alpha);
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / .075), 0 0 0 2px color.adjust(variables.$input-border-focus, $alpha: variables.$input-shadow-focus-alpha);
   }
 }
 
-// Placeholder text
-//
-@mixin placeholder($color: $input-color-placeholder) {
+/* Placeholder text */
+
+@mixin placeholder($color: variables.$input-color-placeholder) {
   &::placeholder {
-    opacity: 1; // See https://github.com/twbs/bootstrap/pull/11526
+    opacity: 1; /* See https://github.com/twbs/bootstrap/pull/11526 */
     color: $color;
   }
 }
 
 
-// Form control sizing
-//
+/* Form control sizing */
+
 @mixin input-size($parent, $input-height, $padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
   #{$parent} {
     height: $input-height;
@@ -42,37 +56,40 @@
 
 @mixin check() {
   @extend %clearfix;
+
   position: relative;
-  padding-left: $check-input-gutter;
-  font-weight: $font-weight-normal;
-  line-height: $line-height-base;
+  padding-left: variables.$check-input-gutter;
+  font-weight: variables.$font-weight-normal;
+  line-height: variables.$line-height-base;
   text-align: left;
 
   input[type="checkbox"],
   input[type="radio"] {
     position: absolute;
     width: auto;
-    margin-top: $check-input-margin-vertical;
-    margin-left: -$check-input-gutter;
+    margin-top: variables.$check-input-margin-vertical;
+    margin-left: -(variables.$check-input-gutter);
   }
 }
 
 @mixin check-inline() {
   @include check;
+
   display: inline-block;
-  margin-right: $check-input-margin-horizontal;
+  margin-right: variables.$check-input-margin-horizontal;
 }
 
 @mixin check-list() {
   @include check;
+
   display: block;
   width: auto;
   margin: 0;
-  padding-top: $check-list-offset-top;
-  padding-bottom: $check-list-offset-top;
+  padding-top: variables.$check-list-offset-top;
+  padding-bottom: variables.$check-list-offset-top;
   float: none;
 
-  @media screen and (min-width: $screen-sm-min) {
+  @media screen and (min-width: variables.$screen-sm-min) {
     padding-bottom: 0;
   }
 }

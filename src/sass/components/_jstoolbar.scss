@@ -1,14 +1,20 @@
-//
-// WYSIWYG icons
-// --------------------------------------------------
+@use "sass:color";
+@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../lib/font-awesome/mixins" as font-awesome-mixins;
+@use "../variables";
+@use "../mixins";
 
-// For Redmine 4.0+
+/*
+/* WYSIWYG icons
+/* -------------------------------------------------- */
+
+/* For Redmine 4.0+ */
 #content {
   div.jstTabs.tabs {
     height: auto;
 
-    @if $flexbox-layout {
-      @media screen and (max-width: $redmine-responsive-max) {
+    @if variables.$flexbox-layout {
+      @media screen and (max-width: variables.$redmine-responsive-max) {
         clear: both;
       }
     }
@@ -24,23 +30,23 @@
         > a {
           &:hover,
           &:focus {
-            border-color: darken($tab-hover-border, 3%) darken($tab-hover-border, 3%) $tab-border;
-            background-color: darken($tab-hover-bg, 3%);
+            border-color: color.adjust(variables.$tab-hover-border, $lightness: -3%) color.adjust(variables.$tab-hover-border, $lightness: -3%) variables.$tab-border;
+            background-color: color.adjust(variables.$tab-hover-bg, $lightness: -3%);
           }
 
           &.selected {
-            border-color: $tab-active-border $tab-active-border $tab-active-bg;
-            background: $tab-active-bg;
-            color: $tab-active-text;
+            border-color: variables.$tab-active-border variables.$tab-active-border variables.$tab-active-bg;
+            background: variables.$tab-active-bg;
+            color: variables.$tab-active-text;
 
             &.tab-preview {
-              border-bottom-color: $wiki-preview-bg;
-              background-color: $wiki-preview-bg;
+              border-bottom-color: variables.$wiki-preview-bg;
+              background-color: variables.$wiki-preview-bg;
             }
           }
         }
 
-        @if $flexbox-layout {
+        @if variables.$flexbox-layout {
           align-self: flex-end;
         }
 
@@ -62,10 +68,10 @@
 
   .jstEditor {
     .wiki-preview {
-      padding: $panel-body-padding;
-      border: 1px solid $input-border;
-      border-radius: $input-border-radius;
-      background-color: $wiki-preview-bg;
+      padding: variables.$panel-body-padding;
+      border: 1px solid variables.$input-border;
+      border-radius: variables.$input-border-radius;
+      background-color: variables.$wiki-preview-bg;
 
       p {
         padding: 0;
@@ -76,6 +82,7 @@
 
 div.jstElements {
   @extend %clearfix;
+
   line-height: normal;
 
   .box & {
@@ -86,7 +93,7 @@ div.jstElements {
       margin-right: 4px;
     }
 
-    @media (min-width: $screen-md) {
+    @media (min-width: variables.$screen-md) {
       .jstb_help {
         margin-right: 0;
         margin-left: -6px;
@@ -103,7 +110,7 @@ div.jstElements {
     opacity: 1;
     background-color: transparent;
     box-shadow: none;
-    color: $gray-800;
+    color: variables.$gray-800;
     vertical-align: top;
 
     &::before {
@@ -112,149 +119,156 @@ div.jstElements {
 
     &:hover,
     &:focus {
-      background-color: darken($tab-hover-bg, 3%);
-      color: $gray-900;
+      background-color: color.adjust(variables.$tab-hover-bg, $lightness: -3%);
+      color: variables.$gray-900;
     }
   }
 
   %jstb-icon {
-    @include fa-icon;
     background: transparent;
     background-image: none;
+
+    &::before {
+      @include font-awesome-mixins.fa-icon;
+
+      content: "";
+    }
   }
 
   .jstb_strong {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-bold; }
+    &::before { content: "#{font-awesome-variables.$fa-var-bold}"; }
   }
 
   .jstb_em {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-italic; }
+    &::before { content: "#{font-awesome-variables.$fa-var-italic}"; }
   }
 
   .jstb_ins {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-underline; }
+    &::before { content: "#{font-awesome-variables.$fa-var-underline}"; }
   }
 
   .jstb_del {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-strikethrough; }
+    &::before { content: "#{font-awesome-variables.$fa-var-strikethrough}"; }
   }
 
   .jstb_code {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-code; }
+    &::before { content: "#{font-awesome-variables.$fa-var-code}"; }
   }
 
   .jstb_h1 {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-header; }
+    &::before { content: "#{font-awesome-variables.$fa-var-header}"; }
   }
 
   .jstb_h2 {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-header; font-size: .7857em; }
+    &::before { content: "#{font-awesome-variables.$fa-var-header}"; font-size: .7857em; }
   }
 
   .jstb_h3 {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-header; font-size: .6429em; }
+    &::before { content: "#{font-awesome-variables.$fa-var-header}"; font-size: .6429em; }
   }
 
   .jstb_ul {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-list-ul; }
+    &::before { content: "#{font-awesome-variables.$fa-var-list-ul}"; }
   }
 
   .jstb_ol {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-list-ol; }
+    &::before { content: "#{font-awesome-variables.$fa-var-list-ol}"; }
   }
 
   .jstb_bq {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-indent; }
+    &::before { content: "#{font-awesome-variables.$fa-var-indent}"; }
   }
 
   .jstb_unbq {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-outdent; }
+    &::before { content: "#{font-awesome-variables.$fa-var-outdent}"; }
   }
 
   .jstb_pre {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-terminal; }
+    &::before { content: "#{font-awesome-variables.$fa-var-terminal}"; }
   }
 
   .jstb_link {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-link; }
+    &::before { content: "#{font-awesome-variables.$fa-var-link}"; }
   }
 
   .jstb_img {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-image; }
+    &::before { content: "#{font-awesome-variables.$fa-var-image}"; }
   }
 
   .jstb_cut {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-scissors; }
+    &::before { content: "#{font-awesome-variables.$fa-var-scissors}"; }
   }
 
   .jstb_precode,
-  // For plugin https://github.com/mediatainment/redmine_codebutton
+  /* For plugin https://github.com/mediatainment/redmine_codebutton */
   .jstb_codehighlight {
     @extend %jstb-icon;
-    color: $brand-danger;
 
-    &::before { content: $fa-var-code; }
+    color: variables.$brand-danger;
+
+    &::before { content: "#{font-awesome-variables.$fa-var-code}"; }
   }
 
   .jstb_table {
     @extend %jstb-icon;
 
-    &::before { content: $fa-var-table; }
+    &::before { content: "#{font-awesome-variables.$fa-var-table}"; }
   }
 
   button.jstb_help {
     @extend %jstb-icon;
-    color: $link-color;
+
+    color: variables.$link-color;
 
     &:hover {
-      color: $link-hover-color;
+      color: variables.$link-hover-color;
     }
 
-    &::before { content: $fa-var-question-circle; }
+    &::before { content: "#{font-awesome-variables.$fa-var-question-circle}"; }
   }
 }
 
 body {
   .table-generator {
     td {
-      border-color: $tab-border;
+      border-color: variables.$tab-border;
     }
 
     td.selected-cell,
     td:hover {
-      background-color: $brand-primary;
+      background-color: variables.$brand-primary;
     }
   }
 }

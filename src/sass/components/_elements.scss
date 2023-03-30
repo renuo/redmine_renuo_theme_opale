@@ -1,39 +1,53 @@
-//
-// Various layout elements
-// --------------------------------------------------
+@use "sass:color";
+@use "sass:math";
+@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../lib/font-awesome/mixins" as font-awesome-mixins;
+@use "../variables";
+@use "../mixins/clearfix";
+@use "../mixins/forms";
+@use "../mixins/shadows";
+@use "../components/icons";
+
+/*
+/* Various layout elements
+/* -------------------------------------------------- */
 
 
-//== Collapsible
-//
+/* Collapsible */
 
 a.collapsible,
 a.collapsible.icon,
 .collapsible > legend {
-  color: $link-color;
+  color: variables.$link-color;
   cursor: pointer;
   user-select: none;
 
   &:hover,
   &:focus {
-    color: $link-hover-color;
+    color: variables.$link-hover-color;
     text-decoration: none;
   }
 
   &::before {
-    @include fa-icon;
-    content: $fa-var-chevron-down;
-    position: relative;
+    @extend %fa-icon;
+
+    content: "#{font-awesome-variables.$fa-var-chevron-down}";
+    transform: rotate(0);
+    color: variables.$gray-600;
+    font-size: 12px;
+
+    /* position: relative;
     top: -.1em;
     width: 1em;
     height: 1em;
     margin-right: 3px;
     transform: rotate(0);
-    color: $gray-600;
+    color: variables.$gray-600;
     font-size: 12px;
-    vertical-align: middle;
+    vertical-align: middle; */
 
-    @if $collapsible-animation-time > 0 {
-      transition: transform $collapsible-animation-time;
+    @if variables.$collapsible-animation-time > 0 {
+      transition: transform variables.$collapsible-animation-time;
     }
   }
 }
@@ -46,28 +60,28 @@ a.collapsible.icon-collapsed,
   }
 }
 
-@if $collapsible-animation-time > 0 {
+@if variables.$collapsible-animation-time > 0 {
   fieldset.collapsible {
-    min-height: $line-height-computed;
-    max-height: $collapsible-max-height;
+    min-height: variables.$line-height-computed;
+    max-height: variables.$collapsible-max-height;
     overflow: auto;
-    transition: max-height $collapsible-animation-time ease-out;
+    transition: max-height variables.$collapsible-animation-time ease-out;
 
     > div {
-      display: block !important; // stylelint-disable-line declaration-no-important
+      display: block !important; /* stylelint-disable-line declaration-no-important */
       visibility: visible;
-      transition: visibility 0s 0s, opacity $collapsible-animation-time;
+      transition: visibility 0s 0s, opacity variables.$collapsible-animation-time;
       opacity: 1;
     }
 
     &.collapsed {
       max-height: 0;
       overflow: hidden;
-      transition: max-height $collapsible-animation-time;
+      transition: max-height variables.$collapsible-animation-time;
 
       > div {
         visibility: hidden;
-        transition: visibility 0s $collapsible-animation-time, opacity $collapsible-animation-time;
+        transition: visibility 0s variables.$collapsible-animation-time, opacity variables.$collapsible-animation-time;
         opacity: 0;
       }
     }
@@ -75,16 +89,14 @@ a.collapsible.icon-collapsed,
 }
 
 
-//== Elements with context menus (doesn't really work on Windows)
-//
+/* Elements with context menus (doesn't really work on Windows) */
 
 .hascontextmenu {
   cursor: context-menu;
 }
 
 
-//== Actions for block
-//
+/* Actions for block */
 
 .contextual {
   float: right;
@@ -97,8 +109,7 @@ a.collapsible.icon-collapsed,
 }
 
 
-//== Accessibility specific styles
-//
+/* Accessibility specific styles */
 
 .hidden-for-sighted {
   // stylelint-disable declaration-no-important
@@ -118,7 +129,7 @@ img {
 .filecontent-container {
   position: relative;
   min-height: 200px;
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
 
   > .filecontent {
     position: absolute;
@@ -127,31 +138,29 @@ img {
 
     &.wiki {
       position: static;
-      padding-bottom: $line-height-computed;
+      padding-bottom: variables.$line-height-computed;
     }
   }
 }
 
-//== Responsive autoscroll
-//
+/* Responsive autoscroll */
 
 .autoscroll {
   position: relative;
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
   overflow-x: auto;
 }
 
 
-//== Container
-//
+/* Container */
 
 .box {
-  margin-bottom: $line-height-computed;
-  padding: $panel-body-padding;
-  border: 1px solid $panel-border;
-  border-radius: $border-radius-base;
-  background-color: $panel-bg;
-  color: $panel-color;
+  margin-bottom: variables.$line-height-computed;
+  padding: variables.$panel-body-padding;
+  border: 1px solid variables.$panel-border;
+  border-radius: variables.$border-radius-base;
+  background-color: variables.$panel-bg;
+  color: variables.$panel-color;
   word-wrap: break-word;
 
   .ui-dialog-content & {
@@ -167,13 +176,12 @@ img {
   }
 
   > h3 {
-    margin-bottom: $panel-body-padding-vertical;
+    margin-bottom: variables.$panel-body-padding-vertical;
   }
 }
 
 
-//== Column form layout
-//
+/* Column form layout */
 
 .splitcontent {
   @extend %clearfix;
@@ -185,23 +193,22 @@ img {
   width: 50%;
 
   > .wiki {
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
   }
 }
 
 .splitcontentleft {
-  padding-right: ($padding-side * .5);
+  padding-right: (variables.$padding-side * .5);
   float: left;
 }
 
 .splitcontentright {
-  padding-left: ($padding-side * .5);
+  padding-left: (variables.$padding-side * .5);
   float: right;
 }
 
 
-//== Watchers list
-//
+/* Watchers list */
 
 #watchers {
   select {
@@ -212,13 +219,14 @@ img {
   > .watchers {
     > li {
       @extend %clearfix;
-      display: block;
-      margin-bottom: $sidebar-padding-vertical;
 
-      @if $sidebar-position == "left" {
-        padding-right: $sidebar-padding-horizontal;
+      display: block;
+      margin-bottom: variables.$sidebar-padding-vertical;
+
+      @if variables.$sidebar-position == "left" {
+        padding-right: variables.$sidebar-padding-horizontal;
       } @else {
-        padding-left: $sidebar-padding-horizontal;
+        padding-left: variables.$sidebar-padding-horizontal;
       }
 
       > a:not(.icon-only) {
@@ -235,10 +243,10 @@ img {
 
       > .delete {
         float: right;
-        opacity: $icon-opacity;
+        opacity: variables.$icon-opacity;
 
         &:hover {
-          opacity: $icon-hover-opacity;
+          opacity: variables.$icon-hover-opacity;
         }
       }
 
@@ -250,39 +258,37 @@ img {
 }
 
 
-//== Users selection list
-//
+/* Users selection list */
 
 #principals {
   label {
-    @include check;
+    @include forms.check;
+
     display: block;
   }
 
   .gravatar {
-    margin-right: $padding-small-vertical;
+    margin-right: variables.$padding-small-vertical;
   }
 }
 
 .roles-selection {
   label {
-    @include check-inline;
+    @include forms.check-inline;
   }
 }
 
 
-//== Subtitle paragraph (can be seen on activity list)
-//
+/* Subtitle paragraph (can be seen on activity list) */
 
 p.subtitle {
-  margin-top: ($line-height-computed * -.5);
-  margin-bottom: $line-height-computed;
+  margin-top: (variables.$line-height-computed * -.5);
+  margin-bottom: variables.$line-height-computed;
   font-style: italic;
 }
 
 
-//== My page layout
-//
+/* My page layout */
 
 #block-form {
   display: inline;
@@ -291,15 +297,15 @@ p.subtitle {
 .block-receiver {
   box-sizing: border-box;
   min-height: 20px;
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
 
   .dragging & {
-    outline: 2px dashed $gray-600;
+    outline: 2px dashed variables.$gray-600;
   }
 }
 
 .mypage-box {
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
 
   &:last-child {
     margin-bottom: 0;
@@ -307,22 +313,23 @@ p.subtitle {
 
   &.ui-sortable-handle {
     overflow: hidden;
-    outline: 1px solid $gray-400;
+    outline: 1px solid variables.$gray-400;
 
     &:hover {
-      outline: 1px solid $gray-600;
+      outline: 1px solid variables.$gray-600;
     }
   }
 
   &.ui-sortable-placeholder {
     visibility: visible !important; // stylelint-disable-line declaration-no-important
-    outline: 1px dashed $highlight-border;
-    background: $highlight-bg;
+    outline: 1px dashed variables.$highlight-border;
+    background: variables.$highlight-bg;
   }
 
   &.ui-sortable-helper {
-    @include nice-shadow(4);
-    background: $body-bg;
+    @include shadows.nice-shadow(4);
+
+    background: variables.$body-bg;
   }
 }
 
@@ -345,11 +352,11 @@ a.close-icon {
   }
 }
 
-// For Redmine 3.4+
+ /* For Redmine 3.4+ */
 #my-page {
   .mypage-box {
     > .contextual {
-      transition: opacity $transition-time;
+      transition: opacity variables.$transition-time;
       opacity: 0;
     }
 
@@ -360,45 +367,44 @@ a.close-icon {
 
   #list-left {
     width: 50%;
-    padding-right: ($padding-side * .5);
+    padding-right: (variables.$padding-side * .5);
     float: left;
   }
 
   #list-right {
     width: 50%;
-    padding-left: ($padding-side * .5);
+    padding-left: (variables.$padding-side * .5);
     float: right;
   }
 }
 
 
-//== Resetting font for SCM (repository files)
-//
+/* Resetting font for SCM (repository files) */
 
 #content table.filecontent {
   width: 100%;
-  background: $body-bg;
+  background: variables.$body-bg;
 
   th.filename {
-    border-color: $brand-primary;
-    border-bottom-color: darken($body-bg, 10%);
-    background-color: $brand-primary;
-    color: $brand-text;
+    border-color: variables.$brand-primary;
+    border-bottom-color: color.adjust(variables.$body-bg, $lightness: -10%);
+    background-color: variables.$brand-primary;
+    color: variables.$brand-text;
   }
 
   tbody {
-    font-size: $font-size-list;
+    font-size: variables.$font-size-list;
   }
 
   tbody,
   td.line-code pre {
-    font-family: $font-family-monospace;
+    font-family: variables.$font-family-monospace;
   }
 
   th.line-num {
-    border-color: darken($body-bg, 10%);
-    background-color: darken($body-bg, 5%);
-    color: $gray-700;
+    border-color: color.adjust(variables.$body-bg, $lightness: -10%);
+    background-color: color.adjust(variables.$body-bg, $lightness: -5%);
+    color: variables.$gray-700;
   }
 
   th.line-num,
@@ -413,22 +419,22 @@ a.close-icon {
   }
 
   tr:hover {
-    background-color: darken($body-bg, 2%);
+    background-color: color.adjust(variables.$body-bg, $lightness: -2%);
 
     th.line-num {
-      background-color: darken($body-bg, 10%);
+      background-color: color.adjust(variables.$body-bg, $lightness: -10%);
     }
   }
 
   tr:target {
     th.line-num {
-      border-color: darken(adjust-hue($highlight-bg, -8deg), 15%);
-      background-color: darken(adjust-hue($highlight-bg, -8deg), 7%);
-      color: $highlight-text;
+      border-color: color.adjust(color.adjust(variables.$highlight-bg, $hue: -8deg), $lightness: -15%);
+      background-color: color.adjust(color.adjust(variables.$highlight-bg, $hue: -8deg), $lightness: -7%);
+      color: variables.$highlight-text;
     }
 
     td.line-code {
-      background-color: $highlight-bg;
+      background-color: variables.$highlight-bg;
     }
   }
 }
@@ -441,17 +447,16 @@ a.close-icon {
   }
 
   td {
-    padding: $table-condensed-cell-padding;
+    padding: variables.$table-condensed-cell-padding;
     border: 0 none;
   }
 }
 
 
-//== Projects list
-//
+/* Projects list */
 
 ul.projects {
-  padding-left: $padding-side;
+  padding-left: variables.$padding-side;
 
   &.root {
     margin: 0;
@@ -463,56 +468,58 @@ ul.projects {
   }
 
   .archived {
-    color: $gray-600;
+    color: variables.$gray-600;
   }
 }
 
 #projects-index ul.projects {
-  @if $use-project-tiles {
+  @if variables.$use-project-tiles {
     &.root {
       display: flex;
       flex-wrap: wrap;
-      margin-right: -($padding-side * .5);
-      margin-left: -($padding-side * .5);
+      margin-right: -(variables.$padding-side * .5);
+      margin-left: -(variables.$padding-side * .5);
 
       > li {
         display: block;
         box-sizing: border-box;
         flex: 0 1 auto;
         width: 100%;
-        margin-right: $padding-side * .5;
-        margin-left: $padding-side * .5;
-        padding: $panel-body-padding;
-        border: 1px solid $panel-border;
-        border-radius: $border-radius-base;
-        background-color: $panel-bg;
-        color: $panel-color;
+        margin-right: variables.$padding-side * .5;
+        margin-left: variables.$padding-side * .5;
+        padding: variables.$panel-body-padding;
+        border: 1px solid variables.$panel-border;
+        border-radius: variables.$border-radius-base;
+        background-color: variables.$panel-bg;
+        color: variables.$panel-color;
 
-        @media screen and (min-width: $screen-sm-min) { width: calc(50% - #{$padding-side}); }
-        @media screen and (min-width: $screen-md-min) { width: calc(33.333% - #{$padding-side}); }
-        @media screen and (min-width: $screen-lg-min) { width: calc(25% - #{$padding-side}); }
+        @media screen and (min-width: variables.$screen-sm-min) { width: calc(50% - #{variables.$padding-side}); }
+
+        @media screen and (min-width: variables.$screen-md-min) { width: calc(33.333% - #{variables.$padding-side}); }
+
+        @media screen and (min-width: variables.$screen-lg-min) { width: calc(25% - #{variables.$padding-side}); }
       }
     }
   }
 
   ul.projects {
-    border-left: 2px solid $gray-400;
+    border-left: 2px solid variables.$gray-400;
   }
 
   li.root {
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
   }
 
   li.child {
-    margin-top: $line-height-computed * .5;
+    margin-top: variables.$line-height-computed * .5;
   }
 
   a.project {
-    font-size: $font-size-h3;
-    font-weight: $font-weight-bold;
+    font-size: variables.$font-size-h3;
+    font-weight: variables.$font-weight-bold;
 
     &.child {
-      font-weight: $font-weight-normal;
+      font-weight: variables.$font-weight-normal;
     }
   }
 }
@@ -535,14 +542,13 @@ table.projects {
 #tracker_project_ids,
 #custom_field_project_ids {
   > ul {
-    max-height: $line-height-computed * 12;
+    max-height: variables.$line-height-computed * 12;
     overflow-y: auto;
   }
 }
 
 
-//== Time report
-//
+/* Time report */
 
 #time-report {
   th {
@@ -554,18 +560,18 @@ table.projects {
 
   tbody tr {
     &.subtotal {
-      color: $gray-700;
+      color: variables.$gray-700;
       font-style: italic;
 
       td.hours {
-        color: $gray-600;
+        color: variables.$gray-600;
       }
     }
 
     &.total {
-      border-top: 2px solid darken($table-border-color, 5%);
-      background-color: $table-bg-active;
-      font-weight: $font-weight-bold;
+      border-top: 2px solid color.adjust(variables.$table-border-color, $lightness: -5%);
+      background-color: variables.$table-bg-active;
+      font-weight: variables.$font-weight-bold;
     }
   }
 
@@ -575,28 +581,27 @@ table.projects {
 }
 
 .total-hours {
-  font-weight: $font-weight-bold;
+  font-weight: variables.$font-weight-bold;
 
   .hours-int {
-    font-size: $font-size-large * 1.1;
+    font-size: variables.$font-size-large * 1.1;
   }
 
   .hours-dec {
-    font-size: $font-size-large;
+    font-size: variables.$font-size-large;
   }
 }
 
 
-//== Version issue list and page layout
-//
+/* Version issue list and page layout */
 
 div#roadmap {
   article {
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
   }
 
   .related-issues {
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
 
     td.checkbox {
       display: none;
@@ -611,7 +616,7 @@ div#roadmap {
 
   table.progress {
     td {
-      height: $progress-height;
+      height: variables.$progress-height;
     }
 
     + .percent {
@@ -652,7 +657,7 @@ div#version-summary {
   float: right;
 
   fieldset {
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
 
     &.time-tracking table {
       width: 100%;
@@ -666,72 +671,70 @@ div#version-summary {
 }
 
 
-//== Add form bottom space
-//
+/* Add form bottom space */
 
 #new_document,
 #add-message,
 #add-news,
 #edit-news {
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
 }
 
 
-//== Ajax indicator
-//
+/* Ajax indicator */
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
 #ajax-indicator {
-  @include nice-shadow(3);
+  @include shadows.nice-shadow(3);
+
   position: fixed;
   z-index: 100;
   top: 50%;
   left: 50%;
   box-sizing: border-box;
   width: 200px;
-  margin: (($padding-large-vertical * 2 + 1px * 2 + $line-height-computed) * -.5) (200px * -.5);
-  padding: $padding-large-vertical $padding-large-horizontal;
-  border: 1px solid $highlight-border;
-  border-radius: $border-radius-base;
+  margin: ((variables.$padding-large-vertical * 2 + 1px * 2 + variables.$line-height-computed) * -.5) (200px * -.5);
+  padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
+  border: 1px solid variables.$highlight-border;
+  border-radius: variables.$border-radius-base;
   opacity: .9;
-  background-color: $highlight-bg;
-  color: $highlight-text;
-  font-weight: $font-weight-bold;
+  background-color: variables.$highlight-bg;
+  color: variables.$highlight-text;
+  font-weight: variables.$font-weight-bold;
   text-align: center;
 
   span {
-    line-height: $line-height-computed;
+    line-height: variables.$line-height-computed;
 
     &::before {
       content: "";
       display: inline-block;
       box-sizing: border-box;
-      width: $line-height-computed;
-      height: $line-height-computed;
-      margin-right: $line-height-computed * .5;
+      width: variables.$line-height-computed;
+      height: variables.$line-height-computed;
+      margin-right: variables.$line-height-computed * .5;
       animation: spin 1s linear infinite;
-      border: 3px solid rgba($highlight-text, .3);
+      border: 3px solid color.adjust(variables.$highlight-text, $alpha: .3);
       border-radius: 50%;
-      border-top-color: $highlight-text;
+      border-top-color: variables.$highlight-text;
       vertical-align: bottom;
     }
   }
 }
 
 
-//== Boards (forum)
-//
+/* Boards (forum) */
 
 tr.message {
   &.locked {
-    color: $gray-700;
+    color: variables.$gray-700;
   }
 
   &.sticky td.subject {
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   td {
@@ -745,7 +748,7 @@ tr.message {
       white-space: nowrap;
 
       a:last-child {
-        font-weight: $font-weight-bold;
+        font-weight: variables.$font-weight-bold;
       }
     }
   }
@@ -759,7 +762,7 @@ table.boards {
       white-space: nowrap;
 
       a:last-child {
-        font-weight: $font-weight-bold;
+        font-weight: variables.$font-weight-bold;
       }
     }
   }
@@ -772,46 +775,45 @@ div.table-list.boards {
 }
 
 
-//== Topic page
-//
+/* Topic page */
 
 .controller-messages.action-show {
   h2 {
-    margin-bottom: $line-height-computed * .5;
+    margin-bottom: variables.$line-height-computed * .5;
   }
 
   .message {
-    border: 1px solid $bubble-border;
-    border-radius: $panel-border-radius;
-    background: $bubble-bg;
+    border: 1px solid variables.$bubble-border;
+    border-radius: variables.$panel-border-radius;
+    background: variables.$bubble-bg;
 
     > h4,
     > p {
       margin-bottom: 0;
-      padding: $bubble-padding-vertical $bubble-padding-horizontal;
-      color: $gray-700;
-      font-size: $font-size-list;
+      padding: variables.$bubble-padding-vertical variables.$bubble-padding-horizontal;
+      color: variables.$gray-700;
+      font-size: variables.$font-size-list;
 
       a {
-        color: $gray-900;
+        color: variables.$gray-900;
 
         &.user {
-          font-weight: $font-weight-bold;
+          font-weight: variables.$font-weight-bold;
         }
       }
     }
 
     .wiki {
-      padding: $panel-body-padding;
-      border-top: 1px solid $bubble-border;
-      border-radius: 0 0 $panel-border-radius $panel-border-radius;
-      background: $body-bg;
+      padding: variables.$panel-body-padding;
+      border-top: 1px solid variables.$bubble-border;
+      border-radius: 0 0 variables.$panel-border-radius variables.$panel-border-radius;
+      background: variables.$body-bg;
     }
 
     .contextual {
       position: relative;
       z-index: 1;
-      padding: ($bubble-padding-vertical - 1px) $bubble-padding-vertical 0 0;
+      padding: (variables.$bubble-padding-vertical - 1px) variables.$bubble-padding-vertical 0 0;
 
       a {
         display: inline-block;
@@ -819,18 +821,18 @@ div.table-list.boards {
     }
 
     .attachments {
-      padding: $bubble-padding-horizontal;
-      border-top-color: $bubble-border;
+      padding: variables.$bubble-padding-horizontal;
+      border-top-color: variables.$bubble-border;
     }
   }
 
   .reply {
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
   }
 
-  @if $use-gravatars {
+  @if variables.$use-gravatars {
     .reply {
-      margin-left: $bubble-gravatar-size + $bubble-gravatar-space;
+      margin-left: variables.$bubble-gravatar-size + variables.$bubble-gravatar-space;
 
       > h4 {
         position: relative;
@@ -854,18 +856,18 @@ div.table-list.boards {
           margin-top: 1px;
           margin-left: 2px;
           border-width: 6px;
-          border-right-color: $bubble-bg;
+          border-right-color: variables.$bubble-bg;
         }
 
         &::before {
           border-width: 7px;
-          border-right-color: $bubble-border;
+          border-right-color: variables.$bubble-border;
         }
       }
 
       img.gravatar {
-        margin-top: $line-height-computed - $bubble-gravatar-size;
-        margin-left: -($bubble-gravatar-size + $bubble-gravatar-space + $bubble-padding-horizontal + 1px);
+        margin-top: variables.$line-height-computed - variables.$bubble-gravatar-size;
+        margin-left: -(variables.$bubble-gravatar-size + variables.$bubble-gravatar-space + variables.$bubble-padding-horizontal + 1px);
         float: left;
       }
     }
@@ -873,48 +875,47 @@ div.table-list.boards {
 }
 
 #message_content {
-  height: $line-height-computed * 6;
+  height: variables.$line-height-computed * 6;
 }
 
 
-//== Documents
-//
+/* Documents */
 
 .controller-documents {
   &.action-index {
     h2 {
-      font-size: $font-size-h2;
+      font-size: variables.$font-size-h2;
     }
 
     h4 {
       margin-bottom: 0;
-      font-size: $font-size-h4;
+      font-size: variables.$font-size-h4;
     }
 
     .wiki {
       + h3,
       + h4 {
-        margin-top: $line-height-computed;
-        padding-top: $line-height-computed;
-        border-top: 1px solid $panel-border;
+        margin-top: variables.$line-height-computed;
+        padding-top: variables.$line-height-computed;
+        border-top: 1px solid variables.$panel-border;
       }
     }
   }
 
   &.action-show {
     .wiki {
-      margin-bottom: $line-height-computed;
+      margin-bottom: variables.$line-height-computed;
     }
   }
 
   h3 {
-    font-size: $font-size-h3;
+    font-size: variables.$font-size-h3;
   }
 
   #content > h2,
   #content > h4 {
     + p {
-      color: $gray-700;
+      color: variables.$gray-700;
 
       em {
         font-style: normal;
@@ -924,20 +925,19 @@ div.table-list.boards {
 }
 
 
-//== News
-//
+/* News */
 
 .news.box {
   p > a:not(:last-child) {
     display: inline-block;
-    margin-bottom: floor($line-height-computed * .25);
-    font-size: $font-size-h4;
+    margin-bottom: math.floor(variables.$line-height-computed * .25);
+    font-size: variables.$font-size-h4;
   }
 
   .summary,
   .author {
     display: block;
-    margin-bottom: floor($line-height-computed * .25);
+    margin-bottom: math.floor(variables.$line-height-computed * .25);
 
     + br {
       display: none;
@@ -945,14 +945,14 @@ div.table-list.boards {
   }
 
   .author {
-    margin-bottom: $line-height-computed;
+    margin-bottom: variables.$line-height-computed;
   }
 }
 
 #edit-news + p {
   em {
     display: block;
-    margin-bottom: floor($line-height-computed * .25);
+    margin-bottom: math.floor(variables.$line-height-computed * .25);
 
     + br {
       display: none;
@@ -962,51 +962,50 @@ div.table-list.boards {
 
 .news.box .summary,
 #edit-news + p em {
-  padding: floor($line-height-computed * .25) $padding-base-horizontal;
-  border-left: 4px solid $blockquote-border-color;
+  padding: math.floor(variables.$line-height-computed * .25) variables.$padding-base-horizontal;
+  border-left: 4px solid variables.$blockquote-border-color;
 }
 
 .news-article {
-  margin-bottom: $line-height-computed;
-  padding-top: $line-height-computed;
-  border-top: 1px solid $panel-border;
+  margin-bottom: variables.$line-height-computed;
+  padding-top: variables.$line-height-computed;
+  border-top: 1px solid variables.$panel-border;
 
   header {
     h3 {
-      margin-bottom: $line-height-computed * .5;
+      margin-bottom: variables.$line-height-computed * .5;
 
       > a {
-        font-weight: $font-weight-bold;
+        font-weight: variables.$font-weight-bold;
       }
     }
   }
 }
 
 .author {
-  color: $gray-700;
+  color: variables.$gray-700;
 
   .flyout-menu & {
     color: inherit;
   }
 
   .user {
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 }
 
 
-//== News comments
-//
+/* News comments */
 
 #comments {
   > h4 {
-    margin-top: $line-height-computed;
-    margin-bottom: $line-height-computed * .5;
+    margin-top: variables.$line-height-computed;
+    margin-bottom: variables.$line-height-computed * .5;
   }
 }
 
 #comment_comments {
-  height: $line-height-computed * 6;
+  height: variables.$line-height-computed * 6;
 }
 
 .summary {
@@ -1014,65 +1013,61 @@ div.table-list.boards {
 }
 
 
-//== Diff
-//
-
-.text-diff {
-  margin-bottom: $line-height-computed;
-  padding: $panel-body-padding;
-  border: 1px solid $panel-border;
-  border-radius: $panel-border-radius;
-  background: $body-bg;
-  color: $panel-color;
-  font-family: $font-family-monospace;
-  white-space: pre-wrap;
-}
+/* Diff */
 
 .diff_out {
-  background: $diff-out-bg-light;
+  background: variables.$diff-out-bg-light;
 
   span {
-    background: $diff-out-bg;
+    background: variables.$diff-out-bg;
   }
 }
 
 .diff_in {
-  background: $diff-in-bg-light;
+  background: variables.$diff-in-bg-light;
 
   span {
-    background: $diff-in-bg;
+    background: variables.$diff-in-bg;
   }
 }
 
 .text-diff {
+  margin-bottom: variables.$line-height-computed;
+  padding: variables.$panel-body-padding;
+  border: 1px solid variables.$panel-border;
+  border-radius: variables.$panel-border-radius;
+  background: variables.$body-bg;
+  color: variables.$panel-color;
+  font-family: variables.$font-family-monospace;
+  white-space: pre-wrap;
+
   .diff_out {
-    background: $diff-out-bg;
+    background: variables.$diff-out-bg;
   }
 
   .diff_in {
-    background: $diff-in-bg;
+    background: variables.$diff-in-bg;
   }
 }
 
 
-//== Repository view
-//
+/* Repository view */
 
 .revision-info {
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
 
   tbody > tr > td {
-    padding-right: $table-cell-padding;
-    padding-bottom: $table-condensed-cell-padding;
+    padding-right: variables.$table-cell-padding;
+    padding-bottom: variables.$table-condensed-cell-padding;
 
     + td {
-      font-family: $font-family-monospace;
+      font-family: variables.$font-family-monospace;
     }
   }
 }
 
 #related-issues {
-  margin: $line-height-computed 0;
+  margin: variables.$line-height-computed 0;
 
   li > a {
     margin-left: .5em;
@@ -1081,8 +1076,8 @@ div.table-list.boards {
 
 ul.properties {
   padding: 0;
-  color: $gray-700;
-  font-size: $font-size-small;
+  color: variables.$gray-700;
+  font-size: variables.$font-size-small;
 
   li {
     list-style-type: none;
@@ -1100,7 +1095,7 @@ tr.changeset {
   }
 
   td.id {
-    font-family: $font-family-monospace;
+    font-family: variables.$font-family-monospace;
   }
 
   td.author,
@@ -1132,52 +1127,87 @@ tr.changeset {
 
 .changeset-changes {
   .change {
-    margin-top: $table-condensed-cell-padding;
-    color: $gray-800;
+    margin-top: variables.$table-condensed-cell-padding;
+    color: variables.$gray-800;
   }
 }
 
 #changes-legend > li.change,
 .changeset-changes ul > li.change {
-  padding-left: 18px;
   background: transparent;
   background-repeat: no-repeat;
   background-position: 0 center;
 
-  &.folder {
+  &::before {
     @extend %fa-icon;
+  }
 
+  &.folder {
     &::before {
-      content: $fa-var-folder;
-      top: 0;
-      margin-right: 0;
-      margin-left: -18px;
-      font-size: 1em;
+      content: "#{font-awesome-variables.$fa-var-folder}";
     }
 
-    &.change-A::before,
-    &.change-M::before {
-      content: $fa-var-folder-open;
+    &.change-A {
+      background-image: none;
+
+      &::before {
+        content: "#{font-awesome-variables.$fa-var-folder-plus}";
+      }
+    }
+
+    &.change-M {
+      background-image: none;
+
+      &::before {
+        content: "#{font-awesome-variables.$fa-var-folder-open}";
+      }
+    }
+
+    ul > li.change {
+      padding-left: 18px;
     }
   }
 
   &.change-A {
-    background-image: inline-svg("diff-added.svg", (path: (fill: $changeset-added-color)));
+    &::before {
+      content: "#{font-awesome-variables.$fa-var-square-plus}";
+      color: variables.$changeset-added-color;
+    }
   }
 
   &.change-M {
-    background-image: inline-svg("diff-modified.svg", (path: (fill: $changeset-modified-color)));
+    &::before {
+      content: "#{font-awesome-variables.$fa-var-square-pen}";
+      color: variables.$changeset-modified-color;
+    }
   }
 
   &.change-C {
-    background-image: inline-svg("diff-copied.svg", (path: (fill: $changeset-copied-color)));
+    &::before {
+      content: "#{font-awesome-variables.$fa-var-clone}";
+      color: variables.$changeset-copied-color;
+    }
   }
 
   &.change-R {
-    background-image: inline-svg("diff-renamed.svg", (path: (fill: $changeset-renamed-color)));
+    &::before {
+      content: "#{font-awesome-variables.$fa-var-square-arrow-up-right}";
+      color: variables.$changeset-renamed-color;
+    }
   }
 
   &.change-D {
-    background-image: inline-svg("diff-deleted.svg", (path: (fill: $changeset-deleted-color)));
+    &::before {
+      content: "#{font-awesome-variables.$fa-var-square-minus}";
+      color: variables.$changeset-deleted-color;
+    }
   }
+}
+
+#changes-legend > li.change {
+  padding-left: 18px;
+}
+
+.changeset-changes ul > li.change {
+  padding-left: 0;
 }

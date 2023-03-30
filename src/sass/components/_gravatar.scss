@@ -1,12 +1,14 @@
-//
-// Gravatars
-// --------------------------------------------------
+@use "../variables";
+
+/*
+/* Gravatars
+/* -------------------------------------------------- */
 
 img.gravatar {
   position: relative;
   top: -.15em;
   overflow: hidden;
-  border-radius: $border-radius-large;
+  border-radius: variables.$border-radius-large;
   line-height: 1;
   vertical-align: middle;
 
@@ -18,15 +20,14 @@ img.gravatar {
 }
 
 
-//== Administration -> /users
-//
+/* Administration -> /users */
 
 .username img.gravatar {
   margin-right: .5em;
 }
 
-//== Gravatar
-//   Used on 12px Gravatar img tags without the icon background
+/* Gravatar
+/* Used on 12px Gravatar img tags without the icon background */
 
 .icon-gravatar {
   margin-right: 5px;

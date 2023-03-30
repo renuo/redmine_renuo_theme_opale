@@ -1,6 +1,11 @@
-//
-// Gantt chart
-// --------------------------------------------------
+@use "sass:color";
+@use "../variables";
+@use "../mixins/shadows";
+@use "../mixins/text-overflow";
+
+/*
+/* Gantt chart
+/* -------------------------------------------------- */
 
 div.gantt_content {
   overflow: auto;
@@ -22,16 +27,16 @@ table.gantt-table {
   top: 0;
   height: 16px;
   overflow: hidden;
-  border: 1px solid $gray-500;
+  border: 1px solid variables.$gray-500;
   text-align: center;
 
   &[style*="background"] {
-    background: $gray-200 !important; // stylelint-disable-line declaration-no-important
+    background: variables.$gray-200 !important; /* stylelint-disable-line declaration-no-important */
   }
 
   &.nwday {
-    background-color: $gray-200;
-    color: $gray-950;
+    background-color: variables.$gray-200;
+    color: variables.$gray-950;
   }
 
   #gantt_area & {
@@ -56,7 +61,7 @@ table.gantt-table {
 
 .gantt_subjects_column {
   .gantt_hdr {
-    border-left: 1px solid $gray-500 !important; // stylelint-disable-line declaration-no-important
+    border-left: 1px solid variables.$gray-500 !important; /* stylelint-disable-line declaration-no-important */
   }
 
   + td {
@@ -65,9 +70,13 @@ table.gantt-table {
 }
 
 .gantt_subjects {
+  position: relative;
+  z-index: 1;
+  font-size: variables.$font-size-small;
+
   .issue-subject {
     &:hover {
-      background-color: $table-bg-hover;
+      background-color: variables.$table-bg-hover;
     }
 
     img.icon-gravatar {
@@ -77,12 +86,13 @@ table.gantt-table {
 }
 
 .gantt_hdr_selected_column_name {
-  @include text-overflow;
+  @include text-overflow.text-overflow;
+
   position: absolute;
   top: 50%;
   width: 100%;
   transform: translateY(-50%);
-  font-size: $font-size-small;
+  font-size: variables.$font-size-small;
 }
 
 td.gantt_selected_column {
@@ -95,24 +105,19 @@ td.gantt_selected_column .gantt_hdr,
   border-left-width: 0;
 }
 
-.gantt_subjects {
-  position: relative;
-  z-index: 1;
-  font-size: $font-size-small;
-}
-
 .gantt_selected_column_content {
   div {
     box-sizing: border-box;
-    padding-right: $table-condensed-cell-padding;
-    padding-left: $table-condensed-cell-padding;
+    padding-right: variables.$table-condensed-cell-padding;
+    padding-left: variables.$table-condensed-cell-padding;
   }
 }
 
 .gantt_subjects,
 .gantt_selected_column_content {
   div {
-    @include text-overflow;
+    @include text-overflow.text-overflow;
+
     width: 100%;
     height: 16px;
     line-height: 16px;
@@ -134,7 +139,7 @@ td.gantt_selected_column .gantt_hdr,
 
     &.project,
     &.version {
-      font-weight: $font-weight-bold;
+      font-weight: variables.$font-weight-bold;
     }
   }
 
@@ -166,22 +171,22 @@ td.gantt_selected_column .gantt_hdr,
 }
 
 .task_late {
-  border: 1px solid darken($progress-bar-danger-bg, 10%);
-  background-color: $progress-bar-danger-bg;
+  border: 1px solid color.adjust(variables.$progress-bar-danger-bg, $lightness: -10%);
+  background-color: variables.$progress-bar-danger-bg;
 }
 
 .task_done {
-  border: 1px solid darken($progress-bar-success-bg, 10%);
-  background-color: $progress-bar-success-bg;
+  border: 1px solid color.adjust(variables.$progress-bar-success-bg, $lightness: -10%);
+  background-color: variables.$progress-bar-success-bg;
 }
 
 .task_todo {
-  border: 1px solid darken($progress-bg, 20%);
-  background-color: $progress-bg;
+  border: 1px solid color.adjust(variables.$progress-bg, $lightness: -20%);
+  background-color: variables.$progress-bg;
 
   &.parent {
-    border: 1px solid darken($progress-bg, 30%);
-    background-color: darken($progress-bg, 10%);
+    border: 1px solid color.adjust(variables.$progress-bg, $lightness: -30%);
+    background-color: color.adjust(variables.$progress-bg, $lightness: -10%);
   }
 }
 
@@ -195,8 +200,8 @@ td.gantt_selected_column .gantt_hdr,
   }
 
   &.task_todo {
-    border: 1px solid darken($progress-bar-info-bg, 10%);
-    background-color: $progress-bar-info-bg;
+    border: 1px solid color.adjust(variables.$progress-bar-info-bg, $lightness: -10%);
+    background-color: variables.$progress-bar-info-bg;
   }
 
   &.marker {
@@ -210,26 +215,25 @@ td.gantt_selected_column .gantt_hdr,
 
 .version-behind-schedule,
 .issue-behind-schedule {
-  color: $brand-warning;
+  color: variables.$brand-warning;
 
   .context-menu-selection & {
-    color: $brand-text;
+    color: variables.$brand-text;
   }
 }
 
 .version-overdue,
 .issue-overdue,
 .project-overdue {
-  color: $brand-danger;
+  color: variables.$brand-danger;
 
   .context-menu-selection & {
-    color: $brand-text;
+    color: variables.$brand-text;
   }
 }
 
 
-//== Tooltips
-//
+/* Tooltips */
 
 .tooltip {
   position: relative;
@@ -244,21 +248,22 @@ td.gantt_selected_column .gantt_hdr,
   }
 
   span.tip {
-    @include nice-shadow(3);
+    @include shadows.nice-shadow(3);
+
     display: none;
     position: absolute;
     top: 12px;
     width: 270px;
-    padding: $padding-base-vertical;
-    border: $tooltip-border-width solid $tooltip-border;
-    border-radius: $border-radius-small;
-    background-color: $tooltip-bg;
-    color: $tooltip-text;
-    font-size: $font-size-small;
+    padding: variables.$padding-base-vertical;
+    border: variables.$tooltip-border-width solid variables.$tooltip-border;
+    border-radius: variables.$border-radius-small;
+    background-color: variables.$tooltip-bg;
+    color: variables.$tooltip-text;
+    font-size: variables.$font-size-small;
     text-align: left;
   }
 
-  @if $sidebar-position == "left" {
+  @if variables.$sidebar-position == "left" {
     .list & {
       span.tip {
         right: 0;

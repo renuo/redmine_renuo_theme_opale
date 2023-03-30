@@ -1,6 +1,10 @@
-//
-// Base styles
-// --------------------------------------------------
+@use "sass:math";
+@use "../variables";
+@use "../mixins/clearfix";
+
+/*
+/* Base styles
+/* -------------------------------------------------- */
 
 html {
   overflow-y: scroll;
@@ -10,39 +14,39 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: $body-bg;
-  color: $text-color;
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  font-weight: $font-weight-normal;
-  line-height: $line-height-base;
+  background-color: variables.$body-bg;
+  color: variables.$text-color;
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-base;
+  font-weight: variables.$font-weight-normal;
+  line-height: variables.$line-height-base;
 }
 
 a {
-  color: $link-color;
+  color: variables.$link-color;
   text-decoration: none;
 
   &:hover,
   &:focus {
-    color: $link-hover-color;
-    text-decoration: $link-hover-decoration;
+    color: variables.$link-hover-color;
+    text-decoration: variables.$link-hover-decoration;
   }
 
   &.issue.closed {
-    color: $link-color-issue-closed;
-    text-decoration: $link-closed-decoration;
+    color: variables.$link-color-issue-closed;
+    text-decoration: variables.$link-closed-decoration;
   }
 
   &.project.closed {
-    color: $link-color-project-closed;
+    color: variables.$link-color-project-closed;
   }
 
   &.user.locked {
-    color: $link-color-user-locked;
+    color: variables.$link-color-user-locked;
   }
 }
 
-// Remove the tapping delay on clickable elements
+/* Remove the tapping delay on clickable elements */
 a,
 area,
 button,
@@ -58,16 +62,16 @@ textarea,
 h1 {
   margin: 0;
   font-size: 2em;
-  font-weight: $font-weight-semi-bold;
-  line-height: $line-height-large * .825;
+  font-weight: variables.$font-weight-semi-bold;
+  line-height: variables.$line-height-large * .825;
 }
 
 h2 {
   margin-top: 0;
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
   font-size: 1.43em;
-  font-weight: $font-weight-semi-bold;
-  line-height: $line-height-large;
+  font-weight: variables.$font-weight-semi-bold;
+  line-height: variables.$line-height-large;
 
   img {
     vertical-align: middle;
@@ -76,35 +80,35 @@ h2 {
 
 h3 {
   margin-top: 0;
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
   font-size: 1.14em;
-  font-weight: $font-weight-semi-bold;
-  line-height: $line-height-large;
+  font-weight: variables.$font-weight-semi-bold;
+  line-height: variables.$line-height-large;
 }
 
 h4 {
   margin-top: 0;
   font-size: 1em;
-  font-weight: $font-weight-semi-bold;
-  line-height: $line-height-base;
+  font-weight: variables.$font-weight-semi-bold;
+  line-height: variables.$line-height-base;
 }
 
 p {
-  margin: 0 0 ($line-height-computed * .5);
+  margin: 0 0 (variables.$line-height-computed * .5);
 }
 
 small {
-  font-size: $font-size-small;
+  font-size: variables.$font-size-small;
 }
 
 table {
   th {
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 
   th,
   td {
-    padding: $table-condensed-cell-padding $table-cell-padding;
+    padding: variables.$table-condensed-cell-padding variables.$table-cell-padding;
   }
 
   p {
@@ -113,7 +117,7 @@ table {
 
   form {
     p {
-      margin-bottom: ($line-height-computed * .5);
+      margin-bottom: (variables.$line-height-computed * .5);
 
       &:last-child {
         margin-bottom: 0;
@@ -125,7 +129,7 @@ table {
 ul,
 ol {
   margin-top: 0;
-  margin-bottom: ($line-height-computed * .5);
+  margin-bottom: (variables.$line-height-computed * .5);
   padding-left: 1.5em;
 
   ul,
@@ -136,43 +140,43 @@ ol {
 
 dl {
   margin-top: 0;
-  margin-bottom: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
 }
 
 dt {
-  margin-top: $line-height-computed;
-  font-weight: $font-weight-bold;
+  margin-top: variables.$line-height-computed;
+  font-weight: variables.$font-weight-bold;
 }
 
 dd {
-  margin-bottom: $line-height-computed;
-  margin-left: $line-height-computed;
+  margin-bottom: variables.$line-height-computed;
+  margin-left: variables.$line-height-computed;
 }
 
 code,
 kbd,
 pre,
 samp {
-  font-family: $font-family-monospace;
+  font-family: variables.$font-family-monospace;
   font-size: 1em;
 }
 
 hr {
-  margin-top: $line-height-computed;
-  margin-bottom: $line-height-computed;
+  margin-top: variables.$line-height-computed;
+  margin-bottom: variables.$line-height-computed;
   border: 0;
-  border-top: 1px solid $hr-border;
+  border-top: 1px solid variables.$hr-border;
 
   li & {
-    margin-top: $line-height-computed * .5;
-    margin-bottom: $line-height-computed * .5;
+    margin-top: variables.$line-height-computed * .5;
+    margin-bottom: variables.$line-height-computed * .5;
   }
 }
 
 blockquote {
-  margin: 0 0 $line-height-computed;
-  padding: floor($line-height-computed * .25) $padding-large-horizontal;
-  border-left: 4px solid $blockquote-border-color;
+  margin: 0 0 variables.$line-height-computed;
+  padding: math.floor(variables.$line-height-computed * .25) variables.$padding-large-horizontal;
+  border-left: 4px solid variables.$blockquote-border-color;
 
   > :first-child {
     margin-top: 0;
@@ -184,5 +188,5 @@ blockquote {
 }
 
 .clear {
-  @extend %clearfix;
+  @include clearfix.clearfix;
 }

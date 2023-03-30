@@ -1,15 +1,15 @@
-var Opale = Opale || {} // eslint-disable-line no-use-before-define
+var Opale = Opale || {} /* eslint no-var: "off", no-use-before-define: "off" */
 /* global Raphael: false, revisionGraph: true */
 
 Opale.RevisionGraph = function (holder, commitsHash, graphSpace) {
   'use strict'
 
-  var XSTEP = 20
-  var CIRCLE_INROW_OFFSET = 17
-  var commitsByScmid = commitsHash
-  var commits = $.map(commitsByScmid, function (val) { return val })
-  var maxRdmid = commits.length - 1
-  var commitTableRows = $('table.changesets tr.changeset')
+  const XSTEP = 20
+  const CIRCLE_INROW_OFFSET = 17
+  const commitsByScmid = commitsHash
+  const commits = $.map(commitsByScmid, function (val) { return val })
+  const maxRdmid = commits.length - 1
+  const commitTableRows = $('table.changesets tr.changeset')
 
   // create graph
   if (revisionGraph !== null) {
@@ -18,18 +18,18 @@ Opale.RevisionGraph = function (holder, commitsHash, graphSpace) {
     revisionGraph = new Raphael(holder)
   }
 
-  var top = revisionGraph.set()
+  const top = revisionGraph.set()
 
   // init dimensions
-  var graphXOffset = commitTableRows.first().find('td').first().position().left - $(holder).position().left
-  var graphYOffset = $(holder).position().top
-  var graphRightSide = graphXOffset + (graphSpace + 1) * XSTEP
-  var graphBottom = commitTableRows.last().position().top + commitTableRows.last().height() - graphYOffset
+  const graphXOffset = commitTableRows.first().find('td').first().position().left - $(holder).position().left
+  const graphYOffset = $(holder).position().top
+  const graphRightSide = graphXOffset + (graphSpace + 1) * XSTEP
+  const graphBottom = commitTableRows.last().position().top + commitTableRows.last().height() - graphYOffset
 
   revisionGraph.setSize(graphRightSide, graphBottom)
 
   // init colors
-  var colors = [
+  const colors = [
     '#e74c3c',
     '#584492',
     '#019851',
@@ -41,15 +41,15 @@ Opale.RevisionGraph = function (holder, commitsHash, graphSpace) {
   if (graphSpace >= colors.length) {
     Raphael.getColor.reset()
 
-    for (var k = 0; k <= graphSpace; k++) {
+    for (let k = 0; k <= graphSpace; k++) {
       colors.push(Raphael.getColor(0.9))
     }
   }
 
-  var parentCommit
-  var x, y, parentX, parentY
-  var path, title
-  var revisionDotOverlay
+  let parentCommit
+  let x, y, parentX, parentY
+  let path, title
+  let revisionDotOverlay
 
   $.each(commits, function (index, commit) {
     // eslint-disable-next-line no-prototype-builtins

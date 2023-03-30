@@ -1,23 +1,35 @@
-//
-// Top menu
-// --------------------------------------------------
+@use "sass:color";
+@use "sass:math";
+@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../lib/font-awesome/mixins" as font-awesome-mixins;
+@use "../variables";
+@use "../mixins/clearfix";
+@use "../mixins/images";
+@use "../mixins/shadows";
+@use "../mixins/forms";
+
+/*
+/* Top menu
+/* -------------------------------------------------- */
 
 #top-menu {
-  $top-menu-padding-vertical:   $padding-small-vertical + 1px;
-  $top-menu-padding-horizontal: $padding-side;
+  $top-menu-padding-vertical: variables.$padding-small-vertical + 1px;
+  $top-menu-padding-horizontal: variables.$padding-side;
+
   @extend %clearfix;
+
   box-sizing: border-box;
   padding: $top-menu-padding-vertical $top-menu-padding-horizontal;
-  background: $top-menu-bg;
-  color: $top-menu-text;
-  font-size: $font-size-small;
+  background: variables.$top-menu-bg;
+  color: variables.$top-menu-text;
+  font-size: variables.$font-size-small;
 
-  @if $top-menu-collapse {
-    $toggler-position-v:    $top-menu-padding-vertical + 1px;
-    $toggler-position-h:    1px;
+  @if variables.$top-menu-collapse {
+    $toggler-position-v: $top-menu-padding-vertical + 1px;
+    $toggler-position-h: 1px;
 
     position: relative;
-    max-height: floor($font-size-base * $font-size-small-unitless * $line-height-base) + $top-menu-padding-vertical * 2;
+    max-height: math.floor(variables.$font-size-base * variables.$font-size-small-unitless * variables.$line-height-base) + $top-menu-padding-vertical * 2;
     padding-bottom: 0;
     overflow: hidden;
 
@@ -33,15 +45,18 @@
 
     .top-menu-toggler {
       @extend %fa-icon;
+
       display: block;
       position: absolute;
       top: $toggler-position-v;
-      @if $sidebar-position == "left" {
+
+      @if variables.$sidebar-position == "left" {
         left: $toggler-position-h;
       } @else {
         right: $toggler-position-h;
       }
-      color: mix($top-menu-link, $top-menu-bg, 33%);
+
+      color: color.mix(variables.$top-menu-link, variables.$top-menu-bg, 33%);
       font-size: $fa-font-size-base;
       line-height: 1;
       user-select: none;
@@ -54,7 +69,7 @@
       &:hover,
       &:focus,
       &:active {
-        color: mix($top-menu-link-hover, $top-menu-bg, 50%);
+        color: color.mix(variables.$top-menu-link-hover, variables.$top-menu-bg, 50%);
       }
 
       &.expanded {
@@ -63,14 +78,15 @@
         }
       }
 
-      @media screen and (min-width: $top-menu-collapse-breakpoint) {
+      @media screen and (min-width: variables.$top-menu-collapse-breakpoint) {
         display: none;
       }
     }
   }
 
   ul {
-    @include clearfix;
+    @extend %clearfix;
+
     margin: 0;
     padding: 0;
   }
@@ -84,11 +100,11 @@
   }
 
   a {
-    color: $top-menu-link;
-    font-weight: $font-weight-bold;
+    color: variables.$top-menu-link;
+    font-weight: variables.$font-weight-bold;
 
     &:hover {
-      color: $top-menu-link-hover;
+      color: variables.$top-menu-link-hover;
       text-decoration: none;
     }
   }
@@ -109,37 +125,38 @@
 }
 
 
-//
-// Header
-// --------------------------------------------------
+/*
+/* Header
+/* -------------------------------------------------- */
 
 #header {
   @extend %clearfix;
+
   position: relative;
-  background-color: $header-bg;
-  color: $header-text;
+  background-color: variables.$header-bg;
+  color: variables.$header-text;
 
   > h1 {
-    padding: $header-padding-vertical $header-padding-horizontal;
+    padding: variables.$header-padding-vertical variables.$header-padding-horizontal;
 
-    @if $use-logo {
-      padding-left: $logo-image-width + $logo-position-horizontal + $logo-space;
+    @if variables.$use-logo {
+      padding-left: variables.$logo-image-width + variables.$logo-position-horizontal + variables.$logo-space;
       background-image: url("../images/logo/logo.png");
       background-repeat: no-repeat;
-      background-position: $logo-position-horizontal $logo-position-vertical;
+      background-position: variables.$logo-position-horizontal variables.$logo-position-vertical;
 
-      @if $use-retina-logo {
-        @include img-retina("../images/logo/logo@2x.png", $logo-image-width, $logo-image-height);
+      @if variables.$use-retina-logo {
+        @include images.img-retina("../images/logo/logo@2x.png", variables.$logo-image-width, variables.$logo-image-height);
       }
     }
 
     .root {
-      color: $header-root;
-      font-weight: $font-weight-semi-bold;
+      color: variables.$header-root;
+      font-weight: variables.$font-weight-semi-bold;
     }
 
     .ancestor {
-      font-weight: $font-weight-semi-bold;
+      font-weight: variables.$font-weight-semi-bold;
     }
 
     .root,
@@ -153,16 +170,16 @@
   }
 
   a {
-    color: $header-link;
+    color: variables.$header-link;
   }
 }
 
 #quick-search {
   #header & {
-    margin-top: floor(($header-title-line-height + $header-padding-vertical * 2 - $input-height-base) * .5) - 1px;
-    margin-right: $header-padding-horizontal;
+    margin-top: math.floor((variables.$header-title-line-height + variables.$header-padding-vertical * 2 - variables.$input-height-base) * .5) - 1px;
+    margin-right: variables.$header-padding-horizontal;
     float: right;
-    color: $header-text;
+    color: variables.$header-text;
   }
 
   > * {
@@ -173,25 +190,25 @@
     display: inline-block;
 
     input {
-      width: $quick-search-width;
+      width: variables.$quick-search-width;
     }
   }
 
   > form > input,
   > select {
-    border-color: $quick-search-border;
+    border-color: variables.$quick-search-border;
 
     &:focus {
-      border-color: $quick-search-border-focus;
+      border-color: variables.$quick-search-border-focus;
     }
   }
 
   option {
-    background-color: $input-bg;
-    color: $input-color;
+    background-color: variables.$input-bg;
+    color: variables.$input-color;
 
     &[disabled] {
-      color: $gray-400;
+      color: variables.$gray-400;
     }
   }
 }
@@ -203,37 +220,41 @@
     .drdn-trigger {
       z-index: 1003;
       height: auto;
-      padding-bottom: $header-padding-horizontal * .5;
-      border-color: $quick-search-dropdown-bg;
-      background-color: $quick-search-dropdown-bg;
+      padding-bottom: variables.$header-padding-horizontal * .5;
+      border-color: variables.$quick-search-dropdown-bg;
+      background-color: variables.$quick-search-dropdown-bg;
 
       &::after {
-        content: $fa-var-caret-up;
+        @include font-awesome-mixins.fa-icon;
+
+        content: "#{font-awesome-variables.$fa-var-caret-up}";
       }
     }
   }
 
   .drdn {
     &-trigger {
-      @extend %form-field;
-      @extend %fa-icon-after;
-      min-width: $quick-search-width;
-      border-color: $quick-search-border;
+      @include forms.form-field;
+
+      min-width: variables.$quick-search-width;
+      border-color: variables.$quick-search-border;
 
       &::after {
-        content: $fa-var-caret-down;
+        @include font-awesome-mixins.fa-icon;
+
+        content: "#{font-awesome-variables.$fa-var-caret-down}";
         position: absolute;
-        top: ($font-size-base * .5);
-        right: $input-padding-horizontal;
+        top: (variables.$font-size-base * .5);
+        right: variables.$input-padding-horizontal;
       }
     }
 
     &-content {
-      min-width: $quick-search-box-width;
-      background: $quick-search-dropdown-bg;
+      min-width: variables.$quick-search-box-width;
+      background: variables.$quick-search-dropdown-bg;
 
       > .quick-search {
-        padding: $header-padding-horizontal * .5;
+        padding: variables.$header-padding-horizontal * .5;
 
         > input {
           width: 100%;
@@ -242,7 +263,7 @@
     }
 
     &-items {
-      border-top: 1px solid $quick-search-dropdown-border;
+      border-top: 1px solid variables.$quick-search-dropdown-border;
 
       > a,
       > span {
@@ -254,28 +275,28 @@
   }
 
   a {
-    color: $main-menu-link;
+    color: variables.$main-menu-link;
 
     &:hover,
     &:focus {
-      background-color: $component-active-bg;
-      color: $component-active-color;
+      background-color: variables.$component-active-bg;
+      color: variables.$component-active-color;
       text-decoration: none;
     }
   }
 
   .all-projects a {
-    font-weight: $font-weight-bold;
+    font-weight: variables.$font-weight-bold;
   }
 }
 
 #main-menu {
-  $tabs-height: $main-menu-padding-vertical * 2 + $line-height-computed;
+  $tabs-height: variables.$main-menu-padding-vertical * 2 + variables.$line-height-computed;
 
   clear: both;
-  background-color: $main-menu-bg;
-  box-shadow: inset 0 -1px $main-menu-border;
-  color: $text-color;
+  background-color: variables.$main-menu-bg;
+  box-shadow: inset 0 -1px variables.$main-menu-border;
+  color: variables.$text-color;
 
   &.tabs {
     margin-bottom: 0;
@@ -298,10 +319,11 @@
 
   > ul {
     @extend %clearfix;
+
     margin: 0;
-    padding: 0 ($padding-side - $main-menu-padding-horizontal);
+    padding: 0 (variables.$padding-side - variables.$main-menu-padding-horizontal);
+    color: variables.$main-menu-link;
     list-style: none;
-    color: $main-menu-link;
 
     > li {
       position: relative;
@@ -310,7 +332,7 @@
       &:hover {
         > .new-object {
           z-index: 100;
-          border-bottom: 1px solid $main-menu-dropdown-bg;
+          border-bottom: 1px solid variables.$main-menu-dropdown-bg;
         }
 
         > .menu-children {
@@ -320,48 +342,48 @@
 
       > a {
         display: block;
-        padding: $main-menu-padding-vertical $main-menu-padding-horizontal;
-        transition: box-shadow $transition-time-long;
-        color: $main-menu-link;
-        line-height: $line-height-computed;
+        padding: variables.$main-menu-padding-vertical variables.$main-menu-padding-horizontal;
+        transition: box-shadow variables.$transition-time-long;
+        color: variables.$main-menu-link;
+        line-height: variables.$line-height-computed;
         white-space: nowrap;
 
-        @media screen and (min-width: $screen-lg-min) {
-          padding-right: $main-menu-padding-horizontal * 2;
-          padding-left: $main-menu-padding-horizontal * 2;
+        @media screen and (min-width: variables.$screen-lg-min) {
+          padding-right: variables.$main-menu-padding-horizontal * 2;
+          padding-left: variables.$main-menu-padding-horizontal * 2;
         }
 
         &:hover,
         &:focus {
-          background-color: $main-menu-bg-hover;
-          box-shadow: inset 0 (-$main-menu-shadow-width) 0 $main-menu-shadow-hover;
+          background-color: variables.$main-menu-bg-hover;
+          box-shadow: inset 0 (-(variables.$main-menu-shadow-width)) 0 variables.$main-menu-shadow-hover;
           text-decoration: none;
         }
 
         &.selected {
-          padding-bottom: $main-menu-padding-vertical - $main-menu-shadow-width;
-          border-bottom: 3px solid $main-menu-shadow-active;
-          background-color: $main-menu-bg-active;
+          padding-bottom: variables.$main-menu-padding-vertical - variables.$main-menu-shadow-width;
+          border-bottom: 3px solid variables.$main-menu-shadow-active;
+          background-color: variables.$main-menu-bg-active;
           box-shadow: none;
-          color: $main-menu-link-active;
-          font-weight: $font-weight-semi-bold;
+          color: variables.$main-menu-link-active;
+          font-weight: variables.$font-weight-semi-bold;
         }
 
         &.new-object {
           position: relative;
           width: $tabs-height;
-          margin-right: $main-menu-padding-horizontal;
-          padding-bottom: $main-menu-padding-vertical - 1px;
-          border: 1px solid $main-menu-border;
+          margin-right: variables.$main-menu-padding-horizontal;
+          padding-bottom: variables.$main-menu-padding-vertical - 1px;
+          border: 1px solid variables.$main-menu-border;
           border-width: 0 1px;
-          background-color: $main-menu-dropdown-bg;
+          background-color: variables.$main-menu-dropdown-bg;
           font-size: 0;
 
           &::before {
-            @include fa-icon;
-            content: $fa-var-plus;
-            font-size: $fa-font-size-base;
-            line-height: $line-height-computed;
+            @include font-awesome-mixins.fa-icon;
+
+            content: "#{font-awesome-variables.$fa-var-plus}";
+            line-height: variables.$line-height-computed;
             text-align: center;
           }
 
@@ -375,11 +397,12 @@
   }
 
   a {
-    color: $main-menu-link;
+    color: variables.$main-menu-link;
   }
 
   .menu-children {
-    @include nice-shadow(2);
+    @include shadows.nice-shadow(2);
+
     display: block;
     visibility: hidden;
     position: absolute;
@@ -388,10 +411,10 @@
     margin: 0 1px;
     padding: 0;
     overflow: hidden;
-    list-style: none;
     transition: visibility 0ms 50ms;
-    border-radius: 0 0 $border-radius-base $border-radius-base;
-    background: $main-menu-dropdown-bg;
+    border-radius: 0 0 variables.$border-radius-base variables.$border-radius-base;
+    background: variables.$main-menu-dropdown-bg;
+    list-style: none;
 
     &.visible {
       visibility: visible;
@@ -399,14 +422,14 @@
 
     a {
       display: block;
-      padding: $tab-padding-vertical ($tab-padding-horizontal * 2);
-      border-top: 1px solid $main-menu-border;
-      color: $main-menu-link;
+      padding: variables.$tab-padding-vertical (variables.$tab-padding-horizontal * 2);
+      border-top: 1px solid variables.$main-menu-border;
+      color: variables.$main-menu-link;
 
       &:hover,
       &:focus {
-        background-color: $component-active-bg;
-        color: $component-active-color;
+        background-color: variables.$component-active-bg;
+        color: variables.$component-active-color;
         text-decoration: none;
       }
     }
@@ -417,23 +440,23 @@
   }
 
   .tabs-buttons {
-    display: none !important; // stylelint-disable-line declaration-no-important
+    display: none !important; /* stylelint-disable-line declaration-no-important */
     padding-left: 0;
-    border-color: $main-menu-border;
-    background-color: $main-menu-bg;
+    border-color: variables.$main-menu-border;
+    background-color: variables.$main-menu-bg;
 
     > button {
       box-sizing: border-box;
       height: $tabs-height - 1px;
-      background-color: $main-menu-bg;
+      background-color: variables.$main-menu-bg;
 
       &:hover {
-        background-color: $main-menu-bg-hover;
+        background-color: variables.$main-menu-bg-hover;
       }
     }
   }
 
   ul + .tabs-buttons {
-    display: block !important; // stylelint-disable-line declaration-no-important
+    display: block !important; /* stylelint-disable-line declaration-no-important */
   }
 }
