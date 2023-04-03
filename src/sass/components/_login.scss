@@ -1,9 +1,7 @@
 @use "../variables";
 @use "../mixins/forms";
 
-/*
-/* Login form
-/* -------------------------------------------------- */
+// Login form
 
 #login-form {
   box-sizing: border-box;
@@ -97,9 +95,7 @@
 }
 
 
-/*
-/* Two-factor authentication
-/* -------------------------------------------------- */
+// Two-factor authentication
 
 .controller-twofa {
   .splitcontentleft {

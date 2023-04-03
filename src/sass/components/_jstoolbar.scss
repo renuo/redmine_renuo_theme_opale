@@ -1,14 +1,11 @@
 @use "sass:color";
-@use "../lib/font-awesome/variables" as font-awesome-variables;
-@use "../lib/font-awesome/mixins" as font-awesome-mixins;
 @use "../variables";
-@use "../mixins";
+@use "../vendor/font-awesome/variables" as fa-variables;
+@use "../vendor/bootstrap/mixins/clearfix";
+@use "../components/icons";
 
-/*
-/* WYSIWYG icons
-/* -------------------------------------------------- */
+// WYSIWYG icons
 
-/* For Redmine 4.0+ */
 #content {
   div.jstTabs.tabs {
     height: auto;
@@ -81,7 +78,7 @@
 }
 
 div.jstElements {
-  @extend %clearfix;
+  @include clearfix.clearfix;
 
   line-height: normal;
 
@@ -129,7 +126,7 @@ div.jstElements {
     background-image: none;
 
     &::before {
-      @include font-awesome-mixins.fa-icon;
+      @extend %fa-icon;
 
       content: "";
     }
@@ -138,113 +135,111 @@ div.jstElements {
   .jstb_strong {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-bold}"; }
+    &::before { content: "#{fa-variables.$fa-var-bold}"; }
   }
 
   .jstb_em {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-italic}"; }
+    &::before { content: "#{fa-variables.$fa-var-italic}"; }
   }
 
   .jstb_ins {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-underline}"; }
+    &::before { content: "#{fa-variables.$fa-var-underline}"; }
   }
 
   .jstb_del {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-strikethrough}"; }
+    &::before { content: "#{fa-variables.$fa-var-strikethrough}"; }
   }
 
   .jstb_code {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-code}"; }
+    &::before { content: "#{fa-variables.$fa-var-code}"; }
   }
 
   .jstb_h1 {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-header}"; }
+    &::before { content: "#{fa-variables.$fa-var-header}"; }
   }
 
   .jstb_h2 {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-header}"; font-size: .7857em; }
+    &::before { content: "#{fa-variables.$fa-var-header}"; font-size: .7857em; }
   }
 
   .jstb_h3 {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-header}"; font-size: .6429em; }
+    &::before { content: "#{fa-variables.$fa-var-header}"; font-size: .6429em; }
   }
 
   .jstb_ul {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-list-ul}"; }
+    &::before { content: "#{fa-variables.$fa-var-list-ul}"; }
   }
 
   .jstb_ol {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-list-ol}"; }
+    &::before { content: "#{fa-variables.$fa-var-list-ol}"; }
   }
 
   .jstb_bq {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-indent}"; }
+    &::before { content: "#{fa-variables.$fa-var-indent}"; }
   }
 
   .jstb_unbq {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-outdent}"; }
+    &::before { content: "#{fa-variables.$fa-var-outdent}"; }
   }
 
   .jstb_pre {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-terminal}"; }
+    &::before { content: "#{fa-variables.$fa-var-terminal}"; }
   }
 
   .jstb_link {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-link}"; }
+    &::before { content: "#{fa-variables.$fa-var-link}"; }
   }
 
   .jstb_img {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-image}"; }
+    &::before { content: "#{fa-variables.$fa-var-image}"; }
   }
 
   .jstb_cut {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-scissors}"; }
+    &::before { content: "#{fa-variables.$fa-var-scissors}"; }
   }
 
-  .jstb_precode,
-  /* For plugin https://github.com/mediatainment/redmine_codebutton */
-  .jstb_codehighlight {
+  .jstb_precode {
     @extend %jstb-icon;
 
     color: variables.$brand-danger;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-code}"; }
+    &::before { content: "#{fa-variables.$fa-var-code}"; }
   }
 
   .jstb_table {
     @extend %jstb-icon;
 
-    &::before { content: "#{font-awesome-variables.$fa-var-table}"; }
+    &::before { content: "#{fa-variables.$fa-var-table}"; }
   }
 
   button.jstb_help {
@@ -256,7 +251,7 @@ div.jstElements {
       color: variables.$link-hover-color;
     }
 
-    &::before { content: "#{font-awesome-variables.$fa-var-question-circle}"; }
+    &::before { content: "#{fa-variables.$fa-var-question-circle}"; }
   }
 }
 

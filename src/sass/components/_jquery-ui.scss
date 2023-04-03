@@ -1,15 +1,13 @@
 @use "sass:color";
 @use "../variables";
-@use "../mixins/buttons";
-@use "../mixins/clearfix";
+@use "../mixins/variants";
 @use "../mixins/shadows";
+@use "../vendor/bootstrap/mixins/clearfix";
 
-/*
-/* Tweaks for jQuery UI
-/* -------------------------------------------------- */
+// Tweaks for jQuery UI
 
 
-/* Component containers */
+// Component containers
 
 .ui-widget {
   &,
@@ -23,7 +21,7 @@
 }
 
 
-/* Widgets */
+// Widgets
 
 .ui-widget-content {
   border: 1px solid variables.$panel-border;
@@ -66,7 +64,7 @@
 }
 
 
-/* Interaction states */
+// Interaction states
 
 .ui-state-default,
 .ui-widget-content .ui-state-default,
@@ -136,7 +134,7 @@
 }
 
 
-/* Menu (e.g. autocomplete) */
+// Menu (e.g. autocomplete)
 
 .ui-menu {
   @include shadows.nice-shadow(2);
@@ -167,7 +165,7 @@
 }
 
 
-/* Dialogs */
+// Dialogs
 
 .modal {
   z-index: 50;
@@ -200,7 +198,7 @@
   }
 
   input[type="button"] {
-    @include buttons.button-variant(variables.$btn-link-color, variables.$btn-link-bg, variables.$btn-link-border);
+    @include variants.button-variant(variables.$btn-link-color, variables.$btn-link-bg, variables.$btn-link-border);
   }
 }
 
@@ -209,7 +207,7 @@
 }
 
 
-/* Datepicker */
+// Datepicker
 
 img.ui-datepicker-trigger {
   margin-left: 4px;

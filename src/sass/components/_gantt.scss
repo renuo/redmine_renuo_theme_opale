@@ -1,11 +1,9 @@
 @use "sass:color";
 @use "../variables";
 @use "../mixins/shadows";
-@use "../mixins/text-overflow";
+@use "../vendor/bootstrap/mixins/text-truncate";
 
-/*
-/* Gantt chart
-/* -------------------------------------------------- */
+// Gantt chart
 
 div.gantt_content {
   overflow: auto;
@@ -31,7 +29,7 @@ table.gantt-table {
   text-align: center;
 
   &[style*="background"] {
-    background: variables.$gray-200 !important; /* stylelint-disable-line declaration-no-important */
+    background: variables.$gray-200 !important; // stylelint-disable-line declaration-no-important
   }
 
   &.nwday {
@@ -61,7 +59,7 @@ table.gantt-table {
 
 .gantt_subjects_column {
   .gantt_hdr {
-    border-left: 1px solid variables.$gray-500 !important; /* stylelint-disable-line declaration-no-important */
+    border-left: 1px solid variables.$gray-500 !important; // stylelint-disable-line declaration-no-important
   }
 
   + td {
@@ -86,7 +84,7 @@ table.gantt-table {
 }
 
 .gantt_hdr_selected_column_name {
-  @include text-overflow.text-overflow;
+  @include text-truncate.text-truncate;
 
   position: absolute;
   top: 50%;
@@ -116,7 +114,7 @@ td.gantt_selected_column .gantt_hdr,
 .gantt_subjects,
 .gantt_selected_column_content {
   div {
-    @include text-overflow.text-overflow;
+    @include text-truncate.text-truncate;
 
     width: 100%;
     height: 16px;
@@ -233,7 +231,7 @@ td.gantt_selected_column .gantt_hdr,
 }
 
 
-/* Tooltips */
+// Tooltips
 
 .tooltip {
   position: relative;

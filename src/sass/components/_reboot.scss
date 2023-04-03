@@ -1,10 +1,8 @@
 @use "sass:math";
 @use "../variables";
-@use "../mixins/clearfix";
+@use "../vendor/bootstrap/mixins/clearfix";
 
-/*
-/* Base styles
-/* -------------------------------------------------- */
+// Base styles
 
 html {
   overflow-y: scroll;
@@ -46,7 +44,8 @@ a {
   }
 }
 
-/* Remove the tapping delay on clickable elements */
+// Remove the tapping delay on clickable elements
+
 a,
 area,
 button,

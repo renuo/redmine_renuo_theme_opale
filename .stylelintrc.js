@@ -1,6 +1,6 @@
 module.exports = {
   "ignoreFiles": [
-    "src/sass/lib/**"
+    "src/sass/vendor/**"
   ],
   "extends": [
     "stylelint-config-standard-scss",

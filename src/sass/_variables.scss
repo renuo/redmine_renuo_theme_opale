@@ -1,15 +1,14 @@
 @use "sass:color";
 @use "sass:map";
 @use "sass:math";
-@use "lib/font-awesome/variables" as font-awesome-variables;
+@use "vendor/font-awesome/variables" as fa-variables;
 
-/*
-/* Variables
-/* -------------------------------------------------- */
 
-/* stylelint-disable scss/dollar-variable-colon-space-after, scss/dollar-variable-empty-line-before, value-keyword-case,  */
+// Variables
 
-/* Some key attributes */
+// stylelint-disable scss/dollar-variable-colon-space-after, scss/dollar-variable-empty-line-before, value-keyword-case
+
+// Some key attributes
 
 $fixed-layout:                  false !default;
 $css-grid-layout:               false !default;
@@ -22,7 +21,6 @@ $color-priorities:              false !default;
 $priority-icon:                 true !default;
 $use-gravatars:                 true !default;
 $use-logo:                      false !default;
-$use-retina-logo:               false !default;
 $use-project-tiles:             true !default;
 $issue-subject-large:           true !default;
 $enable-sidebar-toggler:        true !default;
@@ -31,7 +29,7 @@ $top-menu-collapse:             false !default;
 $agile-board-customize:         true !default;
 
 
-/* Colors */
+// Colors
 
 $blue:                          #0065ff !default;
 $indigo:                        #4e65e5 !default;
@@ -94,7 +92,7 @@ $state-warning:                 shade($orange, 100) !default;
 $state-danger:                  shade($red, 100) !default;
 
 
-/* Scaffolding */
+// Scaffolding
 
 $body-bg:                       $white !default;
 $text-color:                    $gray-800 !default;
@@ -108,7 +106,7 @@ $link-color-project-closed:     $gray-700 !default;
 $link-color-user-locked:        $gray-700 !default;
 
 
-/* Typography */
+// Typography
 
 $font-family-sans-serif:        system-ui,
                                 /* macOS 10.11-10.12 */ -apple-system,
@@ -161,7 +159,7 @@ $headings-anchor-color:         $gray-400 !default;
 $headings-anchor-color-active:  $gray-600 !default;
 
 
-/* Wiki */
+// Wiki
 
 $wiki-text:                     $gray-950 !default;
 $wiki-font-size:                16px !default;
@@ -179,7 +177,7 @@ $toc-active-link-hover:         shade($toc-active-link, 700) !default;
 $toc-active-border:             $link-color !default;
 
 
-/* Components */
+// Components
 
 $padding-base-vertical:         6px !default;
 $padding-base-horizontal:       12px !default;
@@ -216,7 +214,7 @@ $collapsible-animation-time:    300ms !default;
 $collapsible-max-height:        10000px !default;
 
 
-/* Tables */
+// Tables
 
 $table-cell-padding:            8px !default;
 $table-condensed-cell-padding:  5px !default;
@@ -243,7 +241,7 @@ $table-color-hover-factor:      $table-hover-factor * .5 !default;
 $table-color-border-shade:      100 !default;
 
 
-/* Issue statuses */
+// Issue statuses
 
 $status-default-bg:             $brand-primary !default;
 $status-default-color:          $brand-text !default;
@@ -261,45 +259,45 @@ $status-custom-colors-map:      () !default;
 $status-colors-map:             map.merge($status-default-colors-map, $status-custom-colors-map);
 
 
-/* Trackers priorities */
+// Trackers priorities
 
 $priority-icon-size:            14px !default;
 $priority-icon-space:           5px !default;
 $priority-default-icons-map: (
   lowest: (
-    icon:                       font-awesome-variables.$fa-var-arrow-down,
+    icon:                       fa-variables.$fa-var-arrow-down,
     color:                      $green
   ),
   low2: (
-    icon:                       font-awesome-variables.$fa-var-angles-down,
+    icon:                       fa-variables.$fa-var-angles-down,
     color:                      color.mix($teal, $green)
   ),
   low3: (
-    icon:                       font-awesome-variables.$fa-var-angle-down,
+    icon:                       fa-variables.$fa-var-angle-down,
     color:                      $teal
   ),
   default: (
-    icon:                       font-awesome-variables.$fa-var-minus,
+    icon:                       "=",
     color:                      $blue
   ),
   high5: (
-    icon:                       font-awesome-variables.$fa-var-angle-up,
+    icon:                       fa-variables.$fa-var-angle-up,
     color:                      $purple
   ),
   high4: (
-    icon:                       font-awesome-variables.$fa-var-angle-up,
+    icon:                       fa-variables.$fa-var-angle-up,
     color:                      $orange
   ),
   high3: (
-    icon:                       font-awesome-variables.$fa-var-angles-up,
+    icon:                       fa-variables.$fa-var-angles-up,
     color:                      color.mix($red, $orange)
   ),
   high2: (
-    icon:                       font-awesome-variables.$fa-var-arrow-up,
+    icon:                       fa-variables.$fa-var-arrow-up,
     color:                      $red
   ),
   highest: (
-    icon:                       font-awesome-variables.$fa-var-bolt,
+    icon:                       fa-variables.$fa-var-bolt,
     color:                      shade($red, 600)
   )
 ) !default;
@@ -366,7 +364,7 @@ $priority-custom-color-map:     () !default;
 $priority-color-map:            map.merge($priority-default-color-map, $priority-custom-color-map);
 
 
-/* Trackers links */
+// Trackers links
 
 $tracker-inline-padding:        1px 5px !default;
 $tracker-list-padding:          0 6px !default;
@@ -408,7 +406,7 @@ $tracker-custom-colors-map:     () !default;
 $tracker-colors-map:            map.merge($tracker-default-colors-map, $tracker-custom-colors-map);
 
 
-/* Diffs */
+// Diffs
 
 $diff-out-bg:                   color.adjust(shade($red, 100), $saturation: 50%) !default;
 $diff-out-bg-light:             rgba($diff-out-bg, .4) !default;
@@ -417,7 +415,7 @@ $diff-in-bg:                    color.adjust(shade($green, 100), $saturation: 50
 $diff-in-bg-light:              rgba($diff-in-bg, .4) !default;
 
 
-/* Journal changes */
+// Journal changes
 
 $journal-old-value-color:       color.adjust(shade($orange, 800), $saturation: 25%) !default;
 $journal-old-value-bg:          color.adjust(shade($orange, 50), $saturation: 50%) !default;
@@ -425,7 +423,7 @@ $journal-new-value-color:       color.adjust(shade($green, 800), $saturation: 25
 $journal-new-value-bg:          color.adjust(shade($green, 50), $saturation: 50%) !default;
 
 
-/* Changesets */
+// Changesets
 
 $changeset-added-color:         $green !default;
 $changeset-modified-color:      $orange !default;
@@ -434,7 +432,7 @@ $changeset-renamed-color:       $blue !default;
 $changeset-deleted-color:       $red !default;
 
 
-/* Buttons */
+// Buttons
 
 $btn-font-weight:               normal !default;
 $btn-padding-vertical:          3px !default;
@@ -459,7 +457,7 @@ $btn-success-bg:                $green !default;
 $btn-success-border:            $btn-success-bg !default;
 
 
-/* Action icons */
+// Action icons
 
 $icon-width:                    20px !default;
 $icon-opacity:                  .7 !default;
@@ -480,7 +478,7 @@ $icon-color-map: (
 ) !default;
 
 
-/* Highlights */
+// Highlights
 
 $highlight-bg:                  shade($yellow, 200) !default;
 $highlight-border:              shade($yellow, 600) !default;
@@ -488,7 +486,7 @@ $highlight-text:                shade($yellow, 800) !default;
 $highlight-link:                color.mix($yellow, $link-color) !default;
 
 
-/* Forms */
+// Forms
 
 $input-bg:                      $white !default;
 $input-bg-disabled:             $gray-300 !default;
@@ -524,7 +522,7 @@ $check-input-margin-horizontal: 8px !default;
 $check-list-max-height:         20 * $line-height-computed;
 $check-list-offset-top:         $input-padding-vertical + 1px;
 
-/* Top */
+// Top
 
 $top-menu-bg:                   shade($brand-primary, 700) !default;
 $top-menu-text:                 shade($brand-primary, 100) !default;
@@ -578,7 +576,7 @@ $main-menu-padding-horizontal:  5px !default;
 $main-menu-dropdown-bg:         $gray-50;
 
 
-/* Pagination */
+// Pagination
 
 $pagination-padding-vertical:   $btn-padding-vertical !default;
 $pagination-padding-horizontal: 10px !default;
@@ -600,7 +598,7 @@ $pagination-inactive-bg:        $gray-50 !default;
 $pagination-inactive-border:    $gray-100 !default;
 
 
-/* Tabs */
+// Tabs
 
 $tab-padding-vertical:          5px !default;
 $tab-padding-horizontal:        8px !default;
@@ -613,7 +611,7 @@ $tab-active-text:               $text-color !default;
 $tab-active-border:             $tab-border !default;
 
 
-/* Content and sidebar */
+// Content and sidebar
 
 $sidebar-width:                 270px !default;
 $sidebar-padding-vertical:      $padding-base-vertical !default;
@@ -627,7 +625,7 @@ $sidebar-link-active-side:      $red !default;
 $sidebar-link-active-text:      $gray-950 !default;
 
 
-/* Flash messages (alerts) */
+// Flash messages (alerts)
 
 $flash-success-bg:              shade($green, 400) !default;
 $flash-success-border:          shade($green, 500) !default;
@@ -650,7 +648,7 @@ $flash-error-text:              $white !default;
 $flash-error-link:              $white !default;
 
 
-/* Progress bars */
+// Progress bars
 
 $progress-height:               12px !default;
 $progress-bg:                   rgba($gray-500, .5) !default;
@@ -660,7 +658,7 @@ $progress-bar-danger-bg:        $brand-danger !default;
 $progress-bar-info-bg:          $brand-info !default;
 
 
-/* Panels */
+// Panels
 
 $panel-body-padding-vertical:   15px !default;
 $panel-body-padding-horizontal: 15px !default;
@@ -673,7 +671,7 @@ $panel-shadow:                  0 1px 2px rgba($black, .07),
                                 0 3px 8px rgba($black, .04) !default;
 
 
-/* Tooltips */
+// Tooltips
 
 $tooltip-bg:                    $white !default;
 $tooltip-border-width:          0 !default;
@@ -682,7 +680,7 @@ $tooltip-text:                  $gray-800 !default;
 $tooltip-link:                  $link-color !default;
 
 
-/* Issue */
+// Issue
 
 $issue-bg:                      $gray-50 !default;
 $issue-border:                  $gray-500 !default;
@@ -696,7 +694,7 @@ $issue-attribute-padding-v:     3px !default;
 $issue-attribute-padding-h:     5px !default;
 
 
-/* Speech "bubbles" */
+// Speech "bubbles"
 
 $bubble-bg:                     $issue-bg !default;
 $bubble-border:                 $issue-border !default;
@@ -709,7 +707,7 @@ $bubble-target-border:          color.adjust($brand-primary, $saturation: 25%) !
 $bubble-target-shadow-alpha:    .2 !default;
 
 
-/* Badges */
+// Badges
 
 $badge-space:                   2px !default;
 $badge-padding-v:               0 !default;
@@ -719,7 +717,7 @@ $badge-font-size:               $font-size-small !default;
 $badge-font-weight:             $font-weight-bold !default;
 
 
-/* Media queries breakpoints */
+// Media queries breakpoints
 
 $screen-xs:                     480px !default;
 $screen-xs-min:                 $screen-xs !default;
@@ -743,7 +741,7 @@ $redmine-responsive-min:        900px !default;
 $top-menu-collapse-breakpoint:  $screen-lg-min !default;
 
 
-/* Login form */
+// Login form
 
 $login-form-width:              24em !default;
 $login-form-label-width:        8em !default;
@@ -755,15 +753,15 @@ $login-form-adjustments-map: (
 ) !default;
 
 
-/* Content widths */
+// Content widths
 
 $width-sm:                      $screen-sm - ($padding-side * 2) !default;
 $width-md:                      $screen-md - ($padding-side * 2) !default;
 $width-lg:                      $screen-lg - ($padding-side * 2) !default;
 
 
-/* Redmine Agile plugin
- * https://www.redmineup.com/pages/plugins/agile */
+// Redmine Agile plugin
+// https://www.redmineup.com/pages/plugins/agile
 
 $agile-board-background:        $gray-100 !default;
 $agile-issue-card-margin:       8px 10px !default;

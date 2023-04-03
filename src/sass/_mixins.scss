@@ -1,13 +1,7 @@
 // Mixins
-// --------------------------------------------------
 
-@use "mixins/buttons";
-@use "mixins/center-block";
-@use "mixins/clearfix";
+@use "mixins/flash";
 @use "mixins/forms";
-@use "mixins/images";
-@use "mixins/text-overflow";
-
 @use "mixins/issues";
-@use "mixins/link-variant";
 @use "mixins/shadows";
+@use "mixins/variants";

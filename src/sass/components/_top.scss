@@ -1,22 +1,20 @@
 @use "sass:color";
 @use "sass:math";
-@use "../lib/font-awesome/variables" as font-awesome-variables;
-@use "../lib/font-awesome/mixins" as font-awesome-mixins;
 @use "../variables";
-@use "../mixins/clearfix";
-@use "../mixins/images";
+@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/shadows";
 @use "../mixins/forms";
+@use "../mixins/variants";
+@use "../vendor/bootstrap/mixins/clearfix";
+@use "../components/icons";
 
-/*
-/* Top menu
-/* -------------------------------------------------- */
+// Top menu
 
 #top-menu {
   $top-menu-padding-vertical: variables.$padding-small-vertical + 1px;
   $top-menu-padding-horizontal: variables.$padding-side;
 
-  @extend %clearfix;
+  @include clearfix.clearfix;
 
   box-sizing: border-box;
   padding: $top-menu-padding-vertical $top-menu-padding-horizontal;
@@ -57,12 +55,13 @@
       }
 
       color: color.mix(variables.$top-menu-link, variables.$top-menu-bg, 33%);
-      font-size: $fa-font-size-base;
+      font-size: variables.$font-size-base;
       line-height: 1;
       user-select: none;
 
       &::before {
-        content: $fa-var-caret-square-o-down;
+        @include variants.fa-custom-icon(fa-variables.$fa-var-caret-square-down);
+
         margin-right: 0;
       }
 
@@ -74,7 +73,7 @@
 
       &.expanded {
         &::before {
-          content: $fa-var-caret-square-o-up;
+          @include variants.fa-custom-icon(fa-variables.$fa-var-caret-square-up);
         }
       }
 
@@ -85,7 +84,7 @@
   }
 
   ul {
-    @extend %clearfix;
+    @include clearfix.clearfix;
 
     margin: 0;
     padding: 0;
@@ -125,12 +124,10 @@
 }
 
 
-/*
-/* Header
-/* -------------------------------------------------- */
+// Header
 
 #header {
-  @extend %clearfix;
+  @include clearfix.clearfix;
 
   position: relative;
   background-color: variables.$header-bg;
@@ -144,10 +141,6 @@
       background-image: url("../images/logo/logo.png");
       background-repeat: no-repeat;
       background-position: variables.$logo-position-horizontal variables.$logo-position-vertical;
-
-      @if variables.$use-retina-logo {
-        @include images.img-retina("../images/logo/logo@2x.png", variables.$logo-image-width, variables.$logo-image-height);
-      }
     }
 
     .root {
@@ -218,6 +211,8 @@
 
   &.expanded {
     .drdn-trigger {
+      @extend %fa-icon-after;
+
       z-index: 1003;
       height: auto;
       padding-bottom: variables.$header-padding-horizontal * .5;
@@ -225,24 +220,22 @@
       background-color: variables.$quick-search-dropdown-bg;
 
       &::after {
-        @include font-awesome-mixins.fa-icon;
-
-        content: "#{font-awesome-variables.$fa-var-caret-up}";
+        @include variants.fa-custom-icon(fa-variables.$fa-var-caret-up);
       }
     }
   }
 
   .drdn {
     &-trigger {
+      @extend %fa-icon-after;
       @include forms.form-field;
 
       min-width: variables.$quick-search-width;
       border-color: variables.$quick-search-border;
 
       &::after {
-        @include font-awesome-mixins.fa-icon;
+        @include variants.fa-custom-icon(fa-variables.$fa-var-caret-down);
 
-        content: "#{font-awesome-variables.$fa-var-caret-down}";
         position: absolute;
         top: (variables.$font-size-base * .5);
         right: variables.$input-padding-horizontal;
@@ -318,7 +311,7 @@
   }
 
   > ul {
-    @extend %clearfix;
+    @include clearfix.clearfix;
 
     margin: 0;
     padding: 0 (variables.$padding-side - variables.$main-menu-padding-horizontal);
@@ -377,15 +370,9 @@
           border: 1px solid variables.$main-menu-border;
           border-width: 0 1px;
           background-color: variables.$main-menu-dropdown-bg;
-          font-size: 0;
-
-          &::before {
-            @include font-awesome-mixins.fa-icon;
-
-            content: "#{font-awesome-variables.$fa-var-plus}";
-            line-height: variables.$line-height-computed;
-            text-align: center;
-          }
+          font-family: fa-variables.$fa-style-family;
+          font-size: .85em;
+          font-weight: variables.$font-weight-bold;
 
           &:hover,
           &:focus {
@@ -440,7 +427,7 @@
   }
 
   .tabs-buttons {
-    display: none !important; /* stylelint-disable-line declaration-no-important */
+    display: none !important; // stylelint-disable-line declaration-no-important
     padding-left: 0;
     border-color: variables.$main-menu-border;
     background-color: variables.$main-menu-bg;
@@ -457,6 +444,6 @@
   }
 
   ul + .tabs-buttons {
-    display: block !important; /* stylelint-disable-line declaration-no-important */
+    display: block !important; // stylelint-disable-line declaration-no-important
   }
 }

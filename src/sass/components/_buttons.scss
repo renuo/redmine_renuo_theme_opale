@@ -1,18 +1,16 @@
 @use "sass:math";
-@use "../lib/font-awesome/variables" as font-awesome-variables;
 @use "../variables";
-@use "../mixins/buttons";
+@use "../vendor/font-awesome/variables" as fa-variables;
+@use "../mixins/variants";
 @use "../components/icons";
 
-/*
-/* Buttons
-/* -------------------------------------------------- */
+// Buttons
 
 input[type="button"],
 input[type="submit"],
 input[type="reset"],
 button {
-  @include buttons.button-size(variables.$btn-padding-vertical, variables.$btn-padding-horizontal, variables.$font-size-base, variables.$line-height-base, variables.$border-radius-base);
+  @include variants.button-size(variables.$btn-padding-vertical, variables.$btn-padding-horizontal, variables.$font-size-base, variables.$line-height-base, variables.$border-radius-base);
 
   display: inline-block;
   margin-bottom: 0;
@@ -28,7 +26,7 @@ button {
   cursor: pointer;
   user-select: none;
 
-  @include buttons.button-variant(variables.$btn-primary-color, variables.$btn-primary-bg, variables.$btn-primary-border);
+  @include variants.button-variant(variables.$btn-primary-color, variables.$btn-primary-bg, variables.$btn-primary-border);
 
   &:hover,
   &:focus {
@@ -40,12 +38,12 @@ button {
   fieldset[disabled] & {
     opacity: .65;
     box-shadow: none;
-    pointer-events: none; /* Future-proof disabling of clicks */
+    pointer-events: none;
   }
 }
 
 
-/* Form buttons layout */
+// Form variants layout
 
 form {
   input,
@@ -61,7 +59,7 @@ form {
     margin-right: 2px;
 
     + input {
-      @include buttons.button-variant(variables.$btn-success-color, variables.$btn-success-bg, variables.$btn-success-border);
+      @include variants.button-variant(variables.$btn-success-color, variables.$btn-success-bg, variables.$btn-success-border);
     }
 
     ~ a {
@@ -75,14 +73,14 @@ form {
 }
 
 
-/* Repository's 'View differences' button */
+// Repository's 'View differences' button
 
 form[action*="repository/diff"] {
   margin-bottom: variables.$line-height-computed * .5;
 }
 
 
-/* Forum and news message form buttons layout */
+// Forum and news message form buttons layout
 
 #message-form,
 #news-form {
@@ -95,7 +93,8 @@ form[action*="repository/diff"] {
 }
 
 
-/* Button links */
+// Button links
+
 p.buttons,
 .other-formats > span,
 #wiki_add_attachment > p,
@@ -152,7 +151,7 @@ p.buttons,
 }
 
 
-/* Submit + cancel */
+// Submit + cancel
 
 #issue-form,
 .mypage-box,
@@ -167,7 +166,7 @@ p.buttons,
 }
 
 
-/* Action buttons group */
+// Action buttons group
 
 p.buttons {
   margin-bottom: variables.$line-height-computed;
@@ -178,7 +177,7 @@ p.buttons {
 }
 
 
-/* Export actions */
+// Export actions
 
 .other-formats {
   margin: variables.$line-height-computed 0 0;
@@ -203,11 +202,11 @@ p.buttons {
 }
 
 
-/* Query builder buttons */
+// Query builder buttons
 
 .query-columns {
   select {
-    width: auto !important; /* stylelint-disable-line declaration-no-important */
+    width: auto !important; // stylelint-disable-line declaration-no-important
     min-width: 130px;
   }
 
@@ -243,13 +242,13 @@ p.buttons {
       padding-right: 1px;
       padding-left: 1px;
 
-      @include buttons.button-variant(variables.$btn-default-color, variables.$btn-default-bg, variables.$btn-default-border);
+      @include variants.button-variant(variables.$btn-default-color, variables.$btn-default-bg, variables.$btn-default-border);
     }
   }
 }
 
 
-/* Button for toggling multiselect (in filters) */
+// Button for toggling multiselect (in filters)
 
 a[data-expands],
 .toggle-multiselect {
@@ -264,12 +263,12 @@ a[data-expands],
   cursor: pointer;
   user-select: none;
 
-  @include buttons.button-variant(variables.$btn-default-color, variables.$btn-default-bg, variables.$btn-default-border);
+  @include variants.button-variant(variables.$btn-default-color, variables.$btn-default-bg, variables.$btn-default-border);
 
   &.icon-only::before {
     @extend %fa-icon;
 
-    content: "#{font-awesome-variables.$fa-var-plus}";
+    @include variants.fa-custom-icon(fa-variables.$fa-var-plus);
   }
 }
 
@@ -290,6 +289,6 @@ a[data-expands] {
 a.icon-toggle-minus[data-expands],
 select[multiple="multiple"] + .toggle-multiselect {
   &.icon-only::before {
-    content: "#{font-awesome-variables.$fa-var-minus}";
+    @include variants.fa-custom-icon(fa-variables.$fa-var-minus);
   }
 }

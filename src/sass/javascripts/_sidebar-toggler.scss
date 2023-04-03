@@ -1,16 +1,11 @@
-@use "../lib/font-awesome/variables" as font-awesome-variables;
+@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../variables";
+@use "../mixins/variants";
 @use "../components/icons";
 
 @if variables.$enable-sidebar-toggler {
   #main {
     position: relative;
-
-    /* Fix full screen view for dashboard plugin
-    /* https://github.com/jgraichen/redmine_dashboard */
-    @at-root .controller-rdb_taskboard & {
-      position: static;
-    }
   }
 
   #sidebar {
@@ -41,6 +36,8 @@
   }
 
   .sidebar-toggler {
+    @extend %fa-icon;
+        
     display: block;
     position: absolute;
     top: 1px;
@@ -75,9 +72,8 @@
       }
 
       &::before {
-        @extend %fa-icon;
+        @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-left);
 
-        content: "#{font-awesome-variables.$fa-var-chevron-left}";
         margin-top: 1px;
         margin-right: 0;
         color: variables.$gray-700;
@@ -92,9 +88,8 @@
       }
 
       &::before {
-        @extend %fa-icon;
+        @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
 
-        content: "#{font-awesome-variables.$fa-var-chevron-right}";
         margin-top: 1px;
         margin-right: 0;
         color: variables.$gray-700;
@@ -104,11 +99,11 @@
     &.sidebar-hidden {
       @if variables.$sidebar-position == "left" {
         &::before {
-          content: "#{font-awesome-variables.$fa-var-chevron-right}";
+          @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
         }
       } @else {
         &::before {
-          content: "#{font-awesome-variables.$fa-var-chevron-left}";
+          @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-left);
         }
       }
     }

@@ -1,17 +1,16 @@
 @use "sass:color";
-@use "../lib/font-awesome/variables" as font-awesome-variables;
-@use "../lib/font-awesome/mixins" as font-awesome-mixins;
 @use "../variables";
+@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/shadows";
-@use "../mixins/clearfix";
+@use "../mixins/variants";
 @use "../components/icons";
 
 #wrapper {
   .context-menu-selection {
     &,
     > td {
-      background-color: variables.$brand-primary !important; /* stylelint-disable-line declaration-no-important */
-      color: variables.$brand-text !important; /* stylelint-disable-line declaration-no-important */
+      background-color: variables.$brand-primary !important; // stylelint-disable-line declaration-no-important
+      color: variables.$brand-text !important; // stylelint-disable-line declaration-no-important
     }
   }
 
@@ -20,7 +19,7 @@
     > ul > li > ul {
       @include shadows.nice-shadow(2);
 
-      border: 0 none !important; /* stylelint-disable-line declaration-no-important */
+      border: 0 none !important; // stylelint-disable-line declaration-no-important
     }
 
     ul {
@@ -65,8 +64,8 @@
 
         &::after {
           @extend %fa-icon-after;
+          @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
 
-          content: "#{font-awesome-variables.$fa-var-chevron-right}";
           position: absolute;
           right: 5px;
         }

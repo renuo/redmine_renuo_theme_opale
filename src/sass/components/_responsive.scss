@@ -1,7 +1,8 @@
-@use "../lib/font-awesome/variables" as font-awesome-variables;
-@use "../lib/font-awesome/mixins" as font-awesome-mixins;
 @use "../variables";
-@use "../mixins/text-overflow";
+@use "../vendor/font-awesome/variables" as fa-variables;
+@use "../vendor/font-awesome/mixins" as fa-mixins;
+@use "../vendor/bootstrap/mixins/text-truncate";
+@use "../mixins/variants";
 
 .hidden,
 .mobile-show {
@@ -16,7 +17,7 @@
   }
 }
 
-/* stylelint-disable selector-max-compound-selectors */
+// stylelint-disable selector-max-compound-selectors
 body {
   @media screen and (max-width: variables.$redmine-responsive-max) {
     .flyout-menu + div {
@@ -58,7 +59,11 @@ body {
         }
 
         .drdn-trigger {
-          @include text-overflow.text-overflow;
+          // Using @extend across media queries is not possible.
+          // https://github.com/sass/sass/issues/1050
+          // Consider to create a mixin if reusing %fa-icon in other media queries is needed.
+          
+          @include text-truncate.text-truncate;
 
           display: block;
           height: variables.$responsive-header-height;
@@ -70,9 +75,9 @@ body {
           line-height: variables.$responsive-header-height;
 
           &::before {
-            @include font-awesome-mixins.fa-icon;
+            @include fa-mixins.fa-icon;
+            @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-down);
 
-            content: font-awesome-variables.$fa-var-chevron-down;
             position: relative;
             top: -.1em;
             width: variables.$responsive-header-height * .75;
@@ -185,7 +190,7 @@ body {
 
           &::before,
           span {
-            color: inherit !important; /* stylelint-disable-line declaration-no-important */
+            color: inherit !important; // stylelint-disable-line declaration-no-important
           }
         }
 
@@ -241,10 +246,10 @@ body {
 
       #admin-menu {
         a {
-          background-position: 8px center !important; /* stylelint-disable-line declaration-no-important */
+          background-position: 8px center !important; // stylelint-disable-line declaration-no-important
 
           &.additionals {
-            padding-left: 32px !important; /* stylelint-disable-line declaration-no-important */
+            padding-left: 32px !important; // stylelint-disable-line declaration-no-important
 
             &::before {
               margin-right: variables.$padding-small-vertical;
@@ -396,7 +401,6 @@ body {
       float: none;
     }
 
-    /* For Redmine 4.0+ */
     #content > .contextual .drdn {
       padding: 0;
       border: 0;
@@ -418,7 +422,6 @@ body {
       }
     }
 
-    /* For Redmine 3.4+ */
     #my-page {
       #list-left {
         width: 100%;
@@ -443,12 +446,12 @@ body {
       padding: 0;
 
       a {
-        background-position: 8px center !important; /* stylelint-disable-line declaration-no-important */
+        background-position: 8px center !important; // stylelint-disable-line declaration-no-important
       }
     }
   }
 
-  /* Tweaks for smartphones, touchscreens */
+  // Tweaks for smartphones, touchscreens
   @media (hover: none) and (pointer: coarse) {
     .mobile-toggle-button::after {
       margin-top: 0;

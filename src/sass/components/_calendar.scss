@@ -1,11 +1,9 @@
-@use "../lib/font-awesome/variables" as font-awesome-variables;
-@use "../lib/font-awesome/mixins" as font-awesome-mixins;
 @use "../variables";
+@use "../vendor/font-awesome/variables" as fa-variables;
+@use "../mixins/variants";
+@use "../components/icons";
 
-/*
-/* Calendar
-/* -------------------------------------------------- */
-
+// Calendar
 
 table.cal {
   width: 100%;
@@ -68,9 +66,9 @@ p.cal.legend .starting,
 table.cal .ending a,
 p.cal.legend .ending {
   &::before {
-    @include font-awesome-mixins.fa-icon;
+    @extend %fa-icon;
+    @include variants.fa-custom-icon(fa-variables.$fa-var-caret-right);
 
-    content: font-awesome-variables.$fa-var-caret-right;
     width: 10px;
     text-align: right;
   }
@@ -79,7 +77,8 @@ p.cal.legend .ending {
 table.cal .ending a,
 p.cal.legend .ending {
   &::before {
-    content: font-awesome-variables.$fa-var-caret-left;
+    @include variants.fa-custom-icon(fa-variables.$fa-var-caret-left);
+    
     text-align: left;
   }
 }
@@ -87,7 +86,8 @@ p.cal.legend .ending {
 table.cal .starting.ending a,
 p.cal.legend .starting.ending {
   &::before {
-    content: font-awesome-variables.$fa-var-square;
+    @include variants.fa-custom-icon(fa-variables.$fa-var-square);
+    
     transform: scale(.6) rotate(45deg);
     text-align: center;
   }

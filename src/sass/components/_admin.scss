@@ -1,8 +1,6 @@
 @use "../variables";
 
-/*
-/* Admin
-/* -------------------------------------------------- */
+// Admin
 
 #admin-menu {
   ul:nth-child(n) {
@@ -36,7 +34,7 @@
 }
 
 
-/* Groups */
+// Groups
 
 table.members,
 table.memberships {
@@ -46,7 +44,7 @@ table.memberships {
 }
 
 
-/* Permissions */
+// Permissions
 
 table.permissions {
   td.role {
@@ -58,7 +56,7 @@ table.permissions {
 }
 
 
-/* Workflows */
+// Workflows
 
 .controller-workflows {
   table.list,
@@ -93,7 +91,7 @@ table.fields_permissions {
 }
 
 
-/* Custom fields -> Issues -> Key values */
+// Custom fields -> Issues -> Key values
 
 #custom_field_enumerations {
   padding-left: 0;
@@ -115,14 +113,14 @@ table.fields_permissions {
 }
 
 
-/* Settings labels */
+// Settings labels
 
 fieldset.settings label {
   display: block;
 }
 
 
-/* Settings -> Notifications */
+// Settings -> Notifications
 
 fieldset#notified_events {
   .parent {
@@ -131,7 +129,7 @@ fieldset#notified_events {
 }
 
 
-/* Settings -> Repositories */
+// Settings -> Repositories
 
 .settings.enabled_scm {
   table {

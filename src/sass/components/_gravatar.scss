@@ -1,8 +1,6 @@
 @use "../variables";
 
-/*
-/* Gravatars
-/* -------------------------------------------------- */
+// Gravatars
 
 img.gravatar {
   position: relative;
@@ -19,15 +17,13 @@ img.gravatar {
   }
 }
 
-
-/* Administration -> /users */
+// Administration -> /users
 
 .username img.gravatar {
   margin-right: .5em;
 }
 
-/* Gravatar
-/* Used on 12px Gravatar img tags without the icon background */
+// Used on 12px Gravatar img tags without the icon background
 
 .icon-gravatar {
   margin-right: 5px;

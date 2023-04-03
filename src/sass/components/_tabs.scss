@@ -1,11 +1,10 @@
-@use "../lib/font-awesome/variables" as font-awesome-variables;
 @use "../variables";
+@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/forms";
+@use "../mixins/variants";
 @use "../components/icons";
 
-/*
-/* Tabs
-/* -------------------------------------------------- */
+// Tabs
 
 $tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical * 2 + 1px + 1px;
 
@@ -32,7 +31,7 @@ $tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical 
     } @else {
       width: 2000px;
 
-      @extend %clearfix;
+      @include clearfix.clearfix;
     }
 
     > li {
@@ -98,18 +97,18 @@ $tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical 
     }
 
     .tab-left {
+      @extend %fa-icon;
+      
       &::before {
-        @extend %fa-icon;
-
-        content: "#{font-awesome-variables.$fa-var-chevron-left}";
+        @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-left);
       }
     }
 
     .tab-right {
+      @extend %fa-icon;
+      
       &::before {
-        @extend %fa-icon;
-
-        content: "#{font-awesome-variables.$fa-var-chevron-right}";
+        @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
       }
     }
   }
@@ -153,7 +152,7 @@ div.tabs:not(#main-menu) {
   }
 }
 
-/* Specific tabs content layout */
+// Specific tabs content layout
 
 #tab-content-modules fieldset p {
   margin: 3px 0 4px;

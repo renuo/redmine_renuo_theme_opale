@@ -1,8 +1,9 @@
 @use "sass:map";
-@use "../lib/font-awesome/variables" as font-awesome-variables;
-@use "../lib/font-awesome/mixins" as font-awesome-mixins;
 @use "../variables";
+@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/shadows";
+@use "../mixins/variants";
+@use "../components/icons";
 
 .drdn {
   position: relative;
@@ -48,14 +49,14 @@
       > a,
       > span {
         &::before {
-          @include font-awesome-mixins.fa-icon;
+          @extend %fa-icon;
 
           content: " ";
         }
       }
 
       > .selected::before {
-        content: "#{font-awesome-variables.$fa-var-check}";
+        @include variants.fa-custom-icon(fa-variables.$fa-var-check);
       }
     }
 

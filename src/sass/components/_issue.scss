@@ -1,12 +1,10 @@
 @use "sass:color";
 @use "sass:map";
 @use "../variables";
-@use "../mixins/clearfix";
 @use "../mixins/issues";
+@use "../vendor/bootstrap/mixins/clearfix";
 
-/*
-/* Issue page
-/* -------------------------------------------------- */
+// Issue page
 
 .issue {
   @if not variables.$clean-issues {
@@ -24,7 +22,6 @@
     word-wrap: break-word;
 
     @if variables.$use-gravatars {
-      /* For Redmine 3.4+ */
       .gravatar-with-child {
         position: relative;
 
@@ -256,7 +253,7 @@
   }
 
   .attribute {
-    @extend %clearfix;
+    @include clearfix.clearfix;
 
     .label,
     .value {
@@ -298,7 +295,8 @@
     border-top: 1px solid variables.$issue-border;
   }
 
-  /* Restore margin below buttons in reverse chronological mode */
+  // Restore margin below buttons in reverse chronological mode
+
   + div[style] + .contextual {
     margin-bottom: variables.$line-height-computed;
   }
@@ -536,7 +534,6 @@ div.thumbnails {
     }
   }
 
-  /* For Redmine 4.0+ */
   > div > .contextual,
   > .contextual {
     position: relative;

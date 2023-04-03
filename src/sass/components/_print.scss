@@ -1,8 +1,6 @@
 @use "../variables";
 
-/*
-/* Media print specific styles
-/* -------------------------------------------------- */
+// Media print specific styles
 
 @media print {
   #top-menu,
@@ -26,7 +24,7 @@
 
   #main {
     display: block;
-    overflow: visible !important; /* stylelint-disable-line declaration-no-important */
+    overflow: visible !important; // stylelint-disable-line declaration-no-important
     background: variables.$white;
   }
 
@@ -34,7 +32,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow: visible !important; /* stylelint-disable-line declaration-no-important */
+    overflow: visible !important; // stylelint-disable-line declaration-no-important
     border: 0;
     background: variables.$white;
   }
@@ -44,7 +42,7 @@
   }
 
   a {
-    /* stylelint-disable declaration-no-important */
+    // stylelint-disable declaration-no-important
     padding: 0 !important;
     background-color: transparent !important;
     color: variables.$black !important;

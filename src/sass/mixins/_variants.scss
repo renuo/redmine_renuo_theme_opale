@@ -1,12 +1,48 @@
 @use "sass:color";
+@use "sass:string";
+@use "sass:map";
+@use "../variables";
 
-/* Button sizes */
-@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
-  padding: $padding-vertical $padding-horizontal;
-  border-radius: $border-radius;
-  font-size: $font-size;
-  line-height: $line-height;
+// Link variant
+
+@mixin link-variant($variant, $focus-hover: true) {
+  $colors: map.get(variables.$icon-color-map, $variant);
+
+  color: map.get($colors, normal);
+
+  @if $focus-hover {
+    &:focus,
+    &:hover {
+      color: map.get($colors, hover);
+    }
+  }
 }
+
+// Icon variant
+
+@mixin icon-variant($variant) {
+  $colors: map.get(variables.$icon-color-map, $variant);
+
+  &::before {
+    color: map.get($colors, normal);
+  }
+
+  &:focus,
+  &:hover {
+    &::before {
+      color: map.get($colors, hover);
+    }
+  }
+}
+
+// Font Awesome icon variant
+
+@mixin fa-custom-icon($variant) {
+  content: string.unquote("\"") + $variant + string.unquote("\"");
+}
+
+
+// Button variant
 
 @mixin button-variant($color, $bg, $border) {
   $correction: 1;
@@ -61,4 +97,11 @@
     background-color: $active-bg;
     box-shadow: $active-shadow;
   }
+}
+
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  border-radius: $border-radius;
+  font-size: $font-size;
+  line-height: $line-height;
 }

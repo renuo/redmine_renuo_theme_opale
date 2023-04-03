@@ -1,8 +1,6 @@
 @use "../variables";
 
-/*
-/* Progress bar
-/* -------------------------------------------------- */
+// Progress bar
 
 table.progress {
   width: 80px;
@@ -23,7 +21,7 @@ table.progress {
   }
 
   tr {
-    background: transparent !important; /* stylelint-disable-line declaration-no-important */
+    background: transparent !important; // stylelint-disable-line declaration-no-important
   }
 
   td {
@@ -42,15 +40,15 @@ table.progress {
     }
 
     &.done {
-      background-color: variables.$progress-bar-bg !important; /* stylelint-disable-line declaration-no-important */
+      background-color: variables.$progress-bar-bg !important; // stylelint-disable-line declaration-no-important
     }
 
     &.closed {
-      background-color: variables.$progress-bar-success-bg !important; /* stylelint-disable-line declaration-no-important */
+      background-color: variables.$progress-bar-success-bg !important; // stylelint-disable-line declaration-no-important
     }
 
     &.todo {
-      background-color: variables.$progress-bg !important; /* stylelint-disable-line declaration-no-important */
+      background-color: variables.$progress-bg !important; // stylelint-disable-line declaration-no-important
       mix-blend-mode: multiply;
     }
   }

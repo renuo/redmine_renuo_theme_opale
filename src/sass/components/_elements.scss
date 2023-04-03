@@ -1,19 +1,17 @@
 @use "sass:color";
 @use "sass:math";
-@use "../lib/font-awesome/variables" as font-awesome-variables;
-@use "../lib/font-awesome/mixins" as font-awesome-mixins;
 @use "../variables";
-@use "../mixins/clearfix";
+@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/forms";
 @use "../mixins/shadows";
+@use "../mixins/variants";
+@use "../vendor/bootstrap/mixins/clearfix";
 @use "../components/icons";
 
-/*
-/* Various layout elements
-/* -------------------------------------------------- */
+// Various layout elements
 
 
-/* Collapsible */
+// Collapsible
 
 a.collapsible,
 a.collapsible.icon,
@@ -30,21 +28,11 @@ a.collapsible.icon,
 
   &::before {
     @extend %fa-icon;
+    @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-down);
 
-    content: "#{font-awesome-variables.$fa-var-chevron-down}";
     transform: rotate(0);
     color: variables.$gray-600;
     font-size: 12px;
-
-    /* position: relative;
-    top: -.1em;
-    width: 1em;
-    height: 1em;
-    margin-right: 3px;
-    transform: rotate(0);
-    color: variables.$gray-600;
-    font-size: 12px;
-    vertical-align: middle; */
 
     @if variables.$collapsible-animation-time > 0 {
       transition: transform variables.$collapsible-animation-time;
@@ -68,7 +56,7 @@ a.collapsible.icon-collapsed,
     transition: max-height variables.$collapsible-animation-time ease-out;
 
     > div {
-      display: block !important; /* stylelint-disable-line declaration-no-important */
+      display: block !important; // stylelint-disable-line declaration-no-important
       visibility: visible;
       transition: visibility 0s 0s, opacity variables.$collapsible-animation-time;
       opacity: 1;
@@ -89,14 +77,14 @@ a.collapsible.icon-collapsed,
 }
 
 
-/* Elements with context menus (doesn't really work on Windows) */
+// Elements with context menus (doesn't really work on Windows)
 
 .hascontextmenu {
   cursor: context-menu;
 }
 
 
-/* Actions for block */
+// Actions for block
 
 .contextual {
   float: right;
@@ -109,7 +97,7 @@ a.collapsible.icon-collapsed,
 }
 
 
-/* Accessibility specific styles */
+// Accessibility specific styles
 
 .hidden-for-sighted {
   // stylelint-disable declaration-no-important
@@ -143,7 +131,7 @@ img {
   }
 }
 
-/* Responsive autoscroll */
+// Responsive autoscroll
 
 .autoscroll {
   position: relative;
@@ -152,7 +140,7 @@ img {
 }
 
 
-/* Container */
+// Container
 
 .box {
   margin-bottom: variables.$line-height-computed;
@@ -181,10 +169,10 @@ img {
 }
 
 
-/* Column form layout */
+// Column form layout
 
 .splitcontent {
-  @extend %clearfix;
+  @include clearfix.clearfix;
 }
 
 .splitcontentleft,
@@ -208,7 +196,7 @@ img {
 }
 
 
-/* Watchers list */
+// Watchers list
 
 #watchers {
   select {
@@ -218,7 +206,7 @@ img {
 
   > .watchers {
     > li {
-      @extend %clearfix;
+      @include clearfix.clearfix;
 
       display: block;
       margin-bottom: variables.$sidebar-padding-vertical;
@@ -258,7 +246,7 @@ img {
 }
 
 
-/* Users selection list */
+// Users selection list
 
 #principals {
   label {
@@ -279,7 +267,7 @@ img {
 }
 
 
-/* Subtitle paragraph (can be seen on activity list) */
+// Subtitle paragraph (can be seen on activity list)
 
 p.subtitle {
   margin-top: (variables.$line-height-computed * -.5);
@@ -288,7 +276,7 @@ p.subtitle {
 }
 
 
-/* My page layout */
+// My page layout
 
 #block-form {
   display: inline;
@@ -352,7 +340,6 @@ a.close-icon {
   }
 }
 
- /* For Redmine 3.4+ */
 #my-page {
   .mypage-box {
     > .contextual {
@@ -379,7 +366,7 @@ a.close-icon {
 }
 
 
-/* Resetting font for SCM (repository files) */
+// Resetting font for SCM (repository files)
 
 #content table.filecontent {
   width: 100%;
@@ -453,7 +440,7 @@ a.close-icon {
 }
 
 
-/* Projects list */
+// Projects list
 
 ul.projects {
   padding-left: variables.$padding-side;
@@ -548,7 +535,7 @@ table.projects {
 }
 
 
-/* Time report */
+// Time report
 
 #time-report {
   th {
@@ -593,7 +580,7 @@ table.projects {
 }
 
 
-/* Version issue list and page layout */
+// Version issue list and page layout
 
 div#roadmap {
   article {
@@ -671,7 +658,7 @@ div#version-summary {
 }
 
 
-/* Add form bottom space */
+// Add form bottom space
 
 #new_document,
 #add-message,
@@ -681,7 +668,7 @@ div#version-summary {
 }
 
 
-/* Ajax indicator */
+// Ajax indicator
 
 @keyframes spin {
   to { transform: rotate(360deg); }
@@ -726,7 +713,7 @@ div#version-summary {
 }
 
 
-/* Boards (forum) */
+// Boards (forum)
 
 tr.message {
   &.locked {
@@ -775,7 +762,7 @@ div.table-list.boards {
 }
 
 
-/* Topic page */
+// Topic page
 
 .controller-messages.action-show {
   h2 {
@@ -879,7 +866,7 @@ div.table-list.boards {
 }
 
 
-/* Documents */
+// Documents
 
 .controller-documents {
   &.action-index {
@@ -925,7 +912,7 @@ div.table-list.boards {
 }
 
 
-/* News */
+// News
 
 .news.box {
   p > a:not(:last-child) {
@@ -995,7 +982,7 @@ div.table-list.boards {
 }
 
 
-/* News comments */
+// News comments
 
 #comments {
   > h4 {
@@ -1010,204 +997,4 @@ div.table-list.boards {
 
 .summary {
   font-style: italic;
-}
-
-
-/* Diff */
-
-.diff_out {
-  background: variables.$diff-out-bg-light;
-
-  span {
-    background: variables.$diff-out-bg;
-  }
-}
-
-.diff_in {
-  background: variables.$diff-in-bg-light;
-
-  span {
-    background: variables.$diff-in-bg;
-  }
-}
-
-.text-diff {
-  margin-bottom: variables.$line-height-computed;
-  padding: variables.$panel-body-padding;
-  border: 1px solid variables.$panel-border;
-  border-radius: variables.$panel-border-radius;
-  background: variables.$body-bg;
-  color: variables.$panel-color;
-  font-family: variables.$font-family-monospace;
-  white-space: pre-wrap;
-
-  .diff_out {
-    background: variables.$diff-out-bg;
-  }
-
-  .diff_in {
-    background: variables.$diff-in-bg;
-  }
-}
-
-
-/* Repository view */
-
-.revision-info {
-  margin-bottom: variables.$line-height-computed;
-
-  tbody > tr > td {
-    padding-right: variables.$table-cell-padding;
-    padding-bottom: variables.$table-condensed-cell-padding;
-
-    + td {
-      font-family: variables.$font-family-monospace;
-    }
-  }
-}
-
-#related-issues {
-  margin: variables.$line-height-computed 0;
-
-  li > a {
-    margin-left: .5em;
-  }
-}
-
-ul.properties {
-  padding: 0;
-  color: variables.$gray-700;
-  font-size: variables.$font-size-small;
-
-  li {
-    list-style-type: none;
-
-    span {
-      font-style: italic;
-    }
-  }
-}
-
-tr.changeset {
-  td.revision_graph {
-    width: 15%;
-    background-color: #fffffb;
-  }
-
-  td.id {
-    font-family: variables.$font-family-monospace;
-  }
-
-  td.author,
-  td.committed_on {
-    width: 15%;
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  td.comments {
-    p {
-      margin-bottom: 0;
-    }
-  }
-
-  ul {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
-
-#content #changes-legend {
-  font-size: 1em;
-
-  .change {
-    margin-left: 8px;
-  }
-}
-
-.changeset-changes {
-  .change {
-    margin-top: variables.$table-condensed-cell-padding;
-    color: variables.$gray-800;
-  }
-}
-
-#changes-legend > li.change,
-.changeset-changes ul > li.change {
-  background: transparent;
-  background-repeat: no-repeat;
-  background-position: 0 center;
-
-  &::before {
-    @extend %fa-icon;
-  }
-
-  &.folder {
-    &::before {
-      content: "#{font-awesome-variables.$fa-var-folder}";
-    }
-
-    &.change-A {
-      background-image: none;
-
-      &::before {
-        content: "#{font-awesome-variables.$fa-var-folder-plus}";
-      }
-    }
-
-    &.change-M {
-      background-image: none;
-
-      &::before {
-        content: "#{font-awesome-variables.$fa-var-folder-open}";
-      }
-    }
-
-    ul > li.change {
-      padding-left: 18px;
-    }
-  }
-
-  &.change-A {
-    &::before {
-      content: "#{font-awesome-variables.$fa-var-square-plus}";
-      color: variables.$changeset-added-color;
-    }
-  }
-
-  &.change-M {
-    &::before {
-      content: "#{font-awesome-variables.$fa-var-square-pen}";
-      color: variables.$changeset-modified-color;
-    }
-  }
-
-  &.change-C {
-    &::before {
-      content: "#{font-awesome-variables.$fa-var-clone}";
-      color: variables.$changeset-copied-color;
-    }
-  }
-
-  &.change-R {
-    &::before {
-      content: "#{font-awesome-variables.$fa-var-square-arrow-up-right}";
-      color: variables.$changeset-renamed-color;
-    }
-  }
-
-  &.change-D {
-    &::before {
-      content: "#{font-awesome-variables.$fa-var-square-minus}";
-      color: variables.$changeset-deleted-color;
-    }
-  }
-}
-
-#changes-legend > li.change {
-  padding-left: 18px;
-}
-
-.changeset-changes ul > li.change {
-  padding-left: 0;
 }

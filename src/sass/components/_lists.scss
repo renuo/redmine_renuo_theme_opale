@@ -1,14 +1,14 @@
 @use "sass:color";
 @use "sass:map";
-@use "../lib/font-awesome/variables" as font-awesome-variables;
 @use "../variables";
+@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../functions/parse-length";
 @use "../mixins/issues";
+@use "../mixins/variants";
+@use "../vendor/bootstrap/mixins/clearfix";
 @use "../components/icons";
 
-/*
-/* Lists
-/* -------------------------------------------------- */
+// Lists
 
 table {
   border-spacing: 0;
@@ -188,8 +188,8 @@ tr.project {
   &.idnt td.name {
     &::before {
       @extend %fa-icon;
+      @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
 
-      content: "#{font-awesome-variables.$fa-var-chevron-right}";
       color: variables.$gray-600;
     }
   }
@@ -240,8 +240,8 @@ tr.issue {
   &.idnt td.subject {
     &::before {
       @extend %fa-icon;
+      @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
 
-      content: "#{font-awesome-variables.$fa-var-chevron-right}";
       color: variables.$gray-600;
     }
   }
@@ -311,15 +311,14 @@ tr {
 
       &::before {
         @extend %fa-icon;
-
-        content: "#{font-awesome-variables.$fa-var-plus}";
+        @include variants.fa-custom-icon(fa-variables.$fa-var-plus);
       }
     }
   }
 
   &.open span.expander:not(.icon) {
     &.icon-only::before {
-      content: "#{font-awesome-variables.$fa-var-minus}";
+      @include variants.fa-custom-icon(fa-variables.$fa-var-minus);
     }
   }
 }
@@ -432,7 +431,7 @@ tr.entry {
 }
 
 
-/* Priorities */
+// Priorities
 
 @if variables.$priority-icon {
   table.list tbody tr {
@@ -551,7 +550,7 @@ tr.entry {
 }
 
 
-/* List groups */
+// List groups
 
 tr.group {
   > td {
@@ -580,7 +579,7 @@ tr.group {
 }
 
 
-/* Time entry in report */
+// Time entry in report
 
 tr.time-entry {
   text-align: center;
@@ -633,7 +632,7 @@ tr.time-entry {
   }
 }
 
-/* Wiki page history entry */
+// Wiki page history entry
 
 tr.wiki-page-version {
   td.updated_on,
@@ -642,7 +641,7 @@ tr.wiki-page-version {
   }
 }
 
-/* Project versions list */
+// Project versions list
 
 tr.version {
   &.closed {
@@ -664,7 +663,7 @@ tr.version {
 }
 
 
-/* Users list */
+// Users list
 
 tr.user {
   td {
@@ -692,7 +691,7 @@ tr.user {
 }
 
 
-/* Plugins list */
+// Plugins list
 
 table.plugins {
   .configure {
@@ -712,7 +711,7 @@ table.plugins {
 }
 
 
-/* Files list */
+// Files list
 
 table.files {
   tbody th {
@@ -732,7 +731,7 @@ table.files {
 }
 
 
-/* Admin lists */
+// Admin lists
 
 .controller-enumerations {
   td.name {
@@ -759,7 +758,7 @@ table.list.enumerations {
 }
 
 
-/* Totals */
+// Totals
 
 .query-totals {
   #content & {
@@ -783,3 +782,124 @@ table.list.enumerations {
     font-weight: variables.$font-weight-bold;
   }
 }
+
+
+// Activity and search results list
+
+#activity dl,
+#search-results {
+  margin-left: variables.$padding-side;
+}
+
+#activity,
+#search-results {
+  dd {
+    margin-bottom: variables.$line-height-computed;
+    padding-top: .1em;
+  }
+
+  dt {
+    padding-left: variables.$padding-side;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+  }
+
+  span.project::after {
+    content: " -";
+  }
+
+  span.description {
+    display: block;
+    color: variables.$gray-700;
+    font-style: italic;
+  }
+}
+
+#activity {
+  $activity-avatar: 24px;
+  $activity-avatar-space: 5px;
+  $activity-indent: 20px;
+
+  @if variables.$use-gravatars {
+    $activity-indent: $activity-indent + $activity-avatar + $activity-avatar-space;
+  }
+
+  h3,
+  h4 {
+    margin: 0 0 variables.$line-height-computed;
+    padding-bottom: .2em;
+    border-bottom: 1px dotted variables.$gray-600;
+    font-size: variables.$font-size-h4;
+    font-weight: variables.$font-weight-normal;
+  }
+
+  dt {
+    &.grouped {
+      margin-left: $activity-indent;
+    }
+
+    &.me .time {
+      border-bottom: 1px solid variables.$gray-400;
+    }
+
+    .time {
+      color: variables.$gray-700;
+    }
+
+    @if variables.$use-gravatars {
+      .gravatar {
+        top: 0;
+        margin-top: -2px;
+        margin-right: $activity-avatar-space;
+        float: left;
+      }
+    }
+  }
+
+  dd {
+    overflow: hidden;
+    font-size: variables.$font-size-small;
+
+    &.grouped {
+      margin-left: $activity-indent;
+    }
+  }
+}
+
+#search-results-counts {
+  float: right;
+
+  ul {
+    @include clearfix.clearfix;
+  }
+
+  li {
+    margin-left: 1em;
+    float: left;
+    list-style-type: none;
+  }
+}
+
+
+// Search results highlight
+
+.highlight {
+  background-color: color.adjust(variables.shade(variables.$yellow, 100), $saturation: 25%);
+  color: color.adjust(variables.shade(variables.$yellow, 800), $saturation: 25%);
+
+  &.token-1 {
+    background-color: color.adjust(variables.shade(variables.$red, 100), $saturation: 25%);
+    color: color.adjust(variables.shade(variables.$red, 800), $saturation: 25%);
+  }
+
+  &.token-2 {
+    background-color: color.adjust(variables.shade(variables.$green, 100), $saturation: 25%);
+    color: color.adjust(variables.shade(variables.$green, 800), $saturation: 25%);
+  }
+
+  &.token-3 {
+    background-color: color.adjust(variables.shade(variables.$blue, 100), $saturation: 25%);
+    color: color.adjust(variables.shade(variables.$blue, 800), $saturation: 25%);
+  }
+}
+

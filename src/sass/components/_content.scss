@@ -1,5 +1,5 @@
-@use "../lib/font-awesome/variables" as font-awesome-variables;
 @use "../variables";
+@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../components/icons";
 
 #main {
@@ -21,18 +21,16 @@
   } @else if variables.$flexbox-layout {
     display: flex;
   } @else {
-    @extend %clearfix;
+    @include clearfix.clearfix;
   }
 }
 
 
-/*
-/* Main container
-/* -------------------------------------------------- */
+// Main container
 
 #content {
   padding: variables.$padding-side;
-  overflow-x: auto; /* needed for drag & drop of enumerations */
+  overflow-x: auto; // needed for drag & drop of enumerations
 
   @if variables.$css-grid-layout {
     grid-area: content;
@@ -47,9 +45,7 @@
 }
 
 
-/*
-/* Sidebar
-/* -------------------------------------------------- */
+// Sidebar
 
 #sidebar {
   #main & {
@@ -217,7 +213,7 @@
     }
   }
 
-  /* Special treatment for anchor tags directly under sidebar tag */
+  // Special treatment for anchor tags directly under sidebar tag
   > a {
     margin: variables.$sidebar-padding-vertical variables.$sidebar-padding-horizontal;
 
@@ -226,114 +222,6 @@
     } @else {
       margin-right: variables.$sidebar-padding-horizontal + 3px;
       margin-left: 0;
-    }
-  }
-
-  /* For plugin https://github.com/ledsun/redmine_wiki_page_tree */
-  div.page-tree {
-    margin: 0;
-    padding: 0;
-
-    .page-tree__title {
-      margin-left: 0;
-    }
-
-    .page-tree__list {
-      .page-tree__list {
-        margin-left: variables.$sidebar-padding-horizontal + 3px;
-        border-left: 2px solid variables.$gray-400;
-
-        @if variables.$sidebar-position == "right" {
-          margin-left: 3px;
-        } @else {
-          margin-right: 0;
-        }
-
-        .page-tree__list {
-          margin-left: variables.$sidebar-padding-horizontal * .5 + 3px;
-        }
-
-        summary {
-          padding-left: variables.$sidebar-padding-horizontal + 8px;
-
-          @if variables.$sidebar-position == "right" {
-            margin-left: 0;
-          }
-
-          &::before {
-            left: 6px;
-          }
-        }
-      }
-
-      li {
-        > a:not(.icon-only) {
-          padding-right: variables.$sidebar-padding-horizontal * .5;
-          padding-left: variables.$sidebar-padding-horizontal * .5;
-
-          @if variables.$sidebar-position == "right" {
-            margin-left: 0;
-          }
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-
-    details {
-      summary {
-        display: block;
-        position: relative;
-        padding: 0 variables.$sidebar-padding-horizontal;
-        padding-left: variables.$sidebar-padding-horizontal * 1.5 + 8px;
-
-        @if variables.$sidebar-position == "left" {
-          border-radius: variables.$border-radius-large 0 0 variables.$border-radius-large;
-        } @else {
-          margin-left: -(variables.$sidebar-padding-horizontal);
-          border-radius: 0 variables.$border-radius-large variables.$border-radius-large 0;
-        }
-
-        &::-webkit-details-marker {
-          display: none;
-        }
-
-        &::before {
-          content: "";
-          position: absolute;
-          top: (variables.$sidebar-padding-vertical + 1px) + (variables.$line-height-computed - 16px) * .5;
-          left: variables.$sidebar-padding-horizontal * .5 + 6px;
-          width: 16px;
-          height: 16px;
-
-          /* TODO : Use Font-Awesome
-          background-image: inline-svg("chevron-right.svg", (path: (fill: variables.$btn-default-icon-color)));
-          */
-
-          background-repeat: no-repeat;
-        }
-
-        &:hover {
-          background-color: variables.$sidebar-link-hover-bg;
-        }
-
-        a {
-          display: inline-block;
-          padding-top: (variables.$sidebar-padding-vertical + 1px);
-          padding-bottom: (variables.$sidebar-padding-vertical + 1px);
-
-          &:hover {
-            color: variables.$sidebar-link-hover-text;
-            text-decoration: underline;
-          }
-        }
-      }
-
-      &[open] > summary::before {
-        transform: rotate(90deg);
-      }
     }
   }
 }

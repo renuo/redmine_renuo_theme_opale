@@ -1,0 +1,28 @@
+@use "../variables";
+@use "../vendor/font-awesome/variables" as fa-variables;
+@use "../mixins/variants";
+
+// Flash messages
+
+@mixin flash($color, $background, $border, $link, $icon) {
+  border-color: $border;
+  background-color: $background;
+  color: $color;
+
+  @if $icon == "true" {
+    $icon: fa-variables.$fa-var-check;
+  } @else if $icon == "warning" {
+    $icon: fa-variables.$fa-var-warning;
+  } @else if $icon == "exclamation" {
+    $icon: fa-variables.$fa-var-exclamation-circle;
+  }
+
+  &::before {
+    @include variants.fa-custom-icon($icon);
+  }
+
+  a {
+    color: $link;
+    font-weight: variables.$font-weight-bold;
+  }
+}

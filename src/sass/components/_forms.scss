@@ -1,11 +1,11 @@
 @use "sass:math";
 @use "../variables";
+@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/forms";
-@use "../mixins/images";
+@use "../vendor/bootstrap/mixins/clearfix";
+@use "../components/icons";
 
-/*
-/* Forms
-/* -------------------------------------------------- */
+// Forms
 
 form {
   td {
@@ -85,8 +85,6 @@ input[type="email"],
 input[type="text"],
 input[type="password"] {
   @include forms.form-field;
-  @include forms.form-control-focus;
-  @include forms.placeholder;
 
   transition:
     border-color variables.$transition-time ease-in-out,
@@ -114,7 +112,7 @@ textarea {
 }
 
 input[type="search"] {
-  -webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+  -webkit-appearance: none; // stylelint-disable-line property-no-vendor-prefix
 }
 
 input[type="radio"],
@@ -135,14 +133,13 @@ input[type="range"] {
 
 input {
   &.autocomplete {
-    @include images.img-aci;
-
     padding-right: 30px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA3XAAAN1wFCKJt4AAACaElEQVQ4y9XUT2gUZxjH8c/siG5sWKaQZlFaQSGNoQdDKS0EerDFQ6MHQQUPpcdShdCCYk49iCeh0BbaphR6UehBKJ4lYCXUVsFDRAuVRXrQy5IgIYFkbTKzHnx22V0S16vPZV5m3vm+v/f3/OFVi6S1mJmZsb6+LkmSFFUcxUkcQAWPcQOXcQsrS0tLzSzLuoBTU1Og1HoR0G34GFfxIz7EdixjFz6NbxexL8uypFarbap4W1v6c6Uf4QeM4BGu4D6e4nUcxCS+wG58Pjo6Wi+KYmtwXP9CQP/ENOax2rHnd5zAeRzGmaIopufn55vj4+Nd4FLH+ijeD6Xn8HelUlnt2lwq1fFL2LSOz/B2L7QXfDKeV3C3Uqk0l5eXuzZvbGzA//gN/0VSJzfzuBN8AI3wdLUXGoqFn/9GlaQY6weuhJqnL6rP4eHh1rJlU9oP/BivRfa3jIWFBSijdcJKP/CNOP0gqh3Xbsfa2pokSUR9vxkJvN0PfDmuN4kTRVFsb8GHhoY0m00DAwOwB6cD/BDX+oFv4RJ2Rp1+jf2lUsni4qIkSXbgEL7HJzEOruJJmqYvbJAVfBOtewRncSy8X8UbeCuUtmbMcVzP83yuXq+rVqttWPuoiYkJ5XJ5CX/Ej/ujG/dGN+7Gjii1n+OgMXyAe4ODg48ajYbZ2dluxVmWqdVqzej9afwafo+FgJVI1DU8wXX8hHfwHb4sl8t/oei1wsjIiKIoRO8/wIPNEpOmqTzP53AqoO/iW5zBXG/y2rFZ73dGnufq9boYVl/hDt6LGWJL8MtEtVrVaDSauBmJ/icG2CsazwALRMBoa2CZowAAAABJRU5ErkJggg==");
     background-repeat: no-repeat;
     background-position: right center;
 
     &.ajax-loading {
-      background-image: url("../images/preloader.gif");
+      background-image: url("data:image/gif;base64,R0lGODlhIAAKAKIFAGaZzMz//2bM/5nM/zOZzP///wAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/wtYTVAgRGF0YVhNUDw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REE1RDJFOEU3REFBMTFFNEEwNUNGQTY4NDQ3ODY4MjkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6REE1RDJFOEQ3REFBMTFFNEEwNUNGQTY4NDQ3ODY4MjkiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmRpZDo5RTAwRjdBMUFBN0RFNDExQjRCRjlCMDk3ODdDRjcxQyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5RTAwRjdBMUFBN0RFNDExQjRCRjlCMDk3ODdDRjcxQyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAUDAAUALAAAAAAgAAoAAAMpWLrc/jDK6QYhQ1msb6bdhW0eyYFiqq5gsb5qaw7z3Bbbl4ff7f9ARgIAIfkECQMABQAsBwACABIABgAAAyFYBSWhzCnBylMLwwW6GFoTUl0HasJYdtemMWuaSfNFKQkAIfkECQMABQAsAAAAACAACgAAAzZYutz+MMr5BAFDWVzCEEJALRZhfuYJriIVpGaZrmvmwoQc04JN6ajUh9YabWzHzrA4ajqfkgQAIfkECQMABQAsAAAAACAACgAAAzRYutz+MMr5BiFCWazC+NSyXcKIeR8YClfLtkSaBiuM2fJHU2YJC6hUSEMicgrBoXLJjCQAACH5BAkDAAUALAAAAAAgAAoAAAM0WLrc/jDK+YIgIhSL9R4gpQREWZImEQRgKw4pFrf0G18p7VKo2Z+smoiT2VyKn5BoyWxOEgAh+QQJAwAFACwAAAAAIAAKAAADM1i63P4wygkFIUNZvML4lHZdw0YW3gdS42W6haqGLfHasZxRb9lmqVlosyN2hKGkchlJAAAh+QQJAwAFACwAAAAAIAAKAAADOVi63P4wygkHICIUi/UagzcNRImRpvCBICWY5QtrAdtOcgoTtD1QqFgQs2JRNpcMssMAiY7QqPSRAAAh+QQJAwAFACwAAAAAIAAKAAADOli63P4wygmDIGAUizULIFUAREkMpBksYDsNZnnF3taGERzPZn3jkVQJFVspfhROZnNZfoCiqHTqSAAAIfkEBQMABQAsAAAAACAACgAAAyVYutz+MMoZByFDWUzrvcMGds9nnqRzrkTaiBicucw223Su70UCACH5BAkDAAUALAIAAgAVAAYAAAMjWLHVDkWEBqVarM3n6MXO0EXjgGWF2AnluSkdFGsoZxXVlAAAIfkECQMABQAsAAAAACAACgAAAzdYutz+MMqpwhgsCAKw5hh1jctGnIOJiuMQFMEpq6fAjm8sEzR/X6VdSkiBARefDmyjLDqf0GcCACH5BAkDAAUALAAAAAAgAAoAAAMzWLrc/jDKuYYNlRChhuZUYY2Yp23mF45jIZwfTKzs4MovTJMiLKSbkOiSCfaMwqRyKUkAACH5BAkDAAUALAAAAAAgAAoAAAM1WLrc/jDKyYYNKggisOYYVVhkEBAoeqZEOJEwy8mDCJPyxtbUbcqrlOt1yWw6hQ9SxGw6mQkAIfkECQMABQAsAAAAACAACgAAAzJYutz+MMrZhg1KEDLy7pRijYG2ceYXBuN4bim8ttZLxHdY0OU7xKAQycMhBnXIpBKSAAAh+QQJAwAFACwAAAAAIAAKAAADOFi63P4wytmGEEMNQITmHqUEVzkQaHemIWWVV4oKMhGIL1zT8k2RsNVM2BFpLpnCpqgEGZ/Q6CQBACH5BAUDAAUALAAAAAAgAAoAAAM8WLrc/jDK6QQQowRBQN5dRikWYA4AoRLoSgRjYM6cW6/iJM+XS9yq3KR0SuGMKtioYMFoOJ5naEmtWiUJADs=");
     }
   }
 
@@ -172,15 +169,15 @@ select {
   }
 
   &.bool_cf {
-    width: auto !important; /* stylelint-disable-line declaration-no-important */
+    width: auto !important; // stylelint-disable-line declaration-no-important
   }
 }
 
 
-/* Browser hacks: unfortunately every browser has different capabilities when
-/* it comes to styling <select> and <option> tags. */
+// Browser hacks: unfortunately every browser has different capabilities when
+// it comes to styling <select> and <option> tags.
 
-/* Mozilla Firefox */
+// Mozilla Firefox
 
 @-moz-document url-prefix("") {
   select {
@@ -201,14 +198,14 @@ select {
   }
 }
 
-/* Google Chrome and Safari */
+// Google Chrome and Safari
 
 @supports (-webkit-appearance: none) {
   select[multiple] {
     padding: 0;
   }
 
-  /* For some reason nested selectors will not work */
+  // For some reason nested selectors will not work
   select[multiple] option {
     padding: variables.$input-padding-vertical variables.$input-padding-horizontal;
     border-bottom: 1px dotted variables.$gray-400;
@@ -238,7 +235,7 @@ legend {
 }
 
 
-/* Required fields' asterisk */
+// Required fields' asterisk
 
 span.required {
   position: relative;
@@ -251,7 +248,7 @@ span.required {
 }
 
 
-/* Field's hint */
+// Field's hint
 
 em.info {
   display: block;
@@ -263,7 +260,7 @@ em.info {
 }
 
 
-/* Wiki editor */
+// Wiki editor
 
 .wiki-edit {
   color: variables.$wiki-text;
@@ -272,7 +269,7 @@ em.info {
 }
 
 
-/* Tabular forms */
+// Tabular forms
 
 .tabular {
   &.settings {
@@ -287,7 +284,7 @@ em.info {
   }
 
   p {
-    @extend %clearfix;
+    @include clearfix.clearfix;
 
     margin: 0 0 (variables.$line-height-computed * .5);
     padding-left: variables.$label-width + variables.$label-space;
@@ -411,7 +408,7 @@ label.block {
 }
 
 
-/* Hack: align description edit icon with label */
+// Hack: align description edit icon with label
 
 label[for="issue_description"] + a {
   display: inline-block;
@@ -422,14 +419,14 @@ label[for="issue_description"] + a {
 }
 
 
-/* Hack: better looking filter checkbox in sidebar in projects list */
+// Hack: better looking filter checkbox in sidebar in projects list
 
 label[for="closed"] {
   margin-bottom: variables.$line-height-computed * .5;
 }
 
 
-/* Input sizes */
+// Input sizes
 
 .wiki-edit,
 #principal_search,
@@ -466,16 +463,16 @@ label[for="closed"] {
   }
 }
 
-/* Add space below WYSIWYG */
+// Add space below WYSIWYG
 
 .jstEditor {
   margin-bottom: variables.$line-height-computed * .5;
 }
 
-/* User form */
+// User form
 
 #user_form {
-  @extend %clearfix;
+  @include clearfix.clearfix;
 
   margin-bottom: variables.$line-height-computed;
 
@@ -485,7 +482,7 @@ label[for="closed"] {
 }
 
 
-/* Attachments */
+// Attachments
 
 #attachments_fields,
 #existing-attachments,
@@ -531,7 +528,7 @@ label[for="closed"] {
 }
 
 
-/* Issue form elements */
+// Issue form elements
 
 #issue-form {
   fieldset {
@@ -580,11 +577,9 @@ label[for="closed"] {
 }
 
 
-/* #all_attributes > p[style] is targeting Redmine 2.x */
 
-#issue_is_private_wrap,
-#all_attributes > p[style] {
-  margin-right: 0 !important; /* stylelint-disable-line declaration-no-important */
+#issue_is_private_wrap {
+  margin-right: 0 !important; // stylelint-disable-line declaration-no-important
   margin-bottom: 0;
   padding-left: 0;
   float: right;
@@ -595,7 +590,7 @@ label[for="closed"] {
   }
 
   label {
-    display: inline-block !important; /* stylelint-disable-line declaration-no-important */
+    display: inline-block !important; // stylelint-disable-line declaration-no-important
     margin-right: 0;
     padding-left: 0;
   }
@@ -624,7 +619,7 @@ label[for="closed"] {
 }
 
 
-/* List of custom field values */
+// List of custom field values
 
 .check_box_group {
   display: block;
@@ -637,7 +632,7 @@ label[for="closed"] {
   }
 
   @media screen and (min-width: variables.$redmine-responsive-min) {
-    /* Boolean field displayed as inline radio buttons */
+    // Boolean field displayed as inline radio buttons
     &.bool_cf {
       overflow: initial;
 
@@ -650,7 +645,7 @@ label[for="closed"] {
 }
 
 
-/* Filters */
+// Filters
 
 fieldset#filters {
   table {
@@ -745,7 +740,7 @@ fieldset#filters {
 }
 
 
-/* Reset label style for trackers selector in custom field editor */
+// Reset label style for trackers selector in custom field editor
 
 label.no-css {
   width: auto;
@@ -754,4 +749,32 @@ label.no-css {
   font-weight: inherit;
   line-height: inherit;
   text-align: left;
+}
+
+
+// Search form
+
+#search-form {
+  margin-bottom: variables.$line-height-computed;
+
+  input,
+  select {
+    margin-right: 5px;
+    margin-bottom: variables.$line-height-computed * .5;
+  }
+
+  label {
+    @include forms.check-inline;
+
+    line-height: variables.$input-height-base;
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      margin-top: variables.$check-input-margin-btn-v;
+    }
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }

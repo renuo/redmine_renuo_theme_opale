@@ -7,7 +7,6 @@
   font-size: variables.$wiki-font-size;
 
   @if variables.$wiki-page-more-vertical-space {
-    /* Add some space between list items */
     ul,
     ol {
       li {
@@ -395,107 +394,5 @@ p.footnote {
     > form {
       padding-top: 0;
     }
-  }
-}
-
-
-/*
-/* Custom classes for Bootstrap-like features
-/* -------------------------------------------------- */
-
-
-/* Pager
-/* see: http://getbootstrap.com/components/#pagination-pager */
-
-.wiki-pager {
-  > a {
-    display: inline-block;
-    padding: variables.$padding-base-vertical variables.$padding-base-horizontal;
-    border: 1px solid variables.$btn-default-border;
-    border-radius: math.ceil(variables.$font-size-base + (variables.$padding-base-vertical + 1px) * 2) * .5;
-    background-color: variables.$body-bg;
-    line-height: 1;
-    white-space: nowrap;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: variables.$btn-default-bg;
-      text-decoration: none;
-    }
-  }
-
-  &.wiki-pager--aligned {
-    overflow: hidden;
-
-    > a:first-child {
-      float: left;
-    }
-
-    > a:last-child {
-      float: right;
-    }
-  }
-}
-
-
-/* Typographic helper classes */
-
-/* Lead body copy
-/* see: http://getbootstrap.com/css/#lead-body-copy */
-
-.lead {
-  margin-bottom: variables.$line-height-computed;
-  font-size: math.floor((variables.$font-size-base * 1.15));
-  font-weight: 300;
-  line-height: 1.4;
-
-  @media (min-width: variables.$screen-sm-min) {
-    font-size: (variables.$font-size-base * 1.5);
-  }
-}
-
-
-/* Alignment
-/* see: http://getbootstrap.com/css/#type-alignment */
-
-.text-left       { text-align: left; }
-.text-right      { text-align: right; }
-.text-center     { text-align: center; }
-.text-justify    { text-align: justify; }
-.text-nowrap     { white-space: nowrap; }
-
-
-/* Transformation
-/* see: http://getbootstrap.com/css/#type-transformation */
-
-.text-lowercase  { text-transform: lowercase; }
-.text-uppercase  { text-transform: uppercase; }
-.text-capitalize { text-transform: capitalize; }
-
-
-/* Other helper classes
-/* see: http://getbootstrap.com/css/#helper-classes */
-
-.text-muted      { color: variables.$gray-600; }
-.text-primary    { color: variables.$brand-primary; }
-.text-success    { color: variables.$brand-success; }
-.text-info       { color: variables.$brand-info; }
-.text-warning    { color: variables.$brand-warning; }
-.text-danger     { color: variables.$brand-danger; }
-
-.bg-primary      { background-color: variables.$brand-primary; color: variables.$brand-text; }
-.bg-success      { background-color: variables.$state-success; }
-.bg-info         { background-color: variables.$state-info; }
-.bg-warning      { background-color: variables.$state-warning; }
-.bg-danger       { background-color: variables.$state-danger; }
-
-p {
-  &.bg-primary,
-  &.bg-success,
-  &.bg-info,
-  &.bg-warning,
-  &.bg-danger {
-    padding: variables.$panel-body-padding;
   }
 }
