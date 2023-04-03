@@ -481,3 +481,15 @@
 #impersonation-bar {
   border-radius: 0;
 }
+
+
+// Redmine Recaptcha
+// https://www.redmine.org/plugins/recaptcha
+
+.new-user .g-recaptcha {
+  padding-left: 170px;
+
+  @media screen and (max-width: variables.$redmine-responsive-max) {
+    padding-left: 0;
+  }
+}
