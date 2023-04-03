@@ -46,6 +46,8 @@ body {
     }
 
     #header {
+      background-color: variables.$header-bg;
+
       #project-jump {
         padding: 0 variables.$responsive-header-height 0 0;
 
@@ -62,7 +64,7 @@ body {
           // Using @extend across media queries is not possible.
           // https://github.com/sass/sass/issues/1050
           // Consider to create a mixin if reusing %fa-icon in other media queries is needed.
-          
+
           @include text-truncate.text-truncate;
 
           display: block;
