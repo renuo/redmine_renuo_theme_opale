@@ -284,10 +284,11 @@ p.subtitle {
 
 .block-receiver {
   box-sizing: border-box;
-  min-height: 20px;
-  margin-bottom: variables.$line-height-computed;
+  flex-basis: 100%;
 
   .dragging & {
+    min-height: 20px;
+    margin-bottom: variables.$line-height-computed;
     outline: 2px dashed variables.$gray-600;
   }
 }
@@ -341,6 +342,10 @@ a.close-icon {
 }
 
 #my-page {
+  display: flex;
+  flex-wrap: wrap;
+
+
   .mypage-box {
     > .contextual {
       transition: opacity variables.$transition-time;
@@ -353,15 +358,11 @@ a.close-icon {
   }
 
   #list-left {
-    width: 50%;
-    padding-right: (variables.$padding-side * .5);
-    float: left;
+    flex-basis: 50%;
   }
 
   #list-right {
-    width: 50%;
-    padding-left: (variables.$padding-side * .5);
-    float: right;
+    flex-basis: 50%;
   }
 }
 
