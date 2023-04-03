@@ -57,6 +57,23 @@
   }
 }
 
+#my-page.dashboard {
+  .mypage-box:not(.block-welcome, .block-projectinformation, .block-text, .block-text_async) {
+    margin-bottom: variables.$line-height-computed;
+    padding: variables.$panel-body-padding;
+    border: 1px solid variables.$panel-border;
+    border-radius: variables.$border-radius-base;
+    background-color: variables.$panel-bg;
+    color: variables.$panel-color;
+    font-size: .92em;
+    word-wrap: break-word;
+
+    > h3 {
+      margin-bottom: variables.$panel-body-padding-vertical;
+    }
+  }
+}
+
 
 // Redmine Banner
 // https://github.com/akiko-pusu/redmine_banner
