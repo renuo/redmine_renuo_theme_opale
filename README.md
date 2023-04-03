@@ -14,6 +14,7 @@ A Redmine 5.x theme.
 [![Grunt](https://img.shields.io/badge/Grunt-E48632?logo=grunt&logoColor=white)](https://gruntjs.com/)
 [![Sass](https://img.shields.io/badge/Sass-CC6699?logo=sass&logoColor=white)](https://sass-lang.com/)
 [![Normalize.css](https://img.shields.io/badge/Normalize.css-e3695f?logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTIuMjM0IiBoZWlnaHQ9IjMyLjg5MyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogPHBhdGggZD0ibTE1LjY5NiAwdjE0Ljc3bC0xNS42OTYgMi4wNTUgMjAuNTg3IDIuNjk1di01LjU4M2wxNS45NSAxOC45NTZ2LTE0Ljc3bDE1LjY5Ny0yLjA1NC0yMC41ODctMi42OTV2NS41OHoiIGZpbGw9IiNmZmYiLz4KPC9zdmc+Cg==)](https://necolas.github.io/normalize.css/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-7A11F8?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![Font Awesome](https://img.shields.io/badge/Font%20Awesome-538dd7?logo=fontawesome&logoColor=white)](https://fontawesome.com/)
 [![ESLint](https://img.shields.io/badge/ESLint-3A33D1?logo=eslint&logoColor=white)](https://eslint.org/)
 [![Stylelint](https://img.shields.io/badge/Stylelint-000?logo=stylelint&logoColor=white)](https://stylelint.io/)
@@ -28,7 +29,7 @@ A Redmine 5.x theme.
 
 ## Install
 
-To install this theme, [download the lastest release](https://github.com/gagnieray/opale/archive/master.zip) and decompress the archive to your Redmine's `public/themes` folder.
+To install this theme [download the lastest release](https://github.com/gagnieray/opale/archive/master.zip) and decompress the archive to your Redmine's `public/themes` folder.
 
 Then go to `Redmine > Administration > Settings > Display` and select `Opale` from the theme's list and save the settings.
 
@@ -68,8 +69,9 @@ Please [read more about contributing](./CONTRIBUTING.md).
 Opale is licensed under the [Affero General Public License version 3](https://www.gnu.org/licenses/agpl-3.0), the text of which can be found in [LICENSE](./LICENSE), or any later version of the AGPL, unless otherwise noted.
 
 Licensing of included components:
-* Normalize.css : [MIT License](https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
-* Font-Awesome Fonts: [SIL OFL 1.1 License](https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt#L21)
-* Font-Awesome Code: [MIT License](https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt#L121)
+* Normalize.css : [MIT License](https://github.com/necolas/normalize.css/blob/master/LICENSE.md),
+* Bootstrap Mixins : [MIT License](https://github.com/twbs/bootstrap/blob/main/LICENSE),
+* Font-Awesome Fonts: [SIL OFL 1.1 License](https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt#L21),
+* Font-Awesome Code: [MIT License](https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt#L121).
 
-All unmodified files from these projects retain their original copyright and license notices: see the relevant individual source files in `src/sass/libs`
+All unmodified files from these projects retain their original copyright and license notices: see the relevant individual source files in `src/sass/vendor/`

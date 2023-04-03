@@ -1,6 +1,7 @@
 /.sass-cache
+/.sublime-grunt.cache
+/.stylelintcache
 /node_modules
 /src/sass/_custom-variables.scss
-/.sublime-grunt.cache
 /images/logo
-/.stylelintcache
+/favicon
