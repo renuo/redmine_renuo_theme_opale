@@ -4,10 +4,6 @@
 @use "../components/icons";
 
 @if variables.$enable-sidebar-toggler {
-  #main {
-    position: relative;
-  }
-
   #sidebar {
     @if variables.$fixed-layout {
       will-change: margin, opacity;
@@ -37,13 +33,15 @@
 
   .sidebar-toggler {
     @extend %fa-icon;
-        
+
     display: block;
     position: absolute;
-    top: 1px;
+    z-index: 2;
+    bottom: -1px;
     width: 14px;
     height: 16px;
     padding: 1px;
+    transform: translateY(100%);
     border: 2px solid variables.$gray-700;
     border-radius: variables.$border-radius-base;
     background-color: variables.$gray-200;
