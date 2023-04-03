@@ -281,15 +281,69 @@
 
 
 // Redmine Banner
-// https://github.com/akiko-pusu/redmine_banner
+// https://www.redmine.org/plugins/redmine_banner
+
+#admin-menu .icon.redmine-banner {
+  background-image: none;
+}
 
 #global_banner {
   .box {
     margin-bottom: variables.$line-height-computed;
   }
+
+  .banner_info {
+    @extend %fa-icon;
+
+    padding: 0;
+    background-image: none;
+
+    &::before {
+      @include variants.fa-custom-icon(fa-variables.$fa-var-circle-info);
+
+      color: variables.$blue;
+    }
+  }
+
+  .banner_warn {
+    @extend %fa-icon;
+
+    padding: 0;
+    background-image: none;
+
+    &::before {
+      @include variants.fa-custom-icon(fa-variables.$fa-var-triangle-exclamation);
+
+      color: variables.$orange;
+    }
+  }
+
+  .banner_alert {
+    @extend %fa-icon;
+
+    padding: 0;
+    background-image: none;
+
+    &::before {
+      @include variants.fa-custom-icon(fa-variables.$fa-var-circle-exclamation);
+
+      color: variables.$red;
+    }
+  }
+
+  .use_timer {
+    @extend %fa-icon-after;
+
+    padding: 0;
+    background-image: none;
+
+    &::after {
+      @include variants.fa-custom-icon(fa-variables.$fa-var-clock);
+    }
+  }
 }
 
-.banner_area {
+body div.banner_area {
   @media screen and (max-width: variables.$redmine-responsive-max) {
     #main #content > & {
       margin-bottom: variables.$line-height-computed;
@@ -383,6 +437,15 @@
   .banner_edit {
     a {
       margin-left: 5px;
+    }
+  }
+
+  div.banner_more_info {
+    opacity: .75;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 1;
     }
   }
 }

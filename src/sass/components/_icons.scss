@@ -466,6 +466,12 @@ a.icon-del {
 
     &::before { content: "#{fa-variables.$fa-var-key}"; }
   }
+
+  .redmine-banner {
+    @extend %admin-icon;
+
+    &::before { content: "#{fa-variables.$fa-var-circle-exclamation}"; }
+  }
 }
 
 
