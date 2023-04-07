@@ -3,7 +3,6 @@
 @use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/shadows";
 @use "../mixins/variants";
-@use "../components/icons";
 
 #wrapper {
   .context-menu-selection {
@@ -38,11 +37,14 @@
     }
 
     a:not(.easy-mindmup__icon) {
-      padding: 3px 10px;
+      padding: 3px 10px 3px (variables.$icon-width + variables.$btn-padding-horizontal-small);
       border-radius: variables.$border-radius-small;
+      
+      @include variants.fa-icon-style;
+      @include variants.fa-icon-style(null, after);
 
       &::before {
-        @extend %fa-icon;
+        margin-left: -(variables.$icon-width);
       }
 
       &:hover {
@@ -63,8 +65,7 @@
         background-image: none;
 
         &::after {
-          @extend %fa-icon-after;
-          @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
+          @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
 
           position: absolute;
           right: 5px;

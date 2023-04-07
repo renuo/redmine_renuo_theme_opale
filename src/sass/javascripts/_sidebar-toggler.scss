@@ -1,7 +1,6 @@
 @use "../vendor/font-awesome/variables" as fa-variables;
 @use "../variables";
 @use "../mixins/variants";
-@use "../components/icons";
 
 @if variables.$enable-sidebar-toggler {
   #sidebar {
@@ -32,7 +31,7 @@
   }
 
   .sidebar-toggler {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
 
     display: block;
     position: absolute;
@@ -70,7 +69,7 @@
       }
 
       &::before {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-left);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-left);
 
         margin-top: 1px;
         margin-right: 0;
@@ -86,7 +85,7 @@
       }
 
       &::before {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
 
         margin-top: 1px;
         margin-right: 0;
@@ -97,11 +96,11 @@
     &.sidebar-hidden {
       @if variables.$sidebar-position == "left" {
         &::before {
-          @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
+          @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
         }
       } @else {
         &::before {
-          @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-left);
+          @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-left);
         }
       }
     }

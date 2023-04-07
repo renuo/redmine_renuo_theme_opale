@@ -2,7 +2,6 @@
 @use "../variables";
 @use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/variants";
-@use "../components/icons";
 
 // Buttons
 
@@ -254,8 +253,8 @@ a[data-expands],
 .toggle-multiselect {
   display: inline-block;
   position: relative;
-  max-height: 1rem;
-  padding: 6px;
+  width: auto;
+  margin: 1px 0 0 5px;
   border: 1px solid;
   border-radius: variables.$border-radius-base;
   font-size: 0;
@@ -264,11 +263,15 @@ a[data-expands],
   user-select: none;
 
   @include variants.button-variant(variables.$btn-default-color, variables.$btn-default-bg, variables.$btn-default-border);
+  @include variants.fa-icon-style;
 
   &.icon-only::before {
-    @extend %fa-icon;
+    @include variants.fa-icon-variant(fa-variables.$fa-var-plus);
 
-    @include variants.fa-custom-icon(fa-variables.$fa-var-plus);
+    width: auto;
+    margin: 0;
+    padding: 6px;
+    font-size: 10px;
   }
 }
 
@@ -289,6 +292,6 @@ a[data-expands] {
 a.icon-toggle-minus[data-expands],
 select[multiple="multiple"] + .toggle-multiselect {
   &.icon-only::before {
-    @include variants.fa-custom-icon(fa-variables.$fa-var-minus);
+    @include variants.fa-icon-variant(fa-variables.$fa-var-minus);
   }
 }

@@ -2,7 +2,6 @@
 @use "../variables";
 @use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/variants";
-@use "../components/icons";
 
 // Additionals
 // https://www.redmine.org/plugins/additionals
@@ -57,23 +56,6 @@
   }
 }
 
-#my-page.dashboard {
-  .mypage-box:not(.block-welcome, .block-projectinformation, .block-text, .block-text_async) {
-    margin-bottom: variables.$line-height-computed;
-    padding: variables.$panel-body-padding;
-    border: 1px solid variables.$panel-border;
-    border-radius: variables.$border-radius-base;
-    background-color: variables.$panel-bg;
-    color: variables.$panel-color;
-    font-size: .92em;
-    word-wrap: break-word;
-
-    > h3 {
-      margin-bottom: variables.$panel-body-padding-vertical;
-    }
-  }
-}
-
 .controller-rdb_taskboard .gototop {
   margin-right: variables.$padding-side;
 }
@@ -116,6 +98,15 @@
       padding: 3px;
     }
   }
+}
+
+body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
+  height: auto;
+  padding: 0;
+  border-top: none;
+  font-weight: bold;
+  line-height: 1.5em;
+  text-transform: uppercase;
 }
 
 
@@ -293,52 +284,52 @@
   }
 
   .banner_info {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
 
     padding: 0;
     background-image: none;
 
     &::before {
-      @include variants.fa-custom-icon(fa-variables.$fa-var-circle-info);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-circle-info);
 
       color: variables.$blue;
     }
   }
 
   .banner_warn {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
 
     padding: 0;
     background-image: none;
 
     &::before {
-      @include variants.fa-custom-icon(fa-variables.$fa-var-triangle-exclamation);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-triangle-exclamation);
 
       color: variables.$orange;
     }
   }
 
   .banner_alert {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
 
     padding: 0;
     background-image: none;
 
     &::before {
-      @include variants.fa-custom-icon(fa-variables.$fa-var-circle-exclamation);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-circle-exclamation);
 
       color: variables.$red;
     }
   }
 
   .use_timer {
-    @extend %fa-icon-after;
+    @include variants.fa-icon-style("Regular", "after");
 
     padding: 0;
     background-image: none;
 
     &::after {
-      @include variants.fa-custom-icon(fa-variables.$fa-var-clock);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-clock);
     }
   }
 }
@@ -351,7 +342,7 @@ body div.banner_area {
   }
 
   .banner {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
 
     margin: 0;
     padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
@@ -366,7 +357,7 @@ body div.banner_area {
     }
 
     &::before {
-      @include variants.fa-custom-icon(fa-variables.$fa-var-info);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-info);
 
       margin-left: -(8px + 16px);
       float: left;
@@ -379,7 +370,7 @@ body div.banner_area {
       color: variables.$flash-info-text;
 
       &::before {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-info-circle);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-info-circle);
       }
     }
 
@@ -389,7 +380,7 @@ body div.banner_area {
       color: variables.$flash-warning-text;
 
       &::before {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-warning);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-warning);
       }
 
       a,
@@ -404,7 +395,7 @@ body div.banner_area {
       color: variables.$flash-error-text;
 
       &::before {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-exclamation-circle);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-exclamation-circle);
       }
 
       a,
@@ -441,6 +432,7 @@ body div.banner_area {
   }
 
   div.banner_more_info {
+    transform: translateX(50%);
     opacity: .75;
     text-transform: uppercase;
 
@@ -530,6 +522,14 @@ body div.banner_area {
   display: none;
 }
 
+@media screen and (max-width: variables.$redmine-responsive-max) {
+  body {
+    #content > .contextual > .heart-link-with-count > * {
+      font-weight: 400;
+    }
+  }
+}
+
 
 // Redmine Impersonate
 // https://www.redmine.org/plugins/redmine_impersonate
@@ -554,5 +554,37 @@ body div.banner_area {
 
   @media screen and (max-width: variables.$redmine-responsive-max) {
     padding-left: 0;
+  }
+}
+
+
+// Redmine Silencer 3
+// https://www.redmine.org/plugins/redmine_silencer_3
+
+#top-menu {
+  a.redmine-silencer {
+    @include variants.fa-icon-style;
+
+    &::before {
+      @include variants.fa-icon-variant(fa-variables.$fa-var-ban);
+
+      margin-right: 4px;
+    }
+  }
+}
+
+@media screen and (max-width: variables.$redmine-responsive-max) {
+  body {
+    .js-profile-menu a {
+      &.redmine-silencer {
+        @include variants.fa-icon-style;
+
+        &::before {
+          @include variants.fa-icon-variant(fa-variables.$fa-var-ban);
+
+          margin-right: 4px;
+        }
+      }
+    }
   }
 }

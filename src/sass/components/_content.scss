@@ -1,6 +1,5 @@
 @use "../variables";
 @use "../vendor/font-awesome/variables" as fa-variables;
-@use "../components/icons";
 
 #main {
   @if variables.$css-grid-layout {

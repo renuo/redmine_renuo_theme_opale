@@ -63,11 +63,8 @@ body {
         }
 
         .drdn-trigger {
-          // Using @extend across media queries is not possible.
-          // https://github.com/sass/sass/issues/1050
-          // Consider to create a mixin if reusing %fa-icon in other media queries is needed.
-
           @include text-truncate.text-truncate;
+          @include variants.fa-icon-style;
 
           display: block;
           height: variables.$responsive-header-height;
@@ -79,8 +76,7 @@ body {
           line-height: variables.$responsive-header-height;
 
           &::before {
-            @include fa-mixins.fa-icon;
-            @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-down);
+            @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-down);
 
             position: relative;
             top: -.1em;
@@ -157,6 +153,49 @@ body {
         p {
           padding-left: variables.$padding-large-horizontal;
         }
+      }
+
+      .js-profile-menu a {
+        &.login {
+          @include variants.fa-icon-style;
+          
+          &::before {
+            @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-to-bracket);
+
+            margin-right: 6px;
+          }
+        }
+
+        &.register {
+          @include variants.fa-icon-style;
+          
+          &::before {
+            @include variants.fa-icon-variant(fa-variables.$fa-var-user-plus);
+
+            margin-right: 6px;
+          }
+        }
+
+        &.my-account {
+          @include variants.fa-icon-style;
+          
+          &::before {
+            @include variants.fa-icon-variant(fa-variables.$fa-var-circle-user);
+
+            margin-right: 6px;
+          }
+        }
+
+        &.logout {
+          @include variants.fa-icon-style;
+          
+          &::before {
+            @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-from-bracket);
+
+            margin-right: 6px;
+          }
+        }
+
       }
 
       ul {

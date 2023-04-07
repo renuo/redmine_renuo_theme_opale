@@ -1,9 +1,9 @@
 @use "sass:map";
+@use "sass:math";
 @use "../variables";
 @use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/shadows";
 @use "../mixins/variants";
-@use "../components/icons";
 
 .drdn {
   position: relative;
@@ -48,15 +48,18 @@
     &.selection {
       > a,
       > span {
-        &::before {
-          @extend %fa-icon;
-
-          content: " ";
-        }
+        @include variants.fa-icon-style;
       }
 
-      > .selected::before {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-check);
+      > .selected span {
+        @include variants.fa-icon-style;
+        
+        &::before {
+          @include variants.fa-icon-variant(fa-variables.$fa-var-check);
+
+          margin-right: math.div(variables.$btn-padding-horizontal-small, 2);
+          color: variables.$green;
+        }
       }
     }
 
@@ -72,6 +75,7 @@
         &::before {
           width: variables.$icon-width;
           margin-top: 3px;
+          margin-left: -(variables.$icon-width + variables.$btn-padding-horizontal-small);
           float: left;
           text-align: center;
         }
@@ -99,7 +103,16 @@
         color: variables.$pagination-hover-color;
         text-decoration: none;
 
-        &.icon-del {
+        &.icon-edit::before,
+        &.icon-copy::before {
+          color: map.get(map.get(variables.$icon-color-map, info), normal);
+        }
+
+        &.icon-add::before {
+          color: map.get(map.get(variables.$icon-color-map, success), normal);
+        }
+
+        &.icon-del::before {
           color: map.get(map.get(variables.$icon-color-map, danger), normal);
         }
       }

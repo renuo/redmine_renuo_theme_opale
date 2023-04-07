@@ -6,7 +6,6 @@
 @use "../mixins/shadows";
 @use "../mixins/variants";
 @use "../vendor/bootstrap/mixins/clearfix";
-@use "../components/icons";
 
 // Various layout elements
 
@@ -19,6 +18,8 @@ a.collapsible.icon,
   color: variables.$link-color;
   cursor: pointer;
   user-select: none;
+  
+  @include variants.fa-icon-style;
 
   &:hover,
   &:focus {
@@ -27,8 +28,7 @@ a.collapsible.icon,
   }
 
   &::before {
-    @extend %fa-icon;
-    @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-down);
+    @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-down);
 
     transform: rotate(0);
     color: variables.$gray-600;
@@ -296,10 +296,6 @@ p.subtitle {
 .mypage-box {
   margin-bottom: variables.$line-height-computed;
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-
   &.ui-sortable-handle {
     overflow: hidden;
     outline: 1px solid variables.$gray-400;
@@ -347,6 +343,20 @@ a.close-icon {
 
 
   .mypage-box {
+    &:not(.block-welcome, .block-projectinformation, .block-text, .block-text_async) {
+      padding: variables.$panel-body-padding;
+      border: 1px solid variables.$panel-border;
+      border-radius: variables.$border-radius-base;
+      background-color: variables.$panel-bg;
+      color: variables.$panel-color;
+      font-size: .92em;
+      word-wrap: break-word;
+
+      > h3 {
+        margin-bottom: variables.$panel-body-padding-vertical;
+      }
+    }
+
     > .contextual {
       transition: opacity variables.$transition-time;
       opacity: 0;
@@ -357,10 +367,7 @@ a.close-icon {
     }
   }
 
-  #list-left {
-    flex-basis: 50%;
-  }
-
+  #list-left,
   #list-right {
     flex-basis: 50%;
   }

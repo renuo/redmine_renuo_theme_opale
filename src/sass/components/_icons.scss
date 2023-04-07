@@ -5,58 +5,6 @@
 @use "../mixins/variants";
 @use "../vendor/font-awesome/mixins" as fa-mixins;
 
-.#{fa-variables.$fa-css-prefix} {
-  font-family: fa-variables.$fa-style-family;
-  font-weight: fa-variables.$fa-style;
-}
-
-.#{fa-variables.$fa-css-prefix},
-.#{fa-variables.$fa-css-prefix}-classic,
-.#{fa-variables.$fa-css-prefix}-sharp,
-.fas,
-.#{fa-variables.$fa-css-prefix}-solid,
-.far,
-.#{fa-variables.$fa-css-prefix}-regular,
-.fab,
-.#{fa-variables.$fa-css-prefix}-brands {
-  display: fa-variables.$fa-display;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-style: normal;
-  font-variant: normal;
-  line-height: 1;
-  text-rendering: auto;
-}
-
-.fas,
-.#{fa-variables.$fa-css-prefix}-classic,
-.#{fa-variables.$fa-css-prefix}-solid,
-.far,
-.#{fa-variables.$fa-css-prefix}-regular {
-  font-family: 'Font Awesome 6 Free';
-}
-
-.fab,
-.#{fa-variables.$fa-css-prefix}-brands {
-  font-family: 'Font Awesome 6 Brands';
-}
-
-%fa-icon {
-  &::before {
-    @include fa-mixins.fa-icon;
-
-    margin-right: .6em;
-  }
-}
-
-%fa-icon-after {
-  &::after {
-    @include fa-mixins.fa-icon;
-
-    margin-left: .6em;
-  }
-}
-
 $icon-map: (
   icon-add:                     fa-variables.$fa-var-plus-square,
   icon-edit:                    fa-variables.$fa-var-pencil,
@@ -93,9 +41,9 @@ $icon-map: (
   icon-checked:                 fa-variables.$fa-var-check,
   icon-details:                 fa-variables.$fa-var-search-plus,
   icon-report:                  fa-variables.$fa-var-pie-chart,
-  icon-comments:                fa-variables.$fa-var-comment,
+  icon-comments:                fa-variables.$fa-var-comments,
   icon-comment:                 fa-variables.$fa-var-comment,
-  icon-summary:                 fa-variables.$fa-var-file-text,
+  icon-summary:                 fa-variables.$fa-var-file-lines,
   icon-server-authentication:   fa-variables.$fa-var-key,
   icon-issue:                   fa-variables.$fa-var-ticket,
   icon-zoom-in:                 fa-variables.$fa-var-search-plus,
@@ -124,16 +72,16 @@ $icon-map: (
   icon-plugins:                 fa-variables.$fa-var-puzzle-piece,
   icon-news:                    fa-variables.$fa-var-newspaper,
   icon-issue-closed:            fa-variables.$fa-var-ticket,
-  icon-issue-note:              fa-variables.$fa-var-comment,
-  icon-changeset:               fa-variables.$fa-var-upload,
+  icon-issue-note:              fa-variables.$fa-var-comment-dots,
+  icon-changeset:               fa-variables.$fa-var-code-commit,
   icon-message:                 fa-variables.$fa-var-comment,
   icon-reply:                   fa-variables.$fa-var-comment,
-  icon-wiki-page:               fa-variables.$fa-var-file-text,
-  icon-document:                fa-variables.$fa-var-file-text,
+  icon-wiki-page:               fa-variables.$fa-var-file-lines,
+  icon-document:                fa-variables.$fa-var-file-lines,
   icon-add-bullet:              fa-variables.$fa-var-plus-circle,
   icon-shared:                  fa-variables.$fa-var-link,
   icon-actions:                 fa-variables.$fa-var-ellipsis-h,
-  icon-sort-handle:             fa-variables.$fa-var-arrows-v,
+  icon-sort-handle:             fa-variables.$fa-var-up-down-left-right,
   icon-expanded:                fa-variables.$fa-var-chevron-down,
   icon-collapsed:               fa-variables.$fa-var-chevron-right,
   icon-bookmark:                fa-variables.$fa-var-bookmark,
@@ -144,7 +92,7 @@ $icon-map: (
   icon-toggle-minus:            fa-variables.$fa-var-minus-square,
   icon-clear-query:             fa-variables.$fa-var-times,
   icon-import:                  fa-variables.$fa-var-cloud-upload,
-  icon-bookmarked-project:      fa-variables.$fa-var-tag,
+  icon-bookmarked-project:      fa-variables.$fa-var-bookmark,
   icon-copy-link:               fa-variables.$fa-var-clipboard,
 
   // Plugin icons
@@ -188,7 +136,7 @@ $icon-map: (
 
 .icon,
 .icon-only:not(.toggle-multiselect) {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 }
 
 .icon-only {
@@ -221,25 +169,51 @@ $icons-selector: ();
 
   .#{$class} {
     &::before {
-      @include variants.fa-custom-icon($icon);
+      @include variants.fa-icon-variant($icon);
 
       @if $class == "icon-fav" {
         color: variables.$orange;
       } @else if $class == "icon-heart" {
         color: variables.$pink;
       } @else if $class == "icon-bookmarked-project" {
-        color: variables.$blue;
+        color: variables.$red;
       }
     }
 
     @if $class == "icon-close" {
+      @include variants.fa-icon-style("Regular");
+
       &:hover::before {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-times-circle);
+        @include variants.fa-icon-style;
       }
     } @else if $class == "icon-folder" {
+      @include variants.fa-icon-style("Regular");
+
       .open &::before {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-folder-open);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-folder-open);
       }
+    }
+
+    @if $class == "icon-copy-link"
+        or $class == "icon-news"
+        or $class == "icon-comments"
+        or $class == "icon-comment"
+        or $class == "icon-issue-note"
+        or $class == "icon-message"
+        or $class == "icon-reply"
+        or $class == "icon-summary"
+        or $class == "icon-wiki-page"
+        or $class == "icon-document"
+        or $class == "icon-time-entry"
+        or $class == "icon-time"
+        or $class == "icon-time-add"
+        or $class == "icon-email"
+        or $class == "icon-email-disabled"
+        or $class == "icon-email-add"
+        or $class == "icon-fav-off"
+        or $class == "icon-bookmark-off"
+        or $class == "icon-heart-off" {
+      @include variants.fa-icon-style("Regular");
     }
   }
 }
@@ -253,10 +227,10 @@ $icons-selector: ();
 // Checkbox toggler
 
 a.toggle-checkboxes {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &::before {
-    @include variants.fa-custom-icon(fa-variables.$fa-var-square-check);
+    @include variants.fa-icon-variant(fa-variables.$fa-var-square-check);
   }
 }
 
@@ -268,17 +242,32 @@ a.icon-only {
   @include variants.link-variant(default);
 }
 
-.icon-checked {
+a.icon-edit::before,
+a.icon-copy::before,
+a.icon-time-add::before,
+.other-formats a::before {
+  @include variants.link-variant(info);
+}
+
+.icon-checked::before {
   @include variants.link-variant(success, false);
 }
 
-a.icon-add,
-a.icon-save,
-a.icon-checked {
+a.icon-add::before,
+a.icon-save::before,
+a.icon-checked::before,
+a.icon-reload::before,
+.other-formats a.csv::before {
   @include variants.link-variant(success);
 }
 
-a.icon-del {
+.other-formats > span > a.atom::before {
+  @include variants.link-variant(warning);
+}
+
+a.icon-del::before,
+a.icon-bookmark::before,
+.other-formats a.pdf::before {
   @include variants.link-variant(danger);
 }
 
@@ -295,41 +284,42 @@ a.icon-del {
 
 .icon-file {
   &::before {
-    content: "#{fa-variables.$fa-var-file}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-file);
+
     color: variables.$gray-700;
   }
 
-  &.text-plain::before         { content: "#{fa-variables.$fa-var-file-text}"; }
-  &.text-x-c::before           { content: "#{fa-variables.$fa-var-file-code}"; }
-  &.text-x-csharp::before      { content: "#{fa-variables.$fa-var-file-code}"; }
-  &.text-x-java::before        { content: "#{fa-variables.$fa-var-file-code}"; }
-  &.text-x-php::before         { content: "#{fa-variables.$fa-var-file-code}"; }
-  &.text-x-ruby::before        { content: "#{fa-variables.$fa-var-file-code}"; }
-  &.text-xml::before           { content: "#{fa-variables.$fa-var-file-code}"; }
-  &.text-css::before           { content: "#{fa-variables.$fa-var-file-code}"; }
-  &.text-html::before          { content: "#{fa-variables.$fa-var-file-code}"; }
-  &.text-x-sh::before          { content: "#{fa-variables.$fa-var-file-text}"; }
+  &.text-plain::before         { @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines); }
+  &.text-x-c::before           { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
+  &.text-x-csharp::before      { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
+  &.text-x-java::before        { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
+  &.text-x-php::before         { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
+  &.text-x-ruby::before        { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
+  &.text-xml::before           { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
+  &.text-css::before           { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
+  &.text-html::before          { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
+  &.text-x-sh::before          { @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines); }
 
   &.application-javascript::before,
-  &.text-x-javascript::before { content: "#{fa-variables.$fa-var-file-code}"; }
+  &.text-x-javascript::before { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
 
-  &.application-pdf::before    { content: "#{fa-variables.$fa-var-file-pdf}"; }
-  &.application-msword::before { content: "#{fa-variables.$fa-var-file-word}"; }
+  &.application-pdf::before    { @include variants.fa-icon-variant(fa-variables.$fa-var-file-pdf); }
+  &.application-msword::before { @include variants.fa-icon-variant(fa-variables.$fa-var-file-word); }
 
   &.application-vnd\.openxmlformats-officedocument\.spreadsheetml\.sheet::before,
-  &.application-vnd\.ms-excel::before { content: "#{fa-variables.$fa-var-file-excel}"; }
+  &.application-vnd\.ms-excel::before { @include variants.fa-icon-variant(fa-variables.$fa-var-file-excel); }
 
   &.image-vnd\.microsoft\.icon::before,
   &.image-gif::before,
   &.image-jpeg::before,
   &.image-png::before,
   &.image-tiff::before {
-    content: "#{fa-variables.$fa-var-file-image}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-file-image);
   }
 
   &.application-zip::before,
   &.application-x-gzip::before {
-    content: "#{fa-variables.$fa-var-file-zipper}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-file-zipper);
   }
 }
 
@@ -352,7 +342,7 @@ a.icon-del {
 // Administration menu sections
 
 %admin-icon {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &:hover::before {
     color: variables.$gray-900;
@@ -389,88 +379,88 @@ a.icon-del {
   .projects {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-cubes}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-cubes); }
   }
 
   .users {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-user}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-user); }
   }
 
   .groups {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-people-group}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-people-group); }
   }
 
   .roles {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-eye}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-eye); }
   }
 
   .trackers {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-ticket}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-ticket); }
   }
 
   .issue-statuses,
   .issue_statuses {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-pencil-square}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-pencil-square); }
   }
 
   .workflows {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-sitemap}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-sitemap); }
   }
 
   .custom-fields,
   .custom_fields {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-edit}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-edit); }
   }
 
   .enumerations {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-list}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-list); }
   }
 
   .settings {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-gear}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-gear); }
   }
 
   .plugins {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-puzzle-piece}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-puzzle-piece); }
   }
 
   .info {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-info-circle}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-info-circle); }
   }
 
   .ldap-authentication,
   .server_authentication {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-key}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-key); }
   }
 
   .redmine-banner {
     @extend %admin-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-circle-exclamation}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-circle-exclamation); }
   }
 }
 
@@ -478,18 +468,15 @@ a.icon-del {
 // Drag-and-drop sorting
 
 .sort-handle {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   text-align: center;
   cursor: move;
 
-  &::before {
-    content: "#{fa-variables.$fa-var-arrows-v}";
-  }
-
   &.ajax-loading {
     &::before {
-      content: "#{fa-variables.$fa-var-refresh}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-refresh);
+
       animation: spin 1s linear infinite;
       color: variables.$gray-700;
     }
@@ -506,7 +493,7 @@ div.issues h3,
 div.members h3,
 div.news h3,
 div.projects h3 {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   color: variables.$gray-900;
 
@@ -519,65 +506,66 @@ div.projects h3 {
   }
 }
 
-h3.version::before      { content: "#{fa-variables.$fa-var-cube}"; }
-h3.comments::before     { content: "#{fa-variables.$fa-var-comments}"; }
-div.issues h3::before   { content: "#{fa-variables.$fa-var-ticket}"; }
-div.members h3::before  { content: "#{fa-variables.$fa-var-users}"; }
-div.news h3::before     { content: "#{fa-variables.$fa-var-newspaper}"; }
-div.projects h3::before { content: "#{fa-variables.$fa-var-cubes}"; }
+h3.version::before      { @include variants.fa-icon-variant(fa-variables.$fa-var-cube); }
+h3.comments::before     { @include variants.fa-icon-variant(fa-variables.$fa-var-comments); }
+div.issues h3::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-ticket); }
+div.members h3::before  { @include variants.fa-icon-variant(fa-variables.$fa-var-users); }
+div.news h3::before     { @include variants.fa-icon-variant(fa-variables.$fa-var-newspaper); }
+div.projects h3::before { @include variants.fa-icon-variant(fa-variables.$fa-var-cubes); }
 
 
 // Activity types icons
 
 dt {
+  &.icon::before {
+    margin-left: -(variables.$padding-side);
+    float: left;
+    line-height: variables.$line-height-computed;
+  }
+
   &.issue,
   &.issue-edit,
   &.issue.closed,
-  &.issue-closed,
-  &.issue-note,
   &.changeset,
+  &.attachment,
+  &.project {
+    @include variants.fa-icon-style;
+  }
+
+  &.issue-note,
   &.news,
   &.message,
   &.reply,
   &.wiki-page,
-  &.attachment,
   &.document,
-  &.project,
   &.time-entry {
-    @extend %fa-icon;
-
-    &::before {
-      margin-left: -(variables.$padding-side);
-      float: left;
-      line-height: variables.$line-height-computed;
-    }
+    @include variants.fa-icon-style("Regular");
   }
 
-  &.issue::before        { content: "#{fa-variables.$fa-var-ticket}"; }
-  &.issue-edit::before   { content: "#{fa-variables.$fa-var-edit}"; }
-  &.issue.closed::before { content: "#{fa-variables.$fa-var-ticket}"; }
-  &.issue-closed::before { content: "#{fa-variables.$fa-var-ticket}"; }
-  &.issue-note::before   { content: "#{fa-variables.$fa-var-comment}"; }
-  &.changeset::before    { content: "#{fa-variables.$fa-var-upload}"; }
-  &.news::before         { content: "#{fa-variables.$fa-var-newspaper}"; }
-  &.message::before      { content: "#{fa-variables.$fa-var-comment}"; }
-  &.reply::before        { content: "#{fa-variables.$fa-var-comment}"; }
-  &.wiki-page::before    { content: "#{fa-variables.$fa-var-file-text}"; }
-  &.attachment::before   { content: "#{fa-variables.$fa-var-paperclip}"; }
-  &.document::before     { content: "#{fa-variables.$fa-var-file-text}"; }
-  &.project::before      { content: "#{fa-variables.$fa-var-cube}"; }
-  &.time-entry::before   { content: "#{fa-variables.$fa-var-clock}"; }
+  &.issue::before        { @include variants.fa-icon-variant(fa-variables.$fa-var-ticket); }
+  &.issue-edit::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-edit); }
+  &.issue.closed::before { @include variants.fa-icon-variant(fa-variables.$fa-var-ticket); }
+  &.issue-note::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-comment-dots); }
+  &.changeset::before    { @include variants.fa-icon-variant(fa-variables.$fa-var-code-commit); }
+  &.news::before         { @include variants.fa-icon-variant(fa-variables.$fa-var-newspaper); }
+  &.message::before      { @include variants.fa-icon-variant(fa-variables.$fa-var-comment); }
+  &.reply::before        { @include variants.fa-icon-variant(fa-variables.$fa-var-comment); }
+  &.wiki-page::before    { @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines); }
+  &.attachment::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-paperclip); }
+  &.document::before     { @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines); }
+  &.project::before      { @include variants.fa-icon-variant(fa-variables.$fa-var-cube); }
+  &.time-entry::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-clock); }
 }
 
 
 // Alternative icons
 
 .search_for_watchers > a {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
   @include variants.icon-variant(success);
 
   &::before {
-    content: "#{fa-variables.$fa-var-plus}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-plus);
   }
 
   img {
@@ -586,20 +574,20 @@ dt {
 }
 
 .atom {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &::before {
-    content: "#{fa-variables.$fa-var-rss-square}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-rss-square);
   }
 }
 
 .issues .buttons a,
 #related-issues li > a {
   &[data-method="delete"] {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
 
     &::before {
-      content: "#{fa-variables.$fa-var-chain-broken}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-chain-broken);
     }
 
     img {
@@ -609,7 +597,7 @@ dt {
 }
 
 #main a.close-icon {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
   @include variants.link-variant(danger);
 
   width: auto;
@@ -617,16 +605,13 @@ dt {
   background: transparent;
 
   &::before {
-    content: "#{fa-variables.$fa-var-remove}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-remove);
   }
 }
 
 a.project {
-  $svg-star: fa-variables.$fa-var-star;
-  $svg-tag: fa-variables.$fa-var-tag;
-
   &.icon {
-    @extend %fa-icon-after;
+    @include variants.fa-icon-style(null, "after");
 
     padding-left: 0;
 
@@ -641,44 +626,52 @@ a.project {
   &.icon-user,
   &.icon-bookmarked-project {
     &::after {
-      content: "#{$svg-star}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-star);
+
+      margin-left: 5px;
       color: variables.$orange;
     }
   }
 
   &.icon-bookmarked-project {
     &::after {
-      content: "#{$svg-tag}";
-      color: variables.$blue;
+      @include variants.fa-icon-variant(fa-variables.$fa-var-bookmark);
+
+      color: variables.$red;
     }
   }
 
   &.icon-user.icon-bookmarked-project {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
+    @include variants.fa-icon-style(null, "after");
 
     position: relative;
 
     &::before {
-      content: "#{$svg-tag}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-bookmark);
+
       position: absolute;
-      top: 9px;
+      top: 5px;
       right: 0;
       margin: 0 -20px 0 0;
-      color: variables.$blue;
+      color: variables.$red;
     }
 
     &::after {
-      content: "#{$svg-star}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-star);
+
+      margin-left: 5px;
       color: variables.$orange;
     }
   }
 }
 
 span.my-project {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &::before {
-    content: "#{fa-variables.$fa-var-star}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-star);
+
     width: variables.$icon-width;
     margin-right: 0;
     color: variables.$orange;
@@ -687,7 +680,7 @@ span.my-project {
 }
 
 .sort {
-  @extend %fa-icon-after;
+  @include variants.fa-icon-style(null, "after");
 
   padding-left: 0;
 
@@ -705,30 +698,30 @@ span.my-project {
   }
 
   &.asc::after {
-    content: "#{fa-variables.$fa-var-sort-amount-asc}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-sort-amount-asc);
   }
 
   &.desc::after {
-    content: "#{fa-variables.$fa-var-sort-amount-desc}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-sort-amount-desc);
   }
 
   .sort-by-id &,
   .sort-by-done-ratio &,
   .sort-by-estimated-hours &,
   .sort-by-spent-hours & {
-    &.asc::after  { content: "#{fa-variables.$fa-var-sort-numeric-asc}"; }
-    &.desc::after { content: "#{fa-variables.$fa-var-sort-numeric-desc}"; }
+    &.asc::after  { @include variants.fa-icon-variant(fa-variables.$fa-var-sort-numeric-asc); }
+    &.desc::after { @include variants.fa-icon-variant(fa-variables.$fa-var-sort-numeric-desc); }
   }
 
   .sort-by-assigned-to &,
   .sort-by-subject & {
-    &.asc::after  { content: "#{fa-variables.$fa-var-sort-alpha-asc}"; }
-    &.desc::after { content: "#{fa-variables.$fa-var-sort-alpha-desc}"; }
+    &.asc::after  { @include variants.fa-icon-variant(fa-variables.$fa-var-sort-alpha-asc); }
+    &.desc::after { @include variants.fa-icon-variant(fa-variables.$fa-var-sort-alpha-desc); }
   }
 }
 
 a.remove-upload {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
   @include variants.link-variant(danger);
 
   opacity: variables.$icon-opacity;
@@ -741,22 +734,22 @@ a.remove-upload {
   }
 
   &::before {
-    content: "#{fa-variables.$fa-var-trash}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
   }
 }
 
 em.info.error {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &::before {
-    content: "#{fa-variables.$fa-var-exclamation-circle}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-exclamation-circle);
   }
 }
 
 .message {
   .contextual {
     a {
-      @extend %fa-icon;
+      @include variants.fa-icon-style;
 
       opacity: .7;
 
@@ -774,20 +767,22 @@ em.info.error {
   > .contextual {
     a {
       &:nth-child(1) {
+        @include variants.fa-icon-style("Regular");
+
         &::before {
-          content: "#{fa-variables.$fa-var-comment}";
+          @include variants.fa-icon-variant(fa-variables.$fa-var-comment);
         }
       }
 
       &:nth-child(2) {
         &::before {
-          content: "#{fa-variables.$fa-var-pencil}";
+          @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
         }
       }
 
       &:nth-child(3) {
         &::before {
-          content: "#{fa-variables.$fa-var-trash}";
+          @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
         }
       }
     }
@@ -797,7 +792,7 @@ em.info.error {
 tr.message {
   &.locked td.subject,
   &.sticky td.subject {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
   }
 
   &.locked {
@@ -805,7 +800,7 @@ tr.message {
 
     td.subject {
       &::before {
-        content: "#{fa-variables.$fa-var-lock}";
+        @include variants.fa-icon-variant(fa-variables.$fa-var-lock);
       }
     }
   }
@@ -814,25 +809,25 @@ tr.message {
     font-weight: variables.$font-weight-bold;
 
     &::before {
-      content: "#{fa-variables.$fa-var-bookmark}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-bookmark);
     }
   }
 }
 
 tr.version.shared td.name {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &::before {
-    content: "#{fa-variables.$fa-var-link}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-link);
   }
 }
 
 table.boards {
   a.board {
-    @extend %fa-icon;
+    @include variants.fa-icon-style("Regular");
 
     &::before {
-      content: "#{fa-variables.$fa-var-comments}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-comments);
     }
   }
 }
@@ -841,20 +836,21 @@ table.members {
   td.group,
   td.groupnonmember,
   td.groupanonymous {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
 
     &::before {
-      content: "#{fa-variables.$fa-var-people-group}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-people-group);
     }
   }
 }
 
 div.wiki {
   .external {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
 
     &::before {
-      content: "#{fa-variables.$fa-var-external-link}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-external-link);
+
       display: inline;
       margin-right: 3px;
       font-size: 10px;
@@ -863,10 +859,10 @@ div.wiki {
 }
 
 .contextual [href*="edit"] {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &::before {
-    content: "#{fa-variables.$fa-var-pencil}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
   }
 
   img {
@@ -875,17 +871,18 @@ div.wiki {
 }
 
 #attach_files_link {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &::before {
-    content: "#{fa-variables.$fa-var-plus}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-plus);
+
     margin-right: .3em;
   }
 }
 
 .other-formats {
   %other-format {
-    @extend %fa-icon;
+    @include variants.fa-icon-style("Regular");
 
     background-image: none;
 
@@ -894,11 +891,16 @@ div.wiki {
     }
   }
 
+  .atom {
+    @extend %other-format;
+    @include variants.fa-icon-style;
+  }
+
   .pdf {
     @extend %other-format;
 
     &::before {
-      content: "#{fa-variables.$fa-var-file-pdf}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-file-pdf);
     }
   }
 
@@ -906,7 +908,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      content: "#{fa-variables.$fa-var-file-code}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-file-code);
     }
   }
 
@@ -914,7 +916,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      content: "#{fa-variables.$fa-var-file-text}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines);
     }
   }
 
@@ -922,7 +924,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      content: "#{fa-variables.$fa-var-file-excel}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-file-excel);
     }
   }
 
@@ -930,7 +932,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      content: "#{fa-variables.$fa-var-file-image}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-file-image);
     }
   }
 }
@@ -943,11 +945,11 @@ div.wiki {
 .attachments,
 .watchers {
   a.delete {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
     @include variants.icon-variant(danger);
 
     &::before {
-      content: "#{fa-variables.$fa-var-trash}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
     }
 
     img {
@@ -960,10 +962,10 @@ div.wiki {
 // Issue edit form icon
 
 #all_attributes label[for="issue_description"] + a {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &::before {
-    content: "#{fa-variables.$fa-var-pencil}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
   }
 
   .icon {
@@ -985,7 +987,7 @@ div.wiki {
 
 .journal .wiki .contextual {
   > a {
-    @extend %fa-icon;
+    @include variants.fa-icon-style;
 
     &::before {
       width: variables.$icon-width;
@@ -994,19 +996,21 @@ div.wiki {
     }
 
     &:not([class*="icon"]) {
+      @include variants.fa-icon-style("Regular");
+
       &::before {
-        content: "#{fa-variables.$fa-var-comment}";
+        @include variants.fa-icon-variant(fa-variables.$fa-var-comment);
       }
 
       &:nth-child(2) {
         &::before {
-          content: "#{fa-variables.$fa-var-pencil}";
+          @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
         }
       }
 
       &:nth-child(3) {
         &::before {
-          content: "#{fa-variables.$fa-var-trash}";
+          @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
         }
       }
     }
@@ -1022,11 +1026,11 @@ div.wiki {
 
 #issue_category_id + a,
 #issue_fixed_version_id + a {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
   @include variants.icon-variant(success);
 
   &::before {
-    content: "#{fa-variables.$fa-var-plus-square}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-plus-square);
   }
 
   img {
@@ -1038,11 +1042,12 @@ div.wiki {
 // Lists toggle checkbox icon
 
 table.list th.checkbox > a {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
   @include variants.icon-variant(success);
 
   &::before {
-    content: "#{fa-variables.$fa-var-check}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-check);
+
     margin-right: 0;
   }
 
@@ -1055,14 +1060,14 @@ table.list th.checkbox > a {
 // Time entries list icons
 
 .time-entry .buttons > a {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &[href*="edit"]::before {
-    content: "#{fa-variables.$fa-var-pencil}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
   }
 
   &[data-method="delete"]::before {
-    content: "#{fa-variables.$fa-var-trash}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
   }
 
   img {
@@ -1074,13 +1079,13 @@ table.list th.checkbox > a {
 // Files list
 
 .file .buttons > a {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   &[data-method="delete"] {
     @include variants.icon-variant(danger);
 
     &::before {
-      content: "#{fa-variables.$fa-var-trash}";
+      @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
     }
   }
 
@@ -1093,13 +1098,13 @@ table.list th.checkbox > a {
 // Commit keywords
 
 .delete-commit-keywords {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
   @include variants.icon-variant(danger);
 
   font-size: variables.$font-size-base;
 
   &::before {
-    content: "#{fa-variables.$fa-var-trash}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
   }
 
   img {
@@ -1108,13 +1113,13 @@ table.list th.checkbox > a {
 }
 
 .add-commit-keywords {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
   @include variants.icon-variant(success);
 
   font-size: variables.$font-size-base;
 
   &::before {
-    content: "#{fa-variables.$fa-var-plus-square}";
+    @include variants.fa-icon-variant(fa-variables.$fa-var-plus-square);
   }
 
   img {

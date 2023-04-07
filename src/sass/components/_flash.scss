@@ -1,6 +1,6 @@
 @use "../variables";
 @use "../mixins/flash";
-@use "../components/icons";
+@use "../mixins/variants";
 
 // Flash & error messages
 
@@ -10,7 +10,7 @@
 .nodata,
 .warning,
 .conflict {
-  @extend %fa-icon;
+  @include variants.fa-icon-style;
 
   margin-bottom: variables.$line-height-computed;
   padding: variables.$padding-large-vertical variables.$padding-large-horizontal;

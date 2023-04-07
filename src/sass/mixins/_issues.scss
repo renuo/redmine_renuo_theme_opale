@@ -1,13 +1,12 @@
 @use "sass:color";
 @use "../variables";
 @use "../mixins/variants";
-@use "../components/icons";
 
 // Priority icon
 
 @mixin priority-icon-base() {
-  @extend %fa-icon;
-  
+  @include variants.fa-icon-style;
+
   &::before {
     content: "\00a0";
     width: variables.$priority-icon-size;
@@ -20,8 +19,8 @@
   .issue.details#{$parent} .attributes td.priority,
   .issue.details#{$parent} .attribute.priority .value {
     &::before {
-      @include variants.fa-custom-icon($icon);
-      
+      @include variants.fa-icon-variant($icon);
+
       color: $color;
     }
   }

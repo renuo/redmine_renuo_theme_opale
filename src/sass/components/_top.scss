@@ -6,7 +6,6 @@
 @use "../mixins/forms";
 @use "../mixins/variants";
 @use "../vendor/bootstrap/mixins/clearfix";
-@use "../components/icons";
 
 // Top menu
 
@@ -42,7 +41,7 @@
     }
 
     .top-menu-toggler {
-      @extend %fa-icon;
+      @include variants.fa-icon-style;
 
       display: block;
       position: absolute;
@@ -60,7 +59,7 @@
       user-select: none;
 
       &::before {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-caret-square-down);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-caret-square-down);
 
         margin-right: 0;
       }
@@ -73,7 +72,7 @@
 
       &.expanded {
         &::before {
-          @include variants.fa-custom-icon(fa-variables.$fa-var-caret-square-up);
+          @include variants.fa-icon-variant(fa-variables.$fa-var-caret-square-up);
         }
       }
 
@@ -105,6 +104,46 @@
     &:hover {
       color: variables.$top-menu-link-hover;
       text-decoration: none;
+    }
+
+    &.login {
+      @include variants.fa-icon-style;
+
+      &::before {
+        @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-to-bracket);
+
+        margin-right: 4px;
+      }
+    }
+
+    &.register {
+      @include variants.fa-icon-style;
+
+      &::before {
+        @include variants.fa-icon-variant(fa-variables.$fa-var-user-plus);
+
+        margin-right: 4px;
+      }
+    }
+
+    &.my-account {
+      @include variants.fa-icon-style("Regular");
+
+      &::before {
+        @include variants.fa-icon-variant(fa-variables.$fa-var-circle-user);
+
+        margin-right: 4px;
+      }
+    }
+
+    &.logout {
+      @include variants.fa-icon-style;
+
+      &::before {
+        @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-from-bracket);
+
+        margin-right: 4px;
+      }
     }
   }
 
@@ -211,7 +250,7 @@
 
   &.expanded {
     .drdn-trigger {
-      @extend %fa-icon-after;
+      @include variants.fa-icon-style(null, "after");
 
       z-index: 1003;
       height: auto;
@@ -220,21 +259,25 @@
       background-color: variables.$quick-search-dropdown-bg;
 
       &::after {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-caret-up);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-caret-up);
       }
     }
   }
 
   .drdn {
     &-trigger {
-      @extend %fa-icon-after;
+      @include variants.fa-icon-style(null, "after");
       @include forms.form-field;
 
       min-width: variables.$quick-search-width;
       border-color: variables.$quick-search-border;
 
+      &:focus {
+        border-color: variables.$quick-search-border-focus;
+      }
+
       &::after {
-        @include variants.fa-custom-icon(fa-variables.$fa-var-caret-down);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-caret-down);
 
         position: absolute;
         top: (variables.$font-size-base * .5);

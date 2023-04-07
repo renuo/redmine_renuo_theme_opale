@@ -35,9 +35,47 @@
   }
 }
 
+// Font Awesome style variant
+
+@mixin fa-icon {
+  display: inline-block;
+  margin-right: variables.$btn-padding-horizontal-small;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
+}
+
+@mixin fa-solid {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+@mixin fa-regular {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 400;
+}
+
+@mixin fa-brands {
+  font-family: "Font Awesome 6 Brands";
+  font-weight: 400;
+}
+
+@mixin fa-icon-style($variant: null, $position: before) {
+  &::#{ $position } {
+    @include fa-icon;
+    @if $variant == "Regular" {
+      @include fa-regular;
+    } @else if $variant == "Brands" {
+      @include fa-brands;
+    } @else {
+      @include fa-solid;
+    }
+  }
+}
+
 // Font Awesome icon variant
 
-@mixin fa-custom-icon($variant) {
+@mixin fa-icon-variant($variant) {
   content: string.unquote("\"") + $variant + string.unquote("\"");
 }
 

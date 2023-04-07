@@ -1,7 +1,6 @@
 @use "../variables";
 @use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/variants";
-@use "../components/icons";
 
 // Calendar
 
@@ -65,9 +64,10 @@ table.cal .starting a,
 p.cal.legend .starting,
 table.cal .ending a,
 p.cal.legend .ending {
+  @include variants.fa-icon-style;
+  
   &::before {
-    @extend %fa-icon;
-    @include variants.fa-custom-icon(fa-variables.$fa-var-caret-right);
+    @include variants.fa-icon-variant(fa-variables.$fa-var-caret-right);
 
     width: 10px;
     text-align: right;
@@ -77,8 +77,8 @@ p.cal.legend .ending {
 table.cal .ending a,
 p.cal.legend .ending {
   &::before {
-    @include variants.fa-custom-icon(fa-variables.$fa-var-caret-left);
-    
+    @include variants.fa-icon-variant(fa-variables.$fa-var-caret-left);
+
     text-align: left;
   }
 }
@@ -86,8 +86,8 @@ p.cal.legend .ending {
 table.cal .starting.ending a,
 p.cal.legend .starting.ending {
   &::before {
-    @include variants.fa-custom-icon(fa-variables.$fa-var-square);
-    
+    @include variants.fa-icon-variant(fa-variables.$fa-var-square);
+
     transform: scale(.6) rotate(45deg);
     text-align: center;
   }

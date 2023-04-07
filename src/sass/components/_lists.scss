@@ -6,7 +6,6 @@
 @use "../mixins/issues";
 @use "../mixins/variants";
 @use "../vendor/bootstrap/mixins/clearfix";
-@use "../components/icons";
 
 // Lists
 
@@ -186,9 +185,10 @@ tr.project {
   }
 
   &.idnt td.name {
+    @include variants.fa-icon-style;
+    
     &::before {
-      @extend %fa-icon;
-      @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
 
       color: variables.$gray-600;
     }
@@ -238,9 +238,10 @@ tr.issue {
   }
 
   &.idnt td.subject {
+    @include variants.fa-icon-style;
+    
     &::before {
-      @extend %fa-icon;
-      @include variants.fa-custom-icon(fa-variables.$fa-var-chevron-right);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
 
       color: variables.$gray-600;
     }
@@ -308,17 +309,18 @@ tr {
       padding: 0;
       cursor: pointer;
       user-select: none;
+      
+      @include variants.fa-icon-style;
 
       &::before {
-        @extend %fa-icon;
-        @include variants.fa-custom-icon(fa-variables.$fa-var-plus);
+        @include variants.fa-icon-variant(fa-variables.$fa-var-plus);
       }
     }
   }
 
   &.open span.expander:not(.icon) {
     &.icon-only::before {
-      @include variants.fa-custom-icon(fa-variables.$fa-var-minus);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-minus);
     }
   }
 }

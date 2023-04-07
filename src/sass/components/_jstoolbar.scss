@@ -1,8 +1,8 @@
 @use "sass:color";
 @use "../variables";
 @use "../vendor/font-awesome/variables" as fa-variables;
+@use "../mixins/variants";
 @use "../vendor/bootstrap/mixins/clearfix";
-@use "../components/icons";
 
 // WYSIWYG icons
 
@@ -124,10 +124,10 @@ div.jstElements {
   %jstb-icon {
     background: transparent;
     background-image: none;
+    
+    @include variants.fa-icon-style;
 
     &::before {
-      @extend %fa-icon;
-
       content: "";
     }
   }
@@ -135,97 +135,97 @@ div.jstElements {
   .jstb_strong {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-bold}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-bold); }
   }
 
   .jstb_em {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-italic}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-italic); }
   }
 
   .jstb_ins {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-underline}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-underline); }
   }
 
   .jstb_del {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-strikethrough}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-strikethrough); }
   }
 
   .jstb_code {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-code}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-code); }
   }
 
   .jstb_h1 {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-header}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-header); }
   }
 
   .jstb_h2 {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-header}"; font-size: .7857em; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-header); font-size: .7857em; }
   }
 
   .jstb_h3 {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-header}"; font-size: .6429em; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-header); font-size: .6429em; }
   }
 
   .jstb_ul {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-list-ul}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-list-ul); }
   }
 
   .jstb_ol {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-list-ol}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-list-ol); }
   }
 
   .jstb_bq {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-indent}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-indent); }
   }
 
   .jstb_unbq {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-outdent}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-outdent); }
   }
 
   .jstb_pre {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-terminal}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-terminal); }
   }
 
   .jstb_link {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-link}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-link); }
   }
 
   .jstb_img {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-image}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-image); }
   }
 
   .jstb_cut {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-scissors}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-scissors); }
   }
 
   .jstb_precode {
@@ -233,13 +233,13 @@ div.jstElements {
 
     color: variables.$brand-danger;
 
-    &::before { content: "#{fa-variables.$fa-var-code}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-code); }
   }
 
   .jstb_table {
     @extend %jstb-icon;
 
-    &::before { content: "#{fa-variables.$fa-var-table}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-table); }
   }
 
   button.jstb_help {
@@ -251,7 +251,7 @@ div.jstElements {
       color: variables.$link-hover-color;
     }
 
-    &::before { content: "#{fa-variables.$fa-var-question-circle}"; }
+    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-question-circle); }
   }
 }
 
