@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../variables";
 @use "../mixins/forms";
 
@@ -5,7 +6,14 @@
 
 #login-form {
   box-sizing: border-box;
+  width: variables.$login-form-width;
   margin: variables.$line-height-computed * 2 auto variables.$line-height-computed;
+  padding: variables.$padding-side;
+  border: 1px solid variables.$flash-warning-border;
+  border-radius: variables.$border-radius-base;
+  background-color: color.adjust(variables.$flash-warning-bg, $lightness: 5%);
+  box-shadow: variables.$panel-shadow;
+  color: variables.$panel-color;
 
   label,
   input:not([type="checkbox"]) {
@@ -41,6 +49,7 @@
   }
 
   table {
+    width: 100%;
     margin: auto;
     table-layout: fixed;
   }
@@ -61,20 +70,6 @@
     > input[type="submit"] {
       width: auto;
       margin-right: 0;
-    }
-  }
-
-  @media screen and (min-width: variables.$login-form-box-breakpoint) {
-    width: variables.$login-form-width;
-    padding: variables.$padding-side;
-    border: 1px solid variables.$panel-border;
-    border-radius: variables.$border-radius-base;
-    background-color: variables.$panel-bg;
-    box-shadow: variables.$panel-shadow;
-    color: variables.$panel-color;
-
-    table {
-      width: 100%;
     }
   }
 
