@@ -46,9 +46,11 @@ body {
     }
 
     #header {
+      height: variables.$responsive-header-height;
       background-color: variables.$header-bg;
 
       #project-jump {
+        height: variables.$responsive-header-height;
         padding: 0 variables.$responsive-header-height 0 0;
 
         &.expanded {
@@ -101,6 +103,10 @@ body {
       }
     }
 
+    #main {
+      padding: variables.$responsive-header-height 0 0;
+    }
+
     #content {
       overflow: auto;
     }
@@ -135,6 +141,7 @@ body {
 
         input[type="text"] {
           height: variables.$responsive-header-height - variables.$padding-side;
+          padding-left: 34px;
           line-height: variables.$responsive-header-height - variables.$padding-side;
         }
       }
@@ -369,8 +376,7 @@ body {
         }
 
         &.icon {
-          padding-left: 20px + variables.$btn-padding-horizontal-small;
-          background-position: variables.$btn-padding-horizontal-small 50%;
+          padding-left: variables.$btn-padding-horizontal-small;
         }
       }
 
@@ -417,6 +423,8 @@ body {
           margin: 3px 0 0;
           padding-top: variables.$btn-padding-vertical;
           padding-bottom: variables.$btn-padding-vertical;
+          border-width: 0;
+          background: none;
 
           &:first-child {
             margin-top: 0;
@@ -446,10 +454,6 @@ body {
 
   // Tweaks for smartphones, touchscreens
   @media (hover: none) and (pointer: coarse) {
-    .mobile-toggle-button::after {
-      margin-top: 0;
-    }
-
     .query-columns {
       span {
         display: block;

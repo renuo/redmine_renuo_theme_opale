@@ -50,7 +50,7 @@
     text-align: center;
     user-select: none;
 
-    @media print {
+    @media screen and (max-width: variables.$redmine-responsive-max) {
       display: none;
     }
 
