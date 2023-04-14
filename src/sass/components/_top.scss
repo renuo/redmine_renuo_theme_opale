@@ -470,7 +470,6 @@
   }
 
   .tabs-buttons {
-    display: none !important; // stylelint-disable-line declaration-no-important
     padding-left: 0;
     border-color: variables.$main-menu-border;
     background-color: variables.$main-menu-bg;
@@ -484,9 +483,5 @@
         background-color: variables.$main-menu-bg-hover;
       }
     }
-  }
-
-  ul + .tabs-buttons {
-    display: block !important; // stylelint-disable-line declaration-no-important
   }
 }
