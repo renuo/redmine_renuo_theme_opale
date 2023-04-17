@@ -22,16 +22,18 @@
   font-size: variables.$font-size-small;
 
   @if variables.$top-menu-collapse {
-    $toggler-position-v: $top-menu-padding-vertical + 1px;
+    $toggler-position-v: -1px;
     $toggler-position-h: 1px;
 
-    position: relative;
+    position: inherit;
     max-height: math.floor(variables.$font-size-base * variables.$font-size-small-unitless * variables.$line-height-base) + $top-menu-padding-vertical * 2;
+    margin-top: -(math.floor(variables.$font-size-base * variables.$font-size-small-unitless * variables.$line-height-base) + $top-menu-padding-vertical * 2);
     padding-bottom: 0;
     overflow: hidden;
 
     &.expanded {
       max-height: none;
+      margin-top: 0;
     }
 
     a {
@@ -45,6 +47,7 @@
 
       display: block;
       position: absolute;
+      z-index: 2;
       top: $toggler-position-v;
 
       @if variables.$sidebar-position == "left" {
@@ -53,7 +56,7 @@
         right: $toggler-position-h;
       }
 
-      color: color.mix(variables.$top-menu-link, variables.$top-menu-bg, 33%);
+      color: variables.$top-menu-link;
       font-size: variables.$font-size-base;
       line-height: 1;
       user-select: none;
@@ -67,7 +70,7 @@
       &:hover,
       &:focus,
       &:active {
-        color: color.mix(variables.$top-menu-link-hover, variables.$top-menu-bg, 50%);
+        color: variables.$top-menu-link-hover;
       }
 
       &.expanded {
