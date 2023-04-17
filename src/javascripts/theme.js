@@ -4,6 +4,5 @@ $(function () {
 
   /* eslint-disable no-new */
   new Opale.SidebarToggler()
-  new Opale.HistoryTabs()
   new Opale.MenuCollapse()
 })

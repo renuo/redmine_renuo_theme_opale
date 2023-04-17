@@ -31,7 +31,7 @@ Opale.RevisionGraph = function (holder, commitsHash, graphSpace) {
   // init colors
   const colors = [
     '#e74c3c',
-    '#584492',
+    '#0b4162',
     '#019851',
     '#ed820c',
     '#4183c4'
