@@ -30,6 +30,8 @@
     margin-top: -(math.floor(variables.$font-size-base * variables.$font-size-small-unitless * variables.$line-height-base) + $top-menu-padding-vertical * 2);
     padding-bottom: 0;
     overflow: hidden;
+    will-change: margin;
+    transition: margin .5s;
 
     &.expanded {
       max-height: none;
