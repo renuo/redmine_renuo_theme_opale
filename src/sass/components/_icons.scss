@@ -135,7 +135,7 @@ $icon-map: (
 // Buttons icons
 
 .icon,
-.icon-only:not(.toggle-multiselect) {
+.icon-only:not(.toggle-multiselect, .icon-comment) {
   @include variants.fa-icon-style;
 }
 

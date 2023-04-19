@@ -48,6 +48,14 @@
   }
 }
 
+@if variables.$sidebar-position == "left" {
+  .issue-status-change-sidebar {
+    .fa-caret-square-left::before {
+      @include variants.fa-icon-variant(fa-variables.$fa-var-caret-square-right);
+    }
+  }
+}
+
 .action-login .login-additionals {
   font-size: 1em;
 
@@ -130,13 +138,15 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
       background-image: none;
       line-height: 1.2em;
 
+      @include variants.fa-icon-style;
+
       &::before {
-        content: "\f021";
+        @include variants.fa-icon-variant(fa-variables.$fa-var-arrows-rotate);
+
         display: block;
         width: 1em;
         margin: 0 auto;
         color: variables.$green;
-        font-family: FontAwesome;
         line-height: 1.2em;
       }
     }
@@ -176,11 +186,12 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
       .rdb-checkbox-link.rdb-checkbox-link-enabled {
         background-image: none;
 
+        @include variants.fa-icon-style;
+
         &::before {
-          content: "\f00c";
-          display: inline-block;
+          @include variants.fa-icon-variant(fa-variables.$fa-var-check);
+
           color: variables.$green;
-          font-family: FontAwesome;
         }
       }
 
@@ -195,18 +206,13 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
         &#rdb-reset {
           background-image: none;
 
+          @include variants.fa-icon-style;
+
           &::before {
-            content: "\f00d";
-            display: inline-block;
-            margin-right: 8px;
-            font-family: FontAwesome;
+            @include variants.fa-icon-variant(fa-variables.$fa-var-xmark);
           }
         }
       }
-    }
-
-    &.rdb-menu-right .rdb-checkbox-link.rdb-checkbox-link-enabled::before {
-      margin-right: 8px;
     }
 
     .rdb-container h3 {
@@ -230,14 +236,15 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
   .rdb-card-title > a {
     background-image: none;
 
+    @include variants.fa-icon-style(null, after);
+
     &::after {
-      content: "\f013";
-      display: inline-block;
+      @include variants.fa-icon-variant(fa-variables.$fa-var-gear);
+
       position: absolute;
-      top: 1px;
+      top: 5px;
       left: 2px;
       color: variables.$gray-600;
-      font-family: FontAwesome;
     }
   }
 
@@ -245,11 +252,12 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
     padding-left: 0;
     background-image: none;
 
+    @include variants.fa-icon-style;
+
     &::before {
-      content: "\f145";
-      display: inline-block;
+      @include variants.fa-icon-variant(fa-variables.$fa-var-ticket);
+
       margin-right: 4px;
-      font-family: FontAwesome;
     }
   }
 
@@ -257,11 +265,12 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
     padding-left: 0;
     background-image: none;
 
+    @include variants.fa-icon-style;
+
     &::before {
-      content: "\f007";
-      display: inline-block;
+      @include variants.fa-icon-variant(fa-variables.$fa-var-user);
+
       margin-right: 4px;
-      font-family: FontAwesome;
     }
   }
 }
@@ -534,11 +543,12 @@ body div.banner_area {
 // Redmine Impersonate
 // https://www.redmine.org/plugins/redmine_impersonate
 
-#impersonate::before {
-  content: "\f21b";
-  display: inline-block;
-  margin-right: 5px;
-  font: normal normal normal 14px/1 FontAwesome;
+#impersonate {
+  @include variants.fa-icon-style;
+
+  &::before {
+    @include variants.fa-icon-variant(fa-variables.$fa-var-user-secret);
+  }
 }
 
 #impersonation-bar {
