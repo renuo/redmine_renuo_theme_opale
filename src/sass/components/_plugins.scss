@@ -435,6 +435,11 @@ body div.banner_area {
   }
 
   .banner_edit {
+    &,
+    &:hover {
+      opacity: 1 !important;
+    }
+
     a {
       margin-left: 5px;
     }
@@ -552,7 +557,15 @@ body div.banner_area {
 }
 
 #impersonation-bar {
+  @include variants.fa-icon-style;
+
+  padding: variables.$padding-large-vertical variables.$padding-large-horizontal variables.$padding-large-vertical (variables.$padding-large-horizontal + 8px + 16px) !important;
+  border-width: 1px !important;
   border-radius: 0;
+
+  &::before {
+    line-height: variables.$line-height-computed;
+  }
 }
 
 
