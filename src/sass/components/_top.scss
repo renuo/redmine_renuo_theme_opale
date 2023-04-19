@@ -26,16 +26,15 @@
     $toggler-position-h: 1px;
 
     position: inherit;
+    height: 0;
     max-height: math.floor(variables.$font-size-base * variables.$font-size-small-unitless * variables.$line-height-base) + $top-menu-padding-vertical * 2;
-    margin-top: -(math.floor(variables.$font-size-base * variables.$font-size-small-unitless * variables.$line-height-base) + $top-menu-padding-vertical * 2);
+    padding-top: 0;
     padding-bottom: 0;
     overflow: hidden;
-    will-change: margin;
-    transition: margin .5s;
 
     &.expanded {
-      max-height: none;
-      margin-top: 0;
+      height: auto;
+      padding-top: $top-menu-padding-vertical;
     }
 
     a {
