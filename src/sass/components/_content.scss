@@ -241,7 +241,7 @@
 @if variables.$fixed-layout {
   @media screen and (min-width: variables.$screen-sm-min) {
     body {
-      background: $gray-100;
+      background: variables.$gray-100;
     }
 
     #top-menu,
@@ -256,11 +256,11 @@
 
     #main {
       overflow: hidden;
-      background: $white;
+      background: variables.$white;
     }
 
     #footer {
-      background: $white;
+      background: variables.$white;
 
       &::before {
         content: " ";

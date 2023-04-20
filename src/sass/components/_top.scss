@@ -23,7 +23,7 @@
 
   @if variables.$top-menu-collapse {
     $toggler-position-v: -1px;
-    $toggler-position-h: 1px;
+    $toggler-position-h: -16px;
 
     position: inherit;
     height: 0;
@@ -35,6 +35,14 @@
     &.expanded {
       height: auto;
       padding-top: $top-menu-padding-vertical;
+
+      .top-menu-toggler {
+        @if variables.$sidebar-position == "left" {
+          transform: translate3d($toggler-position-h, ($toggler-position-v - $top-menu-padding-vertical), 0);
+        } @else {
+          transform: translate3d(100vh, ($toggler-position-v - $top-menu-padding-vertical), 0);
+        }
+      }
     }
 
     a {
@@ -49,12 +57,11 @@
       display: block;
       position: absolute;
       z-index: 2;
-      top: $toggler-position-v;
 
       @if variables.$sidebar-position == "left" {
-        left: $toggler-position-h;
+        transform: translate3d($toggler-position-h, $toggler-position-v, 0);
       } @else {
-        right: $toggler-position-h;
+        transform: translate3d(100vh, $toggler-position-v, 0);
       }
 
       color: variables.$top-menu-link;

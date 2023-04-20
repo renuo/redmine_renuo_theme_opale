@@ -158,7 +158,7 @@ body {
       .js-profile-menu a {
         &.login {
           @include variants.fa-icon-style;
-          
+
           &::before {
             @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-to-bracket);
 
@@ -168,7 +168,7 @@ body {
 
         &.register {
           @include variants.fa-icon-style;
-          
+
           &::before {
             @include variants.fa-icon-variant(fa-variables.$fa-var-user-plus);
 
@@ -178,7 +178,7 @@ body {
 
         &.my-account {
           @include variants.fa-icon-style;
-          
+
           &::before {
             @include variants.fa-icon-variant(fa-variables.$fa-var-circle-user);
 
@@ -188,7 +188,7 @@ body {
 
         &.logout {
           @include variants.fa-icon-style;
-          
+
           &::before {
             @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-from-bracket);
 
@@ -488,6 +488,12 @@ body {
       a {
         background-position: 8px center !important; // stylelint-disable-line declaration-no-important
       }
+    }
+  }
+
+  @media screen and (max-width: variables.$screen-md-max) {
+    #main-menu.tabs {
+      overflow: hidden;
     }
   }
 

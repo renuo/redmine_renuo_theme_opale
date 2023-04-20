@@ -456,6 +456,28 @@ body div.banner_area {
   }
 }
 
+@if variables.$fixed-layout {
+  @media screen and (min-width: variables.$screen-sm-min) {
+    .banner_area {
+      width: variables.$width-sm;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+  @media screen and (min-width: variables.$screen-md-min) {
+    .banner_area {
+      width: variables.$width-md;
+    }
+  }
+
+  @media screen and (min-width: variables.$screen-lg-min) {
+    .banner_area {
+      width: variables.$width-lg;
+    }
+  }
+}
+
 
 // Redmine Hearts
 // https://www.redmine.org/plugins/redmine_hearts
@@ -565,6 +587,28 @@ body div.banner_area {
 
   &::before {
     line-height: variables.$line-height-computed;
+  }
+}
+
+@if variables.$fixed-layout {
+  @media screen and (min-width: variables.$screen-sm-min) {
+    #impersonation-bar {
+      width: (variables.$width-sm - 58px) !important;
+      margin-right: auto !important;
+      margin-left: auto !important;
+    }
+  }
+
+  @media screen and (min-width: variables.$screen-md-min) {
+    #impersonation-bar {
+      width: (variables.$width-md - 58px) !important;
+    }
+  }
+
+  @media screen and (min-width: variables.$screen-lg-min) {
+    #impersonation-bar {
+      width: (variables.$width-lg - 58px) !important;
+    }
   }
 }
 
