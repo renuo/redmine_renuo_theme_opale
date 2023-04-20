@@ -186,7 +186,7 @@ tr.project {
 
   &.idnt td.name {
     @include variants.fa-icon-style;
-    
+
     &::before {
       @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
 
@@ -239,7 +239,7 @@ tr.issue {
 
   &.idnt td.subject {
     @include variants.fa-icon-style;
-    
+
     &::before {
       @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
 
@@ -309,7 +309,7 @@ tr {
       padding: 0;
       cursor: pointer;
       user-select: none;
-      
+
       @include variants.fa-icon-style;
 
       &::before {
@@ -454,20 +454,22 @@ tr.entry {
 @if variables.$color-priorities {
   @each $priority-id, $priority-color in variables.$priority-color-map {
     tr.priority-#{$priority-id} {
-      &.odd td {
-        background-color: color.adjust(map.get($priority-color, background), $alpha: variables.$table-color-odd-factor);
+      .checkbox {
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: 6px;
+          background-color: map.get($priority-color, background);
+        }
       }
 
-      &.even td {
-        background-color: color.adjust(map.get($priority-color, background), $alpha: variables.$table-color-even-factor);
-      }
-
-      td {
-        border-color: map.get($priority-color, border);
-        color: map.get($priority-color, color);
-      }
-
-      a {
+      a,
+      .priority {
         color: map.get($priority-color, link);
       }
     }
@@ -517,11 +519,11 @@ tr.entry {
         height: calc(50% - 2px * .5);
         transform: rotate(-4deg);
         transition: border-color variables.$transition-time;
-        border-top: 2px solid color.adjust(variables.$tracker-default-text, $alpha: .95);
+        border-top: 2px solid color.adjust(variables.$tracker-default-text, $alpha: -.05);
       }
 
       &:hover::after {
-        border-top-color: color.adjust(variables.$tracker-default-text, $alpha: .25);
+        border-top-color: color.adjust(variables.$tracker-default-text, $alpha: -.75);
       }
     }
   }

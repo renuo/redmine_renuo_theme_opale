@@ -205,7 +205,7 @@ div.wiki {
   code {
     padding: .2em .33em;
     border-radius: variables.$border-radius-base;
-    background-color: color.adjust(variables.$gray-500, $alpha: .3);
+    background-color: color.adjust(variables.$gray-500, $alpha: -.5);
     font-size: variables.$font-size-small;
   }
 
@@ -216,7 +216,7 @@ div.wiki {
     overflow-x: auto;
     overflow-y: hidden;
     border-radius: variables.$border-radius-base;
-    background-color: color.adjust(variables.$gray-500, $alpha: .15);
+    background-color: color.adjust(variables.$gray-500, $alpha: -.7);
     font-size: variables.$font-size-small;
 
     code {

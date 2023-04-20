@@ -39,7 +39,7 @@
     a:not(.easy-mindmup__icon) {
       padding: 3px 10px 3px (variables.$icon-width + variables.$btn-padding-horizontal-small);
       border-radius: variables.$border-radius-small;
-      
+
       @include variants.fa-icon-style;
       @include variants.fa-icon-style(null, after);
 
@@ -53,7 +53,7 @@
       }
 
       &.disabled {
-        color: color.adjust(variables.$pagination-color, $alpha: .5);
+        color: color.adjust(variables.$pagination-color, $alpha: -.5);
       }
 
       &.icon-checked {

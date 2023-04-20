@@ -26,7 +26,6 @@ $issue-subject-large:           true !default;
 $enable-sidebar-toggler:        true !default;
 $wiki-page-more-vertical-space: true !default;
 $top-menu-collapse:             false !default;
-$agile-board-customize:         true !default;
 
 
 // Colors
@@ -235,9 +234,7 @@ $table-bg-active:               $table-bg-hover !default;
 
 $table-border-color:            $gray-300 !default;
 
-$table-color-odd-factor:        if($table-list-color-odd-rows, $table-accent-factor * .8, $table-accent-factor * .5) !default;
-$table-color-even-factor:       if($table-list-color-even-rows, $table-accent-factor * .8, $table-accent-factor * .5) !default;
-$table-color-hover-factor:      $table-hover-factor * .5 !default;
+$table-color-hover-factor:      - ($table-hover-factor * 2) !default;
 $table-color-border-shade:      100 !default;
 
 
@@ -506,8 +503,8 @@ $input-border-radius:           $border-radius-small !default;
 $input-border-radius-large:     $border-radius-large !default;
 
 $input-border-focus:            color.adjust($brand-primary, $saturation: 25%) !default;
-$input-border-focus-alpha:      .6 !default;
-$input-shadow-focus-alpha:      .2 !default;
+$input-border-focus-alpha:      -.4 !default;
+$input-shadow-focus-alpha:      -.8 !default;
 $input-color-placeholder:       $gray-600 !default;
 
 $input-padding-vertical:        $btn-padding-vertical !default;
@@ -712,7 +709,7 @@ $bubble-gravatar-space:         12px !default;
 $bubble-padding-vertical:       8px !default;
 $bubble-padding-horizontal:     12px !default;
 $bubble-target-border:          color.adjust($brand-primary, $saturation: 25%) !default;
-$bubble-target-shadow-alpha:    .2 !default;
+$bubble-target-shadow-alpha:    -.8 !default;
 
 
 // Badges
@@ -771,6 +768,7 @@ $width-lg:                      $screen-lg - ($padding-side * 2) !default;
 // Redmine Agile plugin
 // https://www.redmineup.com/pages/plugins/agile
 
+$agile-board-customize:         true !default;
 $agile-board-background:        $gray-100 !default;
 $agile-issue-card-margin:       8px 10px !default;
 $agile-issue-card-padding:      7px !default;

@@ -84,6 +84,7 @@ input[type="email"],
 input[type="text"],
 input[type="password"] {
   @include forms.form-field;
+  @include forms.form-control-focus;
 
   transition:
     border-color variables.$transition-time ease-in-out,

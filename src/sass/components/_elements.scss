@@ -18,7 +18,7 @@ a.collapsible.icon,
   color: variables.$link-color;
   cursor: pointer;
   user-select: none;
-  
+
   @include variants.fa-icon-style;
 
   &:hover,
@@ -707,7 +707,7 @@ div#version-summary {
       height: variables.$line-height-computed;
       margin-right: variables.$line-height-computed * .5;
       animation: spin 1s linear infinite;
-      border: 3px solid color.adjust(variables.$highlight-text, $alpha: .3);
+      border: 3px solid color.adjust(variables.$highlight-text, $alpha: -.7);
       border-radius: 50%;
       border-top-color: variables.$highlight-text;
       vertical-align: bottom;

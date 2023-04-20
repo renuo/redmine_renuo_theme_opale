@@ -103,7 +103,7 @@ html.agile-board-fullscreen .icon.icon-fullscreen {
       .checklist,
       .info,
       .sub-issues {
-        border-color: color.adjust(variables.$black, $alpha: .15);
+        border-color: color.adjust(variables.$black, $alpha: -.85);
       }
 
       p.issue-id,
@@ -121,7 +121,7 @@ html.agile-board-fullscreen .icon.icon-fullscreen {
 
       p.project {
         border-radius: variables.$agile-issue-card-border-radius - 1px;
-        border-color: color.adjust(variables.$black, $alpha: .15);
+        border-color: color.adjust(variables.$black, $alpha: -.85);
         background-clip: padding-box;
       }
 
@@ -298,7 +298,8 @@ div.add-note {
       &--focus {
         .select2-selection {
           border-color: color.adjust(variables.$input-border-focus, $alpha: variables.$input-border-focus-alpha);
-          box-shadow: inset 0 1px 2px rgb(0 0 0 / .075), 0 0 0 2px color.adjust(variables.$input-border-focus, $alpha: variables.$input-shadow-focus-alpha);
+          outline: 0;
+          box-shadow: inset 0 1px 2px color.adjust(variables.$black, $alpha: -.925), 0 0 0 2px color.adjust(variables.$input-border-focus, $alpha: variables.$input-shadow-focus-alpha);
         }
       }
     }
@@ -316,7 +317,7 @@ span.tag-label-color {
     padding: 0 !important; // stylelint-disable-line declaration-no-important
     border: 0 !important; // stylelint-disable-line declaration-no-important
     border-radius: variables.$badge-border-radius;
-    box-shadow: inset 0 -1px 0 color.adjust(variables.$black, $alpha: .12);
+    box-shadow: inset 0 -1px 0 color.adjust(variables.$black, $alpha: -.88);
     font-size: variables.$font-size-small-px;
 
     a,
@@ -329,7 +330,7 @@ span.tag-label-color {
     > span {
       display: inline-block;
       padding: 1px 5px;
-      text-shadow: 0 1px 0 color.adjust(variables.$black, $alpha: .2);
+      text-shadow: 0 1px 0 color.adjust(variables.$black, $alpha: -.8);
     }
 
     a {
