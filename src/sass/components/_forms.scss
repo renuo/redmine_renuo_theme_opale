@@ -778,3 +778,11 @@ label.no-css {
     margin-bottom: 0;
   }
 }
+
+
+// Objects selection
+
+.objects-selection > div,
+#user_group_ids {
+  columns: auto 200px;
+}
