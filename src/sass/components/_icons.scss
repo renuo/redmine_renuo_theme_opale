@@ -323,7 +323,7 @@ a.icon-bookmark::before,
   }
 }
 
-.icon-expended,
+.icon-expanded,
 .icon-collapsed {
   &::before {
     text-align: center;
@@ -332,6 +332,11 @@ a.icon-bookmark::before,
   &.expander {
     background-image: none;
   }
+}
+
+span.icon-expanded + span.icon,
+span.icon-collapsed + span.icon {
+  margin-left: 0;
 }
 
 .icon-zoom-in + .icon-zoom-out {
