@@ -486,7 +486,7 @@ div.thumbnails {
   &.changeset {
     h4 + p {
       margin-bottom: 0;
-      padding-bottom: variables.$bubble-padding-vertical;
+      padding: 0 variables.$bubble-padding-horizontal variables.$bubble-padding-vertical;
       background-color: variables.$bubble-bg;
       font-size: variables.$font-size-list;
 
@@ -629,7 +629,8 @@ div.thumbnails {
 
   form,
   .wiki,
-  .details {
+  .details,
+  .details + p {
     border-top: 1px solid variables.$bubble-border;
   }
 
@@ -641,6 +642,15 @@ div.thumbnails {
 
     img {
       margin: 0 0 -3px 4px;
+    }
+
+    + p {
+      margin: 0;
+      padding: variables.$panel-body-padding-vertical variables.$panel-body-padding-horizontal;
+
+      &:empty {
+        display: none;
+      }
     }
   }
 
