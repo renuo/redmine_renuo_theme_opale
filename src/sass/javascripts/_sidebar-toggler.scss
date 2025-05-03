@@ -49,16 +49,6 @@
     text-align: center;
     user-select: none;
 
-    @media screen and (max-width: variables.$redmine-responsive-max) {
-      display: none;
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: variables.$gray-300;
-    }
-
     @if variables.$sidebar-position == "left" {
       left: 0;
 
@@ -91,6 +81,16 @@
         margin-right: 0;
         color: variables.$gray-700;
       }
+    }
+
+    @media screen and (max-width: variables.$redmine-responsive-max) {
+      display: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: variables.$gray-300;
     }
 
     &.sidebar-hidden {

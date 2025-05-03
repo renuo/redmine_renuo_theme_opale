@@ -85,7 +85,7 @@
 @mixin button-variant($color, $bg, $border) {
   $correction: 1;
 
-  @if color.hue($bg) > 120 and color.hue($bg) < 160 or color.lightness($bg) > 90 {
+  @if color.channel($bg, 'hue', $space: hsl) > 120 and color.channel($bg, 'hue', $space: hsl) < 160 or color.channel($bg, 'lightness', $space: hsl) > 90 {
     $correction: .5;
   }
 
@@ -97,7 +97,7 @@
   $active-border: color.adjust($border, $lightness: - (15% * $correction));
   $active-shadow: inset 0 3px 4px -2px $active-border;
 
-  @if color.lightness($bg) > 98 {
+  @if color.channel($bg, 'lightness', $space: hsl) > 98 {
     $focus-bg: color.adjust($bg, $lightness: -5%);
     $focus-border: color.adjust($border, $lightness: -5%);
     $normal-shadow: none;

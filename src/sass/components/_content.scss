@@ -82,7 +82,7 @@
     float: variables.$sidebar-position;
   }
 
-  @media screen and (min-width: 1px) {
+  @media screen and (width >= 1px) {
     @if not variables.$flexbox-layout {
       padding-bottom: variables.$padding-side * 3;
     }

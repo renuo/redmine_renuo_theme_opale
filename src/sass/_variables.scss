@@ -42,7 +42,7 @@ $teal:                          #00b3ad !default;
 
 $white:                         #fff !default;
 $black:                         #000 !default;
-$gray:                          hsl(color.hue($indigo), 20%, 85%) !default;
+$gray:                          hsl(color.channel($indigo, 'hue', $space: hsl), 20%, 85%) !default;
 
 $shade-map: (
   50:                           87.5%,

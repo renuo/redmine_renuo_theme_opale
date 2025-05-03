@@ -498,9 +498,9 @@ div.issues h3,
 div.members h3,
 div.news h3,
 div.projects h3 {
-  @include variants.fa-icon-style;
-
   color: variables.$gray-900;
+
+  @include variants.fa-icon-style;
 
   &::before {
     width: variables.$icon-width;

@@ -40,7 +40,7 @@
     color: $color;
 
     &:hover {
-      @if color.hue($background) > 15deg and color.hue($background) < 40deg {
+      @if color.channel($background, 'hue', $space: hsl) > 15deg and color.channel($background, 'hue', $space: hsl) < 40deg {
         background-color: color.adjust(color.adjust($background, $hue: -8deg), $lightness: -8%);
       } @else {
         background-color: color.adjust($background, $lightness: -10%);

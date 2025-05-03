@@ -6,7 +6,7 @@ module.exports = function (grunt) {
       options: {
         implementation: require('sass'),
         sourceMap: false,
-        outputStyle: 'compressed'
+        style: 'compressed'
       },
 
       theme: {
