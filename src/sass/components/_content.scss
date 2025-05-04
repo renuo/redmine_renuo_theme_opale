@@ -1,6 +1,10 @@
 @use "../variables";
 @use "../vendor/font-awesome/variables" as fa-variables;
 
+#wrapper {
+  overflow-x: hidden;
+}
+
 #main {
   @if variables.$css-grid-layout {
     display: grid;
