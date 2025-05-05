@@ -19,6 +19,7 @@
 @use "components/tabs";
 @use "components/pagination";
 @use "components/content";
+@use "components/sidebar-switch-panel";
 @use "components/context-menu";
 @use "components/gravatar";
 @use "components/lists";
@@ -46,8 +47,3 @@
 
 @use "components/plugins";
 @use "components/plugins-commercial";
-
-
-// Built-in JavaScript plugins
-
-@use "javascripts/sidebar-toggler";

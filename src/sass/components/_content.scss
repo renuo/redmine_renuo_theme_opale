@@ -52,6 +52,7 @@
 
 #sidebar {
   #main & {
+    position: relative;
     padding: variables.$padding-side variables.$sidebar-padding-horizontal;
   }
 

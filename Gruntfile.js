@@ -31,25 +31,10 @@ module.exports = function (grunt) {
       }
     },
 
-    uglify: {
-      theme: {
-        src: [
-          '<%= src %>javascripts/modules/*.js',
-          '<%= src %>javascripts/theme.js'
-        ],
-        dest: 'javascripts/theme.js'
-      }
-    },
-
     watch: {
       css: {
         files: ['<%= src %>sass/**/*.scss'],
         tasks: ['css']
-      },
-
-      js: {
-        files: ['<%= src %>javascripts/**/*.js'],
-        tasks: ['js']
       }
     }
   })
@@ -57,10 +42,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-sass')
   grunt.loadNpmTasks('@lodder/grunt-postcss')
   grunt.loadNpmTasks('grunt-contrib-watch')
-  grunt.loadNpmTasks('grunt-contrib-uglify')
 
   grunt.registerTask('css', ['sass', 'postcss'])
-  grunt.registerTask('js', ['uglify'])
 
-  grunt.registerTask('default', ['css', 'js'])
+  grunt.registerTask('default', ['css'])
 }

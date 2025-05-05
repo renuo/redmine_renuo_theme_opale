@@ -121,13 +121,9 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
 // Redmine Dashboard
 // https://www.redmine.org/plugins/redmine-dashboard
 
-@if variables.$enable-sidebar-toggler {
-  #main {
-    // Fix full screen view
-    @at-root .controller-rdb_taskboard & {
-      position: static;
-    }
-  }
+// Fix full screen view
+.controller-rdb_taskboard #main {
+  position: static;
 }
 
 #rdb-taskboard {
