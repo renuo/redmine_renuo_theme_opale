@@ -1,8 +1,7 @@
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
-@use "../vendor/font-awesome/mixins" as fa-mixins;
-@use "../vendor/bootstrap/mixins/text-truncate";
 @use "../mixins/variants";
+@use "../vendor/bootstrap/mixins/text-truncate";
+@use "../vendor/tabler-icons";
 
 .hidden,
 .mobile-show {
@@ -64,7 +63,7 @@ body {
 
         .drdn-trigger {
           @include text-truncate.text-truncate;
-          @include variants.fa-icon-style;
+          @include variants.ti-icon-style;
 
           display: block;
           height: variables.$responsive-header-height;
@@ -76,7 +75,7 @@ body {
           line-height: variables.$responsive-header-height;
 
           &::before {
-            @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-down);
+            @include variants.ti-icon-variant(tabler-icons.$ti-icon-chevron-down);
 
             position: relative;
             top: -.1em;
@@ -112,6 +111,10 @@ body {
       width: 200px;
     }
 
+    .sidebar-toggler {
+      display: none;
+    }
+
     .mobile-toggle-button {
       width: variables.$responsive-header-height;
       height: variables.$responsive-header-height;
@@ -127,7 +130,7 @@ body {
       color: variables.$flyout-menu-text;
 
       .search-magnifier {
-        left: 18px;
+        display: none;
       }
 
       &__search {
@@ -137,7 +140,7 @@ body {
 
         input[type="text"] {
           height: variables.$responsive-header-height - variables.$padding-side;
-          padding-left: 34px;
+          padding-left: 8px;
           line-height: variables.$responsive-header-height - variables.$padding-side;
         }
       }
@@ -150,6 +153,10 @@ body {
       }
 
       &__sidebar {
+        > div {
+          padding-left: 0;
+        }
+
         p {
           padding-left: variables.$padding-large-horizontal;
         }
@@ -157,40 +164,40 @@ body {
 
       .js-profile-menu a {
         &.login {
-          @include variants.fa-icon-style;
+          @include variants.ti-icon-style;
 
           &::before {
-            @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-to-bracket);
+            @include variants.ti-icon-variant(tabler-icons.$ti-icon-login-2);
 
             margin-right: 6px;
           }
         }
 
         &.register {
-          @include variants.fa-icon-style;
+          @include variants.ti-icon-style;
 
           &::before {
-            @include variants.fa-icon-variant(fa-variables.$fa-var-user-plus);
+            @include variants.ti-icon-variant(tabler-icons.$ti-icon-user-plus);
 
             margin-right: 6px;
           }
         }
 
         &.my-account {
-          @include variants.fa-icon-style;
+          @include variants.ti-icon-style;
 
           &::before {
-            @include variants.fa-icon-variant(fa-variables.$fa-var-circle-user);
+            @include variants.ti-icon-variant(tabler-icons.$ti-icon-user-square-rounded);
 
             margin-right: 6px;
           }
         }
 
         &.logout {
-          @include variants.fa-icon-style;
+          @include variants.ti-icon-style;
 
           &::before {
-            @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-from-bracket);
+            @include variants.ti-icon-variant(tabler-icons.$ti-icon-logout-2);
 
             margin-right: 6px;
           }
@@ -272,6 +279,10 @@ body {
       form {
         padding-left: 0;
 
+        label {
+          display: inline-block;
+        }
+
         > ul {
           margin-left: 0;
 
@@ -343,12 +354,6 @@ body {
     #query_form_content {
       fieldset {
         margin-bottom: variables.$line-height-computed;
-      }
-    }
-
-    .search-magnifier {
-      &--flyout {
-        line-height: normal;
       }
     }
 

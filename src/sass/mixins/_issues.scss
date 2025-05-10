@@ -5,7 +5,7 @@
 // Priority icon
 
 @mixin priority-icon-base() {
-  @include variants.fa-icon-style;
+  @include variants.ti-icon-style;
 
   &::before {
     content: "\00a0";
@@ -19,7 +19,7 @@
   .issue.details#{$parent} .attributes td.priority,
   .issue.details#{$parent} .attribute.priority .value {
     &::before {
-      @include variants.fa-icon-variant($icon);
+      @include variants.ti-icon-variant($icon);
 
       color: $color;
     }

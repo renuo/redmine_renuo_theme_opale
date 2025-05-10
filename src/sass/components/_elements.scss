@@ -1,7 +1,6 @@
 @use "sass:color";
 @use "sass:math";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/forms";
 @use "../mixins/shadows";
 @use "../mixins/variants";
@@ -19,60 +18,10 @@ a.collapsible.icon,
   cursor: pointer;
   user-select: none;
 
-  @include variants.fa-icon-style;
-
   &:hover,
   &:focus {
     color: variables.$link-hover-color;
     text-decoration: none;
-  }
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-down);
-
-    transform: rotate(0);
-    color: variables.$gray-600;
-    font-size: 12px;
-
-    @if variables.$collapsible-animation-time > 0 {
-      transition: transform variables.$collapsible-animation-time;
-    }
-  }
-}
-
-a.collapsible.collapsed,
-a.collapsible.icon-collapsed,
-.collapsible.collapsed > legend {
-  &::before {
-    transform: rotate(-90deg);
-  }
-}
-
-@if variables.$collapsible-animation-time > 0 {
-  fieldset.collapsible {
-    min-height: variables.$line-height-computed;
-    max-height: variables.$collapsible-max-height;
-    overflow: auto;
-    transition: max-height variables.$collapsible-animation-time ease-out;
-
-    > div {
-      display: block !important; // stylelint-disable-line declaration-no-important
-      visibility: visible;
-      transition: visibility 0s 0s, opacity variables.$collapsible-animation-time;
-      opacity: 1;
-    }
-
-    &.collapsed {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height variables.$collapsible-animation-time;
-
-      > div {
-        visibility: hidden;
-        transition: visibility 0s variables.$collapsible-animation-time, opacity variables.$collapsible-animation-time;
-        opacity: 0;
-      }
-    }
   }
 }
 
@@ -322,7 +271,7 @@ p.subtitle {
   cursor: move;
 }
 
-a.close-icon {
+a.close-icon:not(:has(svg)) {
   display: block;
   width: 12px;
   height: 12px;
@@ -501,12 +450,18 @@ ul.projects {
     border-left: 2px solid variables.$gray-400;
   }
 
-  li.root {
-    margin-bottom: variables.$line-height-computed;
-  }
+  li {
+    &.root {
+      margin-bottom: variables.$line-height-computed;
+    }
 
-  li.child {
-    margin-top: variables.$line-height-computed * .5;
+    &.child {
+      margin-top: variables.$line-height-computed * .5;
+    }
+
+    svg.icon-svg {
+      margin-left: variables.$icon-space;
+    }
   }
 
   a.project {

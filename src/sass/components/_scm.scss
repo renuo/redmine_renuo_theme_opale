@@ -1,6 +1,4 @@
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
-@use "../mixins/variants";
 
 // Repository view
 
@@ -85,75 +83,9 @@ tr.changeset {
 
 #changes-legend > li.change,
 .changeset-changes ul > li.change {
-  background: transparent;
-  background-repeat: no-repeat;
-  background-position: 0 center;
-  
-  @include variants.fa-icon-style;
-
   &.folder {
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-folder);
-    }
-
-    &.change-A {
-      background-image: none;
-
-      &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-folder-plus);
-      }
-    }
-
-    &.change-M {
-      background-image: none;
-
-      &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-folder-open);
-      }
-    }
-
     ul > li.change {
       padding-left: 18px;
-    }
-  }
-
-  &.change-A {
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-square-plus);
-
-      color: variables.$changeset-added-color;
-    }
-  }
-
-  &.change-M {
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-square-pen);
-
-      color: variables.$changeset-modified-color;
-    }
-  }
-
-  &.change-C {
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-clone);
-
-      color: variables.$changeset-copied-color;
-    }
-  }
-
-  &.change-R {
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-square-arrow-up-right);
-
-      color: variables.$changeset-renamed-color;
-    }
-  }
-
-  &.change-D {
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-square-minus);
-
-      color: variables.$changeset-deleted-color;
     }
   }
 }

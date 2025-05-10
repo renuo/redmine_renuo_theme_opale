@@ -1,5 +1,4 @@
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
 
 #wrapper {
   overflow-x: hidden;
@@ -105,8 +104,9 @@
     margin-top: variables.$line-height-computed * 1.5;
   }
 
-  > h3:first-child,
-  > form:first-child > h3 {
+  #sidebar-wrapper > h3:first-child,
+  #sidebar-wrapper > form:first-child > h3,
+  #sidebar-wrapper > #watchers:first-child > h3 {
     margin-top: variables.$line-height-computed * .25;
   }
 

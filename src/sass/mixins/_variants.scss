@@ -3,41 +3,40 @@
 @use "sass:map";
 @use "../variables";
 
-// Link variant
-
-@mixin link-variant($variant, $focus-hover: true) {
-  $colors: map.get(variables.$icon-color-map, $variant);
-
-  color: map.get($colors, normal);
-
-  @if $focus-hover {
-    &:focus,
-    &:hover {
-      color: map.get($colors, hover);
-    }
-  }
-}
-
 // Icon variant
 
-@mixin icon-variant($variant) {
+@mixin icon-variant($variant, $svg: true) {
   $colors: map.get(variables.$icon-color-map, $variant);
 
-  &::before {
-    color: map.get($colors, normal);
-  }
+  @if $svg {
+    svg.icon-svg {
+      stroke: map.get($colors, normal);
+    }
 
-  &:focus,
-  &:hover {
+    &:focus,
+    &:hover {
+      svg.icon-svg {
+        stroke: map.get($colors, hover);
+      }
+    }
+  } @else {
     &::before {
-      color: map.get($colors, hover);
+      color: map.get($colors, normal);
+    }
+
+    &:focus,
+    &:hover {
+      &::before {
+        color: map.get($colors, hover);
+      }
     }
   }
 }
 
-// Font Awesome style variant
 
-@mixin fa-icon {
+// Tabler icons variant
+
+@mixin ti-icon {
   display: inline-block;
   margin-right: variables.$btn-padding-horizontal-small;
   -webkit-font-smoothing: antialiased;
@@ -45,38 +44,20 @@
   line-height: 1;
 }
 
-@mixin fa-solid {
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-}
-
-@mixin fa-regular {
-  font-family: "Font Awesome 6 Free";
+@mixin ti-font {
+  font-family: tabler-icons;
   font-weight: 400;
 }
 
-@mixin fa-brands {
-  font-family: "Font Awesome 6 Brands";
-  font-weight: 400;
-}
-
-@mixin fa-icon-style($variant: null, $position: before) {
+@mixin ti-icon-style($position: before) {
   &::#{ $position } {
-    @include fa-icon;
-    @if $variant == "Regular" {
-      @include fa-regular;
-    } @else if $variant == "Brands" {
-      @include fa-brands;
-    } @else {
-      @include fa-solid;
-    }
+    @include ti-icon;
+    @include ti-font;
   }
 }
 
-// Font Awesome icon variant
-
-@mixin fa-icon-variant($variant) {
-  content: string.unquote("\"") + $variant + string.unquote("\"");
+@mixin ti-icon-variant($variant) {
+  content: $variant;
 }
 
 

@@ -1,9 +1,9 @@
 @use "sass:map";
 @use "sass:math";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/shadows";
 @use "../mixins/variants";
+@use "../vendor/tabler-icons";
 
 .drdn {
   position: relative;
@@ -48,17 +48,25 @@
     &.selection {
       > a,
       > span {
-        @include variants.fa-icon-style;
+        @include variants.ti-icon-style;
       }
 
-      > .selected span {
-        @include variants.fa-icon-style;
-        
-        &::before {
-          @include variants.fa-icon-variant(fa-variables.$fa-var-check);
+      > .selected {
+        span {
+          @include variants.ti-icon-style;
 
-          margin-right: math.div(variables.$btn-padding-horizontal-small, 2);
-          color: variables.$green;
+          &::before {
+            @include variants.ti-icon-variant(tabler-icons.$ti-icon-check);
+
+            margin-right: math.div(variables.$btn-padding-horizontal-small, 2);
+            color: variables.$green;
+          }
+        }
+
+        &:hover span {
+          &::before {
+            color: variables.$component-active-color;
+          }
         }
       }
     }
@@ -68,18 +76,6 @@
       margin: 1px;
       padding: (variables.$btn-padding-vertical - 1px) (variables.$btn-padding-horizontal-small - 1px);
       border-radius: variables.$border-radius-base - 1px;
-
-      &.icon {
-        padding-left: variables.$icon-width + variables.$btn-padding-horizontal-small;
-
-        &::before {
-          width: variables.$icon-width;
-          margin-top: 3px;
-          margin-left: -(variables.$icon-width + variables.$btn-padding-horizontal-small);
-          float: left;
-          text-align: center;
-        }
-      }
     }
   }
 }
@@ -125,11 +121,15 @@
         border-color: variables.$pagination-active-border;
         background-color: variables.$pagination-active-bg;
         color: variables.$pagination-active-color;
+
+        svg.icon-svg {
+          stroke: variables.$pagination-active-color;
+        }
       }
     }
 
     .drdn-trigger {
-      padding: variables.$btn-padding-vertical variables.$btn-padding-horizontal-small;
+      padding: (variables.$btn-padding-vertical - 1px) variables.$btn-padding-horizontal-small;
       border: 1px solid variables.$pagination-border;
       border-radius: variables.$border-radius-base;
       background-color: variables.$pagination-bg;
@@ -146,6 +146,10 @@
         border-color: variables.$pagination-hover-border;
         background-color: variables.$pagination-hover-bg;
         color: variables.$pagination-hover-color;
+
+        svg.icon-svg {
+          stroke: variables.$pagination-hover-color;
+        }
       }
     }
   }

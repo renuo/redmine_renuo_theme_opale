@@ -189,3 +189,7 @@ blockquote {
 .clear {
   @include clearfix.clearfix;
 }
+
+.inline-block {
+  display: inline-block;
+}

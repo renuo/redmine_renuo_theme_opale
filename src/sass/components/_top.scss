@@ -1,10 +1,10 @@
 @use "sass:color";
 @use "sass:math";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/shadows";
 @use "../mixins/forms";
 @use "../mixins/variants";
+@use "../vendor/tabler-icons";
 @use "../vendor/bootstrap/mixins/clearfix";
 
 // Top menu
@@ -46,40 +46,40 @@
     }
 
     &.login {
-      @include variants.fa-icon-style;
+      @include variants.ti-icon-style;
 
       &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-to-bracket);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-login-2);
 
         margin-right: 4px;
       }
     }
 
     &.register {
-      @include variants.fa-icon-style;
+      @include variants.ti-icon-style;
 
       &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-user-plus);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-user-plus);
 
         margin-right: 4px;
       }
     }
 
     &.my-account {
-      @include variants.fa-icon-style("Regular");
+      @include variants.ti-icon-style;
 
       &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-circle-user);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-user-square-rounded);
 
         margin-right: 4px;
       }
     }
 
     &.logout {
-      @include variants.fa-icon-style;
+      @include variants.ti-icon-style;
 
       &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-arrow-right-from-bracket);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-logout-2);
 
         margin-right: 4px;
       }
@@ -189,7 +189,7 @@
 
   &.expanded {
     .drdn-trigger {
-      @include variants.fa-icon-style(null, "after");
+      @include variants.ti-icon-style("after");
 
       z-index: 1003;
       height: auto;
@@ -198,14 +198,14 @@
       background-color: variables.$quick-search-dropdown-bg;
 
       &::after {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-caret-up);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-chevron-up);
       }
     }
   }
 
   .drdn {
     &-trigger {
-      @include variants.fa-icon-style(null, "after");
+      @include variants.ti-icon-style("after");
       @include forms.form-field;
 
       min-width: variables.$quick-search-width;
@@ -216,7 +216,7 @@
       }
 
       &::after {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-caret-down);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-chevron-down);
 
         position: absolute;
         top: (variables.$font-size-base * .5);
@@ -231,8 +231,13 @@
       > .quick-search {
         padding: variables.$header-padding-horizontal * .5;
 
+        svg.icon-svg {
+          display: none;
+        }
+
         > input {
           width: 100%;
+          padding-left: variables.$input-padding-horizontal !important;
         }
       }
     }
@@ -257,6 +262,10 @@
       background-color: variables.$component-active-bg;
       color: variables.$component-active-color;
       text-decoration: none;
+
+      span::before {
+        color: variables.$component-active-color;
+      }
     }
   }
 
@@ -345,16 +354,16 @@
         }
 
         &.new-object {
+          @include variants.ti-font;
+
           position: relative;
-          width: $tabs-height;
+          min-width: $tabs-height;
           margin-right: variables.$main-menu-padding-horizontal;
           padding-bottom: variables.$main-menu-padding-vertical - 1px;
           border: 1px solid variables.$main-menu-border;
           border-width: 0 1px;
           background-color: variables.$main-menu-dropdown-bg;
-          font-family: fa-variables.$fa-style-family;
-          font-size: .85em;
-          font-weight: variables.$font-weight-bold;
+          font-size: 1.25em;
 
           &:hover,
           &:focus {
@@ -376,7 +385,7 @@
     visibility: hidden;
     position: absolute;
     z-index: 1001;
-    min-width: 130px;
+    min-width: 150px;
     margin: 0 1px;
     padding: 0;
     overflow: hidden;

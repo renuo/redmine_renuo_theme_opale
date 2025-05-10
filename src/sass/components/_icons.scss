@@ -1,155 +1,114 @@
 @use "sass:list";
 @use "sass:string";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
+@use "../vendor/tabler-icons";
 @use "../mixins/variants";
-@use "../vendor/font-awesome/mixins" as fa-mixins;
 
 $icon-map: (
-  icon-add:                     fa-variables.$fa-var-plus-square,
-  icon-edit:                    fa-variables.$fa-var-pencil,
-  icon-copy:                    fa-variables.$fa-var-copy,
-  icon-duplicate:               fa-variables.$fa-var-clipboard,
-  icon-del:                     fa-variables.$fa-var-trash,
-  icon-move:                    fa-variables.$fa-var-arrows,
-  icon-save:                    fa-variables.$fa-var-save,
-  icon-download:                fa-variables.$fa-var-download,
-  icon-cancel:                  fa-variables.$fa-var-ban,
-  icon-multiple:                fa-variables.$fa-var-plus-circle,
-  icon-folder:                  fa-variables.$fa-var-folder,
-  icon-package:                 fa-variables.$fa-var-cube,
-  icon-user:                    fa-variables.$fa-var-user,
-  icon-project:                 fa-variables.$fa-var-cube,
-  icon-projects:                fa-variables.$fa-var-cubes,
-  icon-help:                    fa-variables.$fa-var-info-circle,
-  icon-attachment:              fa-variables.$fa-var-paperclip,
-  icon-history:                 fa-variables.$fa-var-history,
-  icon-time-entry:              fa-variables.$fa-var-clock,
-  icon-time:                    fa-variables.$fa-var-clock,
-  icon-time-add:                fa-variables.$fa-var-clock,
-  icon-stats:                   fa-variables.$fa-var-line-chart,
-  icon-warning:                 fa-variables.$fa-var-warning,
-  icon-error:                   fa-variables.$fa-var-exclamation,
-  icon-fav:                     fa-variables.$fa-var-star,
-  icon-fav-off:                 fa-variables.$fa-var-star,
-  icon-heart:                   fa-variables.$fa-var-heart,
-  icon-heart-off:               fa-variables.$fa-var-heart,
-  icon-reload:                  fa-variables.$fa-var-refresh,
-  icon-locked:                  fa-variables.$fa-var-lock,
-  icon-lock:                    fa-variables.$fa-var-lock,
-  icon-unlock:                  fa-variables.$fa-var-unlock,
-  icon-checked:                 fa-variables.$fa-var-check,
-  icon-details:                 fa-variables.$fa-var-search-plus,
-  icon-report:                  fa-variables.$fa-var-pie-chart,
-  icon-comments:                fa-variables.$fa-var-comments,
-  icon-comment:                 fa-variables.$fa-var-comment,
-  icon-summary:                 fa-variables.$fa-var-file-lines,
-  icon-server-authentication:   fa-variables.$fa-var-key,
-  icon-issue:                   fa-variables.$fa-var-ticket,
-  icon-zoom-in:                 fa-variables.$fa-var-search-plus,
-  icon-zoom-out:                fa-variables.$fa-var-search-minus,
-  icon-magnifier:               fa-variables.$fa-var-search,
-  icon-passwd:                  fa-variables.$fa-var-key,
-  icon-arrow-right:             fa-variables.$fa-var-arrow-right,
-  icon-test:                    fa-variables.$fa-var-arrow-circle-right,
-  icon-sticky:                  fa-variables.$fa-var-thumb-tack,
-  icon-email:                   fa-variables.$fa-var-envelope,
-  icon-email-disabled:          fa-variables.$fa-var-envelope,
-  icon-email-add:               fa-variables.$fa-var-envelope,
-  icon-ok:                      fa-variables.$fa-var-check,
-  icon-not-ok:                  fa-variables.$fa-var-times,
-  icon-link-break:              fa-variables.$fa-var-chain-broken,
-  icon-list:                    fa-variables.$fa-var-list-ul,
-  icon-close:                   fa-variables.$fa-var-times-circle,
-  icon-settings:                fa-variables.$fa-var-cog,
-  icon-group:                   fa-variables.$fa-var-users,
-  icon-groupnonmember:          fa-variables.$fa-var-users,
-  icon-groupanonymous:          fa-variables.$fa-var-users,
-  icon-roles:                   fa-variables.$fa-var-eye,
-  icon-issue-edit:              fa-variables.$fa-var-edit,
-  icon-workflows:               fa-variables.$fa-var-sitemap,
-  icon-custom-fields:           fa-variables.$fa-var-edit,
-  icon-plugins:                 fa-variables.$fa-var-puzzle-piece,
-  icon-news:                    fa-variables.$fa-var-newspaper,
-  icon-issue-closed:            fa-variables.$fa-var-ticket,
-  icon-issue-note:              fa-variables.$fa-var-comment-dots,
-  icon-changeset:               fa-variables.$fa-var-code-commit,
-  icon-message:                 fa-variables.$fa-var-comment,
-  icon-reply:                   fa-variables.$fa-var-comment,
-  icon-wiki-page:               fa-variables.$fa-var-file-lines,
-  icon-document:                fa-variables.$fa-var-file-lines,
-  icon-add-bullet:              fa-variables.$fa-var-plus-circle,
-  icon-shared:                  fa-variables.$fa-var-link,
-  icon-actions:                 fa-variables.$fa-var-ellipsis-h,
-  icon-sort-handle:             fa-variables.$fa-var-up-down-left-right,
-  icon-expanded:                fa-variables.$fa-var-chevron-down,
-  icon-collapsed:               fa-variables.$fa-var-chevron-right,
-  icon-bookmark:                fa-variables.$fa-var-bookmark,
-  icon-bookmark-off:            fa-variables.$fa-var-bookmark,
-  icon-sorted-asc:              fa-variables.$fa-var-sort-amount-asc,
-  icon-sorted-desc:             fa-variables.$fa-var-sort-amount-desc,
-  icon-toggle-plus:             fa-variables.$fa-var-plus-square,
-  icon-toggle-minus:            fa-variables.$fa-var-minus-square,
-  icon-clear-query:             fa-variables.$fa-var-times,
-  icon-import:                  fa-variables.$fa-var-cloud-upload,
-  icon-bookmarked-project:      fa-variables.$fa-var-bookmark,
-  icon-copy-link:               fa-variables.$fa-var-clipboard,
-
-  // Plugin icons
-  icon-call:                    fa-variables.$fa-var-phone,
-  icon-contact:                 fa-variables.$fa-var-vcard,
-  icon-erase:                   fa-variables.$fa-var-eraser,
-  icon-facebook:                fa-variables.$fa-var-facebook-square,
-  icon-fullscreen:              fa-variables.$fa-var-arrows-alt,
-  icon-linkedin:                fa-variables.$fa-var-linkedin,
-  icon-meeting:                 fa-variables.$fa-var-calendar-check,
-  icon-merge:                   fa-variables.$fa-var-code-fork,
-  icon-money-dollar:            fa-variables.$fa-var-usd,
-  icon-money-euro:              fa-variables.$fa-var-eur,
-  icon-money-pound:             fa-variables.$fa-var-gbp,
-  icon-money-yen:               fa-variables.$fa-var-jpy,
-  icon-move-bottom:             fa-variables.$fa-var-angle-double-down,
-  icon-move-down:               fa-variables.$fa-var-angle-down,
-  icon-move-top:                fa-variables.$fa-var-angle-double-up,
-  icon-move-up:                 fa-variables.$fa-var-angle-up,
-  icon-phone:                   fa-variables.$fa-var-phone,
-  icon-skype:                   fa-variables.$fa-var-skype,
-  icon-tags:                    fa-variables.$fa-var-tags,
-  icon-twitter:                 fa-variables.$fa-var-twitter-square,
-  icon-vcard:                   fa-variables.$fa-var-vcard,
-  banner-icon-edit:             fa-variables.$fa-var-edit,
-  banner-icon-off:              fa-variables.$fa-var-times,
+  // Non SVG plugins icons
+  banner-icon-edit:             tabler-icons.$ti-icon-pencil,
+  banner-icon-off:              tabler-icons.$ti-icon-x,
 );
+$icons-selector: ();
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
+@each $class, $icon in $icon-map {
+  $icons-selector: list.append($icons-selector, string.unquote(".#{$class}"), "comma");
+
+  .#{$class}:not(:has(svg)) {
+    &::before {
+      @include variants.ti-icon-variant($icon);
+    }
+  }
+}
+
+#{$icons-selector} {
+  &.icon:not(:has(svg)) {
+    background-image: none;
+  }
+}
+
+
+// SVG Icons
+
+.icon svg,
+.icon-only svg {
+  flex-shrink: 0;
+}
+
+svg {
+  &.icon-svg {
+    stroke-width: 1.5;
+    stroke: variables.$link-color;
+    fill: none;
+    vertical-align: middle;
   }
 
-  100% {
-    transform: rotate(359deg);
+  &.icon-ok {
+    stroke: variables.$brand-success;
   }
+
+  &.s20 {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &.s18 {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  &.s16 {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &.s14 {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  &.s12 {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+a.icon:hover svg,
+a.icon-only:hover svg {
+  stroke: variables.$link-hover-color;
+}
+
+.icon-error svg.icon-svg {
+  stroke: variables.$brand-danger;
+}
+
+.icon-warning svg.icon-svg {
+  stroke: variables.$brand-warning;
+}
+
+.icon-fav svg.icon-svg {
+  stroke: variables.$yellow;
+  fill: variables.$yellow;
+}
+
+span.icon-label {
+  margin-left: variables.$icon-space;
 }
 
 
 // Buttons icons
 
 .icon,
-.icon-only:not(.toggle-multiselect, .icon-comment) {
-  @include variants.fa-icon-style;
+.icon-only {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
 }
 
 .icon-only {
-  display: inline-block;
   width: variables.$icon-width;
   overflow: hidden;
-  vertical-align: top;
   white-space: nowrap;
-
-  &::before {
-    width: variables.$icon-width;
-    text-align: center;
-  }
 }
 
 // A empty icon should behave more like icon-only
@@ -158,534 +117,26 @@ a.icon:empty {
   display: inline-block;
 }
 
-span.icon + span.icon {
-  margin-left: variables.$padding-small-vertical;
-}
 
-$icons-selector: ();
-
-@each $class, $icon in $icon-map {
-  $icons-selector: list.append($icons-selector, string.unquote(".#{$class}"), "comma");
-
-  .#{$class} {
-    &::before {
-      @include variants.fa-icon-variant($icon);
-
-      @if $class == "icon-fav" {
-        color: variables.$orange;
-      } @else if $class == "icon-heart" {
-        color: variables.$pink;
-      } @else if $class == "icon-bookmarked-project" {
-        color: variables.$red;
-      }
-    }
-
-    @if $class == "icon-close" {
-      @include variants.fa-icon-style("Regular");
-
-      &:hover::before {
-        @include variants.fa-icon-style;
-      }
-    } @else if $class == "icon-folder" {
-      @include variants.fa-icon-style("Regular");
-
-      .open &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-folder-open);
-      }
-    }
-
-    @if $class == "icon-copy-link"
-        or $class == "icon-news"
-        or $class == "icon-comments"
-        or $class == "icon-comment"
-        or $class == "icon-issue-note"
-        or $class == "icon-message"
-        or $class == "icon-reply"
-        or $class == "icon-summary"
-        or $class == "icon-wiki-page"
-        or $class == "icon-document"
-        or $class == "icon-time-entry"
-        or $class == "icon-time"
-        or $class == "icon-time-add"
-        or $class == "icon-email"
-        or $class == "icon-email-disabled"
-        or $class == "icon-email-add"
-        or $class == "icon-fav-off"
-        or $class == "icon-bookmark-off"
-        or $class == "icon-heart-off" {
-      @include variants.fa-icon-style("Regular");
-    }
-  }
-}
-
-#{$icons-selector} {
-  &.icon {
-    background-image: none;
-  }
-}
-
-// Checkbox toggler
-
-a.toggle-checkboxes {
-  @include variants.fa-icon-style;
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-square-check);
-  }
-}
-
-
-// Colorize some actions
-
-a.icon,
-a.icon-only {
-  @include variants.link-variant(default);
-}
-
-a.icon-edit::before,
-a.icon-copy::before,
-a.icon-time-add::before,
-.other-formats a::before {
-  @include variants.link-variant(info);
-}
-
-.icon-checked::before {
-  @include variants.link-variant(success, false);
-}
-
-a.icon-add::before,
-a.icon-save::before,
-a.icon-checked::before,
-a.icon-reload::before,
-.other-formats a.csv::before {
-  @include variants.link-variant(success);
-}
-
-.other-formats > span > a.atom::before {
-  @include variants.link-variant(warning);
-}
-
-a.icon-del::before,
-a.icon-bookmark::before,
-.other-formats a.pdf::before {
-  @include variants.link-variant(danger);
-}
-
-
-// File types
-
-.icon-folder,
-.icon-file {
-  &::before {
-    width: variables.$icon-width;
-    text-align: center;
-  }
-}
-
-.icon-file {
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-file);
-
-    color: variables.$gray-700;
-  }
-
-  &.text-plain::before         { @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines); }
-  &.text-x-c::before           { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
-  &.text-x-csharp::before      { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
-  &.text-x-java::before        { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
-  &.text-x-php::before         { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
-  &.text-x-ruby::before        { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
-  &.text-xml::before           { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
-  &.text-css::before           { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
-  &.text-html::before          { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
-  &.text-x-sh::before          { @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines); }
-
-  &.application-javascript::before,
-  &.text-x-javascript::before { @include variants.fa-icon-variant(fa-variables.$fa-var-file-code); }
-
-  &.application-pdf::before    { @include variants.fa-icon-variant(fa-variables.$fa-var-file-pdf); }
-  &.application-msword::before { @include variants.fa-icon-variant(fa-variables.$fa-var-file-word); }
-
-  &.application-vnd\.openxmlformats-officedocument\.spreadsheetml\.sheet::before,
-  &.application-vnd\.ms-excel::before { @include variants.fa-icon-variant(fa-variables.$fa-var-file-excel); }
-
-  &.image-vnd\.microsoft\.icon::before,
-  &.image-gif::before,
-  &.image-jpeg::before,
-  &.image-png::before,
-  &.image-tiff::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-file-image);
-  }
-
-  &.application-zip::before,
-  &.application-x-gzip::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-file-zipper);
-  }
-}
-
-.icon-expanded,
-.icon-collapsed {
-  &::before {
-    text-align: center;
-  }
-
-  &.expander {
-    background-image: none;
-  }
-}
-
-span.icon-expanded + span.icon,
-span.icon-collapsed + span.icon {
-  margin-left: 0;
-}
+// Zoom icons
 
 .icon-zoom-in + .icon-zoom-out {
   margin-left: variables.$padding-small-vertical;
 }
 
 
-// Administration menu sections
-
-%admin-icon {
-  @include variants.fa-icon-style;
-
-  &:hover::before {
-    color: variables.$gray-900;
-  }
-
-  &.selected::before {
-    color: variables.$gray-950;
-  }
-}
-
-#admin-menu {
-  #admin-index > & {
-    a {
-      padding-left: 5px + variables.$icon-width;
-    }
-  }
-
-  li {
-    > a {
-      padding-left: variables.$sidebar-padding-horizontal + 5px + variables.$icon-width;
-
-      &::before {
-        display: inline-block;
-        width: variables.$icon-width;
-        margin: 0;
-        margin-left: -(5px + variables.$icon-width);
-        padding: 0;
-        color: variables.$gray-700;
-        text-align: center;
-      }
-    }
-  }
-
-  .projects {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-cubes); }
-  }
-
-  .users {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-user); }
-  }
-
-  .groups {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-people-group); }
-  }
-
-  .roles {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-eye); }
-  }
-
-  .trackers {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-ticket); }
-  }
-
-  .issue-statuses,
-  .issue_statuses {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-pencil-square); }
-  }
-
-  .workflows {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-sitemap); }
-  }
-
-  .custom-fields,
-  .custom_fields {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-edit); }
-  }
-
-  .enumerations {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-list); }
-  }
-
-  .settings {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-gear); }
-  }
-
-  .plugins {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-puzzle-piece); }
-  }
-
-  .info {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-info-circle); }
-  }
-
-  .ldap-authentication,
-  .server_authentication {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-key); }
-  }
-
-  .redmine-banner {
-    @extend %admin-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-circle-exclamation); }
-  }
-}
-
-
-// Drag-and-drop sorting
-
-.sort-handle {
-  @include variants.fa-icon-style;
-
-  text-align: center;
-  cursor: move;
-
-  &.ajax-loading {
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-refresh);
-
-      animation: spin 1s linear infinite;
-      color: variables.$gray-700;
-    }
-  }
-}
-
-
-// Headers with icons
-
-h3.icon,
-h3.version,
-h3.comments,
-div.issues h3,
-div.members h3,
-div.news h3,
-div.projects h3 {
-  color: variables.$gray-900;
-
-  @include variants.fa-icon-style;
-
-  &::before {
-    width: variables.$icon-width;
-    margin-right: variables.$padding-small-vertical;
-    transform: translateY(-.1em);
-    color: variables.$gray-700;
-    text-align: center;
-  }
-}
-
-h3.version::before      { @include variants.fa-icon-variant(fa-variables.$fa-var-cube); }
-h3.comments::before     { @include variants.fa-icon-variant(fa-variables.$fa-var-comments); }
-div.issues h3::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-ticket); }
-div.members h3::before  { @include variants.fa-icon-variant(fa-variables.$fa-var-users); }
-div.news h3::before     { @include variants.fa-icon-variant(fa-variables.$fa-var-newspaper); }
-div.projects h3::before { @include variants.fa-icon-variant(fa-variables.$fa-var-cubes); }
-
-
-// Activity types icons
-
-dt {
-  &.icon::before {
-    margin-left: -(variables.$padding-side);
-    float: left;
-    line-height: variables.$line-height-computed;
-  }
-
-  &.issue,
-  &.issue-edit,
-  &.issue.closed,
-  &.changeset,
-  &.attachment,
-  &.project {
-    @include variants.fa-icon-style;
-  }
-
-  &.issue-note,
-  &.news,
-  &.message,
-  &.reply,
-  &.wiki-page,
-  &.document,
-  &.time-entry {
-    @include variants.fa-icon-style("Regular");
-  }
-
-  &.issue::before        { @include variants.fa-icon-variant(fa-variables.$fa-var-ticket); }
-  &.issue-edit::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-edit); }
-  &.issue.closed::before { @include variants.fa-icon-variant(fa-variables.$fa-var-ticket); }
-  &.issue-note::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-comment-dots); }
-  &.changeset::before    { @include variants.fa-icon-variant(fa-variables.$fa-var-code-commit); }
-  &.news::before         { @include variants.fa-icon-variant(fa-variables.$fa-var-newspaper); }
-  &.message::before      { @include variants.fa-icon-variant(fa-variables.$fa-var-comment); }
-  &.reply::before        { @include variants.fa-icon-variant(fa-variables.$fa-var-comment); }
-  &.wiki-page::before    { @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines); }
-  &.attachment::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-paperclip); }
-  &.document::before     { @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines); }
-  &.project::before      { @include variants.fa-icon-variant(fa-variables.$fa-var-cube); }
-  &.time-entry::before   { @include variants.fa-icon-variant(fa-variables.$fa-var-clock); }
-}
-
-
 // Alternative icons
 
-.search_for_watchers > a {
-  @include variants.fa-icon-style;
-  @include variants.icon-variant(success);
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-plus);
-  }
-
-  img {
-    display: none;
-  }
-}
-
 .atom {
-  @include variants.fa-icon-style;
+  @include variants.ti-icon-style;
 
   &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-rss-square);
-  }
-}
-
-.issues .buttons a,
-#related-issues li > a {
-  &[data-method="delete"] {
-    @include variants.fa-icon-style;
-
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-chain-broken);
-    }
-
-    img {
-      display: none;
-    }
-  }
-}
-
-#main a.close-icon {
-  @include variants.fa-icon-style;
-  @include variants.link-variant(danger);
-
-  width: auto;
-  height: auto;
-  background: transparent;
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-remove);
-  }
-}
-
-a.project {
-  &.icon {
-    @include variants.fa-icon-style(null, "after");
-
-    padding-left: 0;
-
-    &::before {
-      content: "";
-      display: none;
-      margin: 0;
-    }
-  }
-
-  &.my-project,
-  &.icon-user,
-  &.icon-bookmarked-project {
-    &::after {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-star);
-
-      margin-left: 5px;
-      color: variables.$orange;
-    }
-  }
-
-  &.icon-bookmarked-project {
-    &::after {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-bookmark);
-
-      color: variables.$red;
-    }
-  }
-
-  &.icon-user.icon-bookmarked-project {
-    @include variants.fa-icon-style;
-    @include variants.fa-icon-style(null, "after");
-
-    position: relative;
-
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-bookmark);
-
-      position: absolute;
-      top: 5px;
-      right: 0;
-      margin: 0 -20px 0 0;
-      color: variables.$red;
-    }
-
-    &::after {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-star);
-
-      margin-left: 5px;
-      color: variables.$orange;
-    }
-  }
-}
-
-span.my-project {
-  @include variants.fa-icon-style;
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-star);
-
-    width: variables.$icon-width;
-    margin-right: 0;
-    color: variables.$orange;
-    text-align: center;
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-rss);
   }
 }
 
 .sort {
-  @include variants.fa-icon-style(null, "after");
+  @include variants.ti-icon-style("after");
 
   padding-left: 0;
 
@@ -703,191 +154,57 @@ span.my-project {
   }
 
   &.asc::after {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-sort-amount-asc);
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending);
   }
 
   &.desc::after {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-sort-amount-desc);
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending);
   }
 
   .sort-by-id &,
   .sort-by-done-ratio &,
   .sort-by-estimated-hours &,
   .sort-by-spent-hours & {
-    &.asc::after  { @include variants.fa-icon-variant(fa-variables.$fa-var-sort-numeric-asc); }
-    &.desc::after { @include variants.fa-icon-variant(fa-variables.$fa-var-sort-numeric-desc); }
+    &.asc::after  { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending-numbers); }
+    &.desc::after { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending-numbers); }
   }
 
   .sort-by-assigned-to &,
   .sort-by-subject & {
-    &.asc::after  { @include variants.fa-icon-variant(fa-variables.$fa-var-sort-alpha-asc); }
-    &.desc::after { @include variants.fa-icon-variant(fa-variables.$fa-var-sort-alpha-desc); }
-  }
-}
-
-a.remove-upload {
-  @include variants.fa-icon-style;
-  @include variants.link-variant(danger);
-
-  opacity: variables.$icon-opacity;
-  text-align: center;
-
-  &:hover,
-  &:focus {
-    opacity: variables.$icon-hover-opacity;
-    text-decoration: none;
+    &.asc::after  { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending-letters); }
+    &.desc::after { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending-letters); }
   }
 
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
+  svg {
+    display: none;
   }
 }
 
 em.info.error {
-  @include variants.fa-icon-style;
+  @include variants.ti-icon-style;
 
   &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-exclamation-circle);
-  }
-}
-
-.message {
-  .contextual {
-    a {
-      @include variants.fa-icon-style;
-
-      opacity: .7;
-
-      &:hover,
-      &:focus {
-        opacity: 1;
-      }
-
-      img {
-        display: none;
-      }
-    }
-  }
-
-  > .contextual {
-    a {
-      &:nth-child(1) {
-        @include variants.fa-icon-style("Regular");
-
-        &::before {
-          @include variants.fa-icon-variant(fa-variables.$fa-var-comment);
-        }
-      }
-
-      &:nth-child(2) {
-        &::before {
-          @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
-        }
-      }
-
-      &:nth-child(3) {
-        &::before {
-          @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
-        }
-      }
-    }
-  }
-}
-
-tr.message {
-  &.locked td.subject,
-  &.sticky td.subject {
-    @include variants.fa-icon-style;
-  }
-
-  &.locked {
-    color: variables.$gray-700;
-
-    td.subject {
-      &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-lock);
-      }
-    }
-  }
-
-  &.sticky td.subject {
-    font-weight: variables.$font-weight-bold;
-
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-bookmark);
-    }
-  }
-}
-
-tr.version.shared td.name {
-  @include variants.fa-icon-style;
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-link);
-  }
-}
-
-table.boards {
-  a.board {
-    @include variants.fa-icon-style("Regular");
-
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-comments);
-    }
-  }
-}
-
-table.members {
-  td.group,
-  td.groupnonmember,
-  td.groupanonymous {
-    @include variants.fa-icon-style;
-
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-people-group);
-    }
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-exclamation-circle);
   }
 }
 
 div.wiki {
   .external {
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-external-link);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-external-link);
 
       display: inline;
-      margin-right: 3px;
-      font-size: 10px;
+      margin-right: .3em;
+      font-size: .8em;
     }
-  }
-}
-
-.contextual [href*="edit"] {
-  @include variants.fa-icon-style;
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
-  }
-
-  img {
-    display: none;
-  }
-}
-
-#attach_files_link {
-  @include variants.fa-icon-style;
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-plus);
-
-    margin-right: .3em;
   }
 }
 
 .other-formats {
   %other-format {
-    @include variants.fa-icon-style("Regular");
+    @include variants.ti-icon-style;
 
     background-image: none;
 
@@ -898,14 +215,13 @@ div.wiki {
 
   .atom {
     @extend %other-format;
-    @include variants.fa-icon-style;
   }
 
   .pdf {
     @extend %other-format;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-file-pdf);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-pdf);
     }
   }
 
@@ -913,7 +229,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-file-code);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-html);
     }
   }
 
@@ -921,7 +237,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-file-lines);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-txt);
     }
   }
 
@@ -929,7 +245,7 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-file-excel);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-csv);
     }
   }
 
@@ -937,197 +253,91 @@ div.wiki {
     @extend %other-format;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-file-image);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-png);
     }
   }
 }
 
 
-// Hacks and overrides for Font Awesome
+// Drag-and-drop sorting
 
-// Attachments and watchers delete icon
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
 
-.attachments,
-.watchers {
-  a.delete {
-    @include variants.fa-icon-style;
-    @include variants.icon-variant(danger);
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.sort-handle {
+  cursor: move;
+
+  &.ajax-loading {
+    @include variants.ti-icon-style;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
-    }
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-refresh);
 
-    img {
-      display: none;
-    }
-  }
-}
-
-
-// Issue edit form icon
-
-#all_attributes label[for="issue_description"] + a {
-  @include variants.fa-icon-style;
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
-  }
-
-  .icon {
-    padding-left: 0;
-
-    &::before {
-      content: "";
-      margin: 0;
-    }
-  }
-
-  img {
-    display: none;
-  }
-}
-
-
-// Issue journal contextual icons
-
-.journal .wiki .contextual {
-  > a {
-    @include variants.fa-icon-style;
-
-    &::before {
-      width: variables.$icon-width;
-      margin-right: 0;
-      text-align: center;
-    }
-
-    &:not([class*="icon"]) {
-      @include variants.fa-icon-style("Regular");
-
-      &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-comment);
-      }
-
-      &:nth-child(2) {
-        &::before {
-          @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
-        }
-      }
-
-      &:nth-child(3) {
-        &::before {
-          @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
-        }
-      }
-    }
-
-    img {
-      display: none;
+      animation: spin 1s linear infinite;
+      color: variables.$gray-700;
     }
   }
 }
 
 
-// Category and target vesion add icon
+// Colorize
 
-#issue_category_id + a,
-#issue_fixed_version_id + a {
-  @include variants.fa-icon-style;
+#admin-menu {
+  li {
+    > a {
+      .icon-svg {
+        stroke: variables.$gray-900;
+      }
+    }
+  }
+}
+
+a.icon,
+a.icon-only {
+  @include variants.icon-variant(default);
+}
+
+a.icon-edit,
+a.icon-copy,
+a.icon-time-add {
+  @include variants.icon-variant(info);
+}
+
+a.icon-add,
+a.icon-save,
+.icon-checked,
+a.icon-checked,
+a.icon-reload {
   @include variants.icon-variant(success);
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-plus-square);
-  }
-
-  img {
-    display: none;
-  }
 }
 
-
-// Lists toggle checkbox icon
-
-table.list th.checkbox > a {
-  @include variants.fa-icon-style;
-  @include variants.icon-variant(success);
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-check);
-
-    margin-right: 0;
-  }
-
-  img {
-    display: none;
-  }
-}
-
-
-// Time entries list icons
-
-.time-entry .buttons > a {
-  @include variants.fa-icon-style;
-
-  &[href*="edit"]::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-pencil);
-  }
-
-  &[data-method="delete"]::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
-  }
-
-  img {
-    display: none;
-  }
-}
-
-
-// Files list
-
-.file .buttons > a {
-  @include variants.fa-icon-style;
-
-  &[data-method="delete"] {
-    @include variants.icon-variant(danger);
-
-    &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
-    }
-  }
-
-  img {
-    display: none;
-  }
-}
-
-
-// Commit keywords
-
-.delete-commit-keywords {
-  @include variants.fa-icon-style;
+a.icon-del,
+a.remove-upload,
+a.icon-bookmark {
   @include variants.icon-variant(danger);
-
-  font-size: variables.$font-size-base;
-
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-trash);
-  }
-
-  img {
-    display: none;
-  }
 }
 
-.add-commit-keywords {
-  @include variants.fa-icon-style;
-  @include variants.icon-variant(success);
+#content .other-formats {
+   a {
+    @include variants.icon-variant(info, false);
 
-  font-size: variables.$font-size-base;
+    &.atom {
+      @include variants.icon-variant(warning, false);
+    }
 
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-plus-square);
-  }
+    &.csv {
+      @include variants.icon-variant(success, false);
+    }
 
-  img {
-    display: none;
+    &.pdf {
+      @include variants.icon-variant(danger, false);
+    }
   }
 }

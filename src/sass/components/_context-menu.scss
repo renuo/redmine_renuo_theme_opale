@@ -1,6 +1,5 @@
 @use "sass:color";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/shadows";
 @use "../mixins/variants";
 
@@ -33,43 +32,6 @@
 
       &:hover {
         background-color: variables.$pagination-hover-bg;
-      }
-    }
-
-    a:not(.easy-mindmup__icon) {
-      padding: 3px 10px 3px (variables.$icon-width + variables.$btn-padding-horizontal-small);
-      border-radius: variables.$border-radius-small;
-
-      @include variants.fa-icon-style;
-      @include variants.fa-icon-style(null, after);
-
-      &::before {
-        margin-left: -(variables.$icon-width);
-      }
-
-      &:hover {
-        border-color: variables.$pagination-hover-border;
-        background-color: variables.$pagination-hover-bg;
-      }
-
-      &.disabled {
-        color: color.adjust(variables.$pagination-color, $alpha: -.5);
-      }
-
-      &.icon-checked {
-        background: transparent;
-      }
-
-      &.submenu {
-        position: relative;
-        background-image: none;
-
-        &::after {
-          @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
-
-          position: absolute;
-          right: 5px;
-        }
       }
     }
   }

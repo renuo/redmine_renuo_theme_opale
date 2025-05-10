@@ -1,7 +1,7 @@
 @use "sass:color";
 @use "sass:map";
 @use "sass:math";
-@use "vendor/font-awesome/variables" as fa-variables;
+@use "vendor/tabler-icons";
 
 
 // Variables
@@ -207,7 +207,6 @@ $font-size-list:                .92em !default;
 $transition-time:               50ms !default;
 $transition-time-long:          150ms !default;
 
-$collapsible-animation-time:    300ms !default;
 $collapsible-max-height:        10000px !default;
 
 
@@ -260,39 +259,39 @@ $priority-icon-size:            14px !default;
 $priority-icon-space:           5px !default;
 $priority-default-icons-map: (
   lowest: (
-    icon:                       fa-variables.$fa-var-arrow-down,
+    icon:                       tabler-icons.$ti-icon-arrow-down,
     color:                      $green
   ),
   low2: (
-    icon:                       fa-variables.$fa-var-angles-down,
+    icon:                       tabler-icons.$ti-icon-chevrons-down,
     color:                      color.mix($teal, $green)
   ),
   low3: (
-    icon:                       fa-variables.$fa-var-angle-down,
+    icon:                       tabler-icons.$ti-icon-chevron-down,
     color:                      $teal
   ),
   default: (
-    icon:                       "=",
+    icon:                       tabler-icons.$ti-icon-equal,
     color:                      $blue
   ),
   high5: (
-    icon:                       fa-variables.$fa-var-angle-up,
+    icon:                       tabler-icons.$ti-icon-chevron-up,
     color:                      $purple
   ),
   high4: (
-    icon:                       fa-variables.$fa-var-angle-up,
+    icon:                       tabler-icons.$ti-icon-chevron-up,
     color:                      $orange
   ),
   high3: (
-    icon:                       fa-variables.$fa-var-angles-up,
+    icon:                       tabler-icons.$ti-icon-chevrons-up,
     color:                      color.mix($red, $orange)
   ),
   high2: (
-    icon:                       fa-variables.$fa-var-arrow-up,
+    icon:                       tabler-icons.$ti-icon-arrow-up,
     color:                      $red
   ),
   highest: (
-    icon:                       fa-variables.$fa-var-bolt,
+    icon:                       tabler-icons.$ti-icon-bolt,
     color:                      shade($red, 600)
   )
 ) !default;
@@ -454,7 +453,8 @@ $btn-success-border:            $btn-success-bg !default;
 
 // Action icons
 
-$icon-width:                    20px !default;
+$icon-width:                    18px !default;
+$icon-space:                    4px !default;
 $icon-opacity:                  .7 !default;
 $icon-hover-opacity:            1 !default;
 $icon-color-map: (

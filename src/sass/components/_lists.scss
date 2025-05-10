@@ -1,11 +1,11 @@
 @use "sass:color";
 @use "sass:map";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../functions/parse-length";
 @use "../mixins/issues";
 @use "../mixins/variants";
 @use "../vendor/bootstrap/mixins/clearfix";
+@use "../vendor/tabler-icons";
 
 // Lists
 
@@ -185,10 +185,10 @@ tr.project {
   }
 
   &.idnt td.name {
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-chevron-right);
 
       color: variables.$gray-600;
     }
@@ -238,10 +238,10 @@ tr.issue {
   }
 
   &.idnt td.subject {
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-chevron-right);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-chevron-right);
 
       color: variables.$gray-600;
     }
@@ -283,44 +283,6 @@ tr.issue {
         padding: variables.$padding-wiki;
         overflow: auto;
       }
-    }
-  }
-}
-
-tr {
-  span.expander {
-    display: inline-block;
-    padding: 0;
-    float: left;
-
-    &.icon {
-      padding-left: 18px;
-      text-align: center;
-
-      &::before {
-        margin: 0 0 0 -18px;
-        color: variables.$gray-600;
-        font-size: 12px;
-      }
-    }
-
-    &:not(.icon) {
-      width: 18px;
-      padding: 0;
-      cursor: pointer;
-      user-select: none;
-
-      @include variants.fa-icon-style;
-
-      &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-plus);
-      }
-    }
-  }
-
-  &.open span.expander:not(.icon) {
-    &.icon-only::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-minus);
     }
   }
 }
@@ -788,6 +750,25 @@ table.list.enumerations {
 }
 
 
+// Definition lists
+
+#list-definition {
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .query-columns label {
+      display: block;
+    }
+
+    .field {
+      width: 4.85rem;
+    }
+  }
+}
+
+
 // Activity and search results list
 
 #activity dl,
@@ -797,15 +778,16 @@ table.list.enumerations {
 
 #activity,
 #search-results {
+  dt {
+    svg,
+    span {
+      margin-right: .4em;
+    }
+  }
+
   dd {
     margin-bottom: variables.$line-height-computed;
     padding-top: .1em;
-  }
-
-  dt {
-    padding-left: variables.$padding-side;
-    background-repeat: no-repeat;
-    background-position: 0 center;
   }
 
   span.project::after {

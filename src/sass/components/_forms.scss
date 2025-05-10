@@ -1,12 +1,15 @@
 @use "sass:math";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/forms";
+@use "../mixins/variants";
 @use "../vendor/bootstrap/mixins/clearfix";
+@use "../vendor/tabler-icons";
 
 // Forms
 
 form {
+  .filter > div,
+  #list-definition > div div,
   td {
     padding: variables.$table-condensed-cell-padding;
   }
@@ -132,6 +135,7 @@ input[type="range"] {
 }
 
 input {
+  &.js-search-input,
   &.autocomplete {
     padding-right: 30px;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA3XAAAN1wFCKJt4AAACaElEQVQ4y9XUT2gUZxjH8c/siG5sWKaQZlFaQSGNoQdDKS0EerDFQ6MHQQUPpcdShdCCYk49iCeh0BbaphR6UehBKJ4lYCXUVsFDRAuVRXrQy5IgIYFkbTKzHnx22V0S16vPZV5m3vm+v/f3/OFVi6S1mJmZsb6+LkmSFFUcxUkcQAWPcQOXcQsrS0tLzSzLuoBTU1Og1HoR0G34GFfxIz7EdixjFz6NbxexL8uypFarbap4W1v6c6Uf4QeM4BGu4D6e4nUcxCS+wG58Pjo6Wi+KYmtwXP9CQP/ENOax2rHnd5zAeRzGmaIopufn55vj4+Nd4FLH+ijeD6Xn8HelUlnt2lwq1fFL2LSOz/B2L7QXfDKeV3C3Uqk0l5eXuzZvbGzA//gN/0VSJzfzuBN8AI3wdLUXGoqFn/9GlaQY6weuhJqnL6rP4eHh1rJlU9oP/BivRfa3jIWFBSijdcJKP/CNOP0gqh3Xbsfa2pokSUR9vxkJvN0PfDmuN4kTRVFsb8GHhoY0m00DAwOwB6cD/BDX+oFv4RJ2Rp1+jf2lUsni4qIkSXbgEL7HJzEOruJJmqYvbJAVfBOtewRncSy8X8UbeCuUtmbMcVzP83yuXq+rVqttWPuoiYkJ5XJ5CX/Ej/ujG/dGN+7Gjii1n+OgMXyAe4ODg48ajYbZ2dluxVmWqdVqzej9afwafo+FgJVI1DU8wXX8hHfwHb4sl8t/oei1wsjIiKIoRO8/wIPNEpOmqTzP53AqoO/iW5zBXG/y2rFZ73dGnufq9boYVl/hDt6LGWJL8MtEtVrVaDSauBmJ/icG2CsazwALRMBoa2CZowAAAABJRU5ErkJggg==");
@@ -493,25 +497,36 @@ label[for="closed"] {
     margin-bottom: variables.$line-height-computed * .25;
   }
 
+  svg.svg-attachment {
+    margin-right: variables.$icon-space;
+  }
+
   input {
     width: 21.5em;
     margin-right: .5em;
     margin-bottom: variables.$line-height-computed * .25;
+  }
 
-    &.filename {
-      padding-left: variables.$input-padding-horizontal + 16px;
-      background-image: url("../../../images/attachment.png");
-      background-repeat: no-repeat;
-      background-position: 4px center;
+  .ajax-loading,
+  .ajax-waiting {
+    @include variants.ti-icon-style;
+
+    position: relative;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-refresh);
+
+      position: absolute;
+      top: 3px;
+      padding: 1px;
+      animation: spin 1s linear infinite;
+      background: variables.$body-bg;
+      color: variables.$gray-700;
     }
-  }
 
-  .ajax-waiting input.filename {
-    background-image: url("../../../images/hourglass.png");
-  }
-
-  .ajax-loading input.filename {
-    background-image: url("../../../images/loading.gif");
+    input.filename {
+      background-image: none;
+    }
   }
 
   div.ui-progressbar {
@@ -655,6 +670,7 @@ fieldset#filters {
     }
   }
 
+  div,
   td {
     &.field {
       padding-right: variables.$table-cell-padding * 2;
@@ -692,6 +708,10 @@ fieldset#filters {
     input[type="radio"] {
       margin-top: variables.$check-input-margin-btn-v;
     }
+  }
+
+  div.filter {
+    display: flex;
   }
 
   div.add-filter {

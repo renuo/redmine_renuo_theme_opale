@@ -1,7 +1,5 @@
 @use "sass:color";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
-@use "../mixins/variants";
 @use "../vendor/bootstrap/mixins/clearfix";
 
 // WYSIWYG icons
@@ -121,137 +119,83 @@ div.jstElements {
     }
   }
 
-  %jstb-icon {
-    background: transparent;
-    background-image: none;
-    
-    @include variants.fa-icon-style;
-
-    &::before {
-      content: "";
-    }
-  }
-
   .jstb_strong {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-bold); }
+      background-image: url("/jstoolbar/bold.svg");
   }
 
   .jstb_em {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-italic); }
+      background-image: url("/jstoolbar/italic.svg");
   }
 
   .jstb_ins {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-underline); }
+      background-image: url("/jstoolbar/underline.svg");
   }
 
   .jstb_del {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-strikethrough); }
+      background-image: url("/jstoolbar/strikethrough.svg");
   }
 
   .jstb_code {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-code); }
+      background-image: url("/jstoolbar/letter-c.svg");
   }
 
   .jstb_h1 {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-header); }
+      background-image: url("/jstoolbar/h1.svg");
   }
 
   .jstb_h2 {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-header); font-size: .7857em; }
+      background-image: url("/jstoolbar/h2.svg");
   }
 
   .jstb_h3 {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-header); font-size: .6429em; }
+      background-image: url("/jstoolbar/h3.svg");
   }
 
   .jstb_ul {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-list-ul); }
+      background-image: url("/jstoolbar/list.svg");
   }
 
   .jstb_ol {
-    @extend %jstb-icon;
+      background-image: url("/jstoolbar/list-numbers.svg");
+  }
 
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-list-ol); }
+  .jstb_tl {
+      background-image: url("/jstoolbar/list-check.svg");
   }
 
   .jstb_bq {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-indent); }
+      background-image: url("/jstoolbar/indent-increase.svg");
   }
 
   .jstb_unbq {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-outdent); }
+      background-image: url("/jstoolbar/indent-decrease.svg");
   }
 
-  .jstb_pre {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-terminal); }
-  }
-
-  .jstb_link {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-link); }
-  }
-
-  .jstb_img {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-image); }
-  }
-
-  .jstb_cut {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-scissors); }
+  .jstb_pre::before {
+      content: "pre";
+      color: #333;
+      font-size: 10px;
+      font-weight: 700
   }
 
   .jstb_precode {
-    @extend %jstb-icon;
+      background-image: url("/jstoolbar/code.svg");
+  }
 
-    color: variables.$brand-danger;
+  .jstb_link {
+      background-image: url("/jstoolbar/wiki_link.svg");
+  }
 
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-code); }
+  .jstb_img {
+      background-image: url("/jstoolbar/image.svg");
   }
 
   .jstb_table {
-    @extend %jstb-icon;
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-table); }
+      background-image: url("/jstoolbar/table.svg");
   }
 
-  button.jstb_help {
-    @extend %jstb-icon;
-
-    color: variables.$link-color;
-
-    &:hover {
-      color: variables.$link-hover-color;
-    }
-
-    &::before { @include variants.fa-icon-variant(fa-variables.$fa-var-question-circle); }
+  .jstb_help {
+      background-image: url("/jstoolbar/help.svg");
   }
 }
 

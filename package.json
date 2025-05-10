@@ -24,16 +24,17 @@
     "lint": "npm run -S lint:sass"
   },
   "dependencies": {
+    "@tabler/icons-webfont": "^3.31.0"
+  },
+  "devDependencies": {
     "@lodder/grunt-postcss": "^3.1.1",
     "autoprefixer": "^10.4.21",
     "grunt": "^1.6.1",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-sass": "^4.0.0",
-    "sass": "^1.87.0"
-  },
-  "devDependencies": {
     "husky": "^9.1.7",
     "lint-staged": "^15.5.1",
+    "sass": "^1.87.0",
     "stylelint": "^16.19.1",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
     "stylelint-config-standard-scss": "^14.0.0"

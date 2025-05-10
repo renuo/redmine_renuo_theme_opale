@@ -1,7 +1,8 @@
 @use "sass:math";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
+@use "../mixins/flash";
 @use "../mixins/variants";
+@use "../vendor/tabler-icons";
 
 // Additionals
 // https://www.redmine.org/plugins/additionals
@@ -50,8 +51,10 @@
 
 @if variables.$sidebar-position == "left" {
   .issue-status-change-sidebar {
-    .fa-caret-square-left::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-caret-square-right);
+    .status-switch {
+      .icon-svg {
+        transform: rotate(180deg);
+      }
     }
   }
 }
@@ -134,10 +137,10 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
       background-image: none;
       line-height: 1.2em;
 
-      @include variants.fa-icon-style;
+      @include variants.ti-icon-style;
 
       &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-arrows-rotate);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-refresh);
 
         display: block;
         width: 1em;
@@ -182,10 +185,10 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
       .rdb-checkbox-link.rdb-checkbox-link-enabled {
         background-image: none;
 
-        @include variants.fa-icon-style;
+        @include variants.ti-icon-style;
 
         &::before {
-          @include variants.fa-icon-variant(fa-variables.$fa-var-check);
+          @include variants.ti-icon-variant(tabler-icons.$ti-icon-check);
 
           color: variables.$green;
         }
@@ -202,10 +205,10 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
         &#rdb-reset {
           background-image: none;
 
-          @include variants.fa-icon-style;
+          @include variants.ti-icon-style;
 
           &::before {
-            @include variants.fa-icon-variant(fa-variables.$fa-var-xmark);
+            @include variants.ti-icon-variant(tabler-icons.$ti-icon-x);
           }
         }
       }
@@ -232,10 +235,10 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
   .rdb-card-title > a {
     background-image: none;
 
-    @include variants.fa-icon-style(null, after);
+    @include variants.ti-icon-style("after");
 
     &::after {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-gear);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-settings);
 
       position: absolute;
       top: 5px;
@@ -248,10 +251,23 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
     padding-left: 0;
     background-image: none;
 
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-ticket);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-note);
+
+      margin-right: 4px;
+    }
+  }
+
+  .rdb-property-version {
+    padding-left: 0;
+    background-image: none;
+
+    @include variants.ti-icon-style;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-package);
 
       margin-right: 4px;
     }
@@ -261,12 +277,39 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
     padding-left: 0;
     background-image: none;
 
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-user);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-user);
 
       margin-right: 4px;
+    }
+  }
+
+  .rdb-property-category {
+    padding-left: 0;
+    background-image: none;
+
+    @include variants.ti-icon-style;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-category-2);
+
+      margin-right: 4px;
+    }
+  }
+
+  .rdb-property-time {
+    padding-left: 0;
+    background-image: none;
+
+    @include variants.ti-icon-style;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-clock);
+
+      margin-right: 4px;
+      font-size: 1.25em;
     }
   }
 }
@@ -280,7 +323,17 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
 // https://www.redmine.org/plugins/redmine_banner
 
 #admin-menu .icon.redmine-banner {
+  @include variants.ti-icon-style;
+
   background-image: none;
+
+  &::before {
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-message-circle-exclamation);
+
+    margin-right: 4px;
+    color: variables.$gray-900;
+    font-size: 1.25em;
+  }
 }
 
 #global_banner {
@@ -288,69 +341,72 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
     margin-bottom: variables.$line-height-computed;
   }
 
+  span.use_timer {
+    @include variants.ti-icon-style("after");
+
+    padding: 0;
+    background-image: none;
+
+    &::after {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-clock);
+
+      color: variables.$gray-900;
+    }
+  }
+}
+
+#global_banner,
+#banner_setting {
   .banner_info {
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     padding: 0;
     background-image: none;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-circle-info);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-info-circle);
 
       color: variables.$blue;
     }
   }
 
   .banner_warn {
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     padding: 0;
     background-image: none;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-triangle-exclamation);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-alert-triangle);
 
       color: variables.$orange;
     }
   }
 
   .banner_alert {
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     padding: 0;
     background-image: none;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-circle-exclamation);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-exclamation-circle);
 
       color: variables.$red;
-    }
-  }
-
-  .use_timer {
-    @include variants.fa-icon-style("Regular", "after");
-
-    padding: 0;
-    background-image: none;
-
-    &::after {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-clock);
     }
   }
 }
 
 body div.banner_area {
-  @media screen and (max-width: variables.$redmine-responsive-max) {
-    #main #content > & {
-      margin-bottom: variables.$line-height-computed;
-    }
+  #main #content > & {
+    margin-bottom: variables.$line-height-computed;
   }
 
   .banner {
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     margin: 0;
-    padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
+    padding: variables.$padding-large-horizontal variables.$padding-large-horizontal;
     padding-left: variables.$padding-large-horizontal + 8px + 16px;
     border: 1px solid variables.$component-border;
     border-radius: variables.$border-radius-base;
@@ -362,11 +418,17 @@ body div.banner_area {
     }
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-info);
-
       margin-left: -(8px + 16px);
       float: left;
       line-height: variables.$line-height-computed;
+    }
+
+    &_nodata {
+      @include flash.flash(variables.$flash-warning-text, variables.$flash-warning-bg, variables.$flash-warning-border, variables.$flash-warning-link, "warning");
+    }
+
+    &_normal {
+      padding-left: variables.$padding-large-horizontal;
     }
 
     &_info {
@@ -375,7 +437,7 @@ body div.banner_area {
       color: variables.$flash-info-text;
 
       &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-info-circle);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-info-circle);
       }
     }
 
@@ -385,7 +447,7 @@ body div.banner_area {
       color: variables.$flash-warning-text;
 
       &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-warning);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-alert-triangle);
       }
 
       a,
@@ -400,7 +462,7 @@ body div.banner_area {
       color: variables.$flash-error-text;
 
       &::before {
-        @include variants.fa-icon-variant(fa-variables.$fa-var-exclamation-circle);
+        @include variants.ti-icon-variant(tabler-icons.$ti-icon-exclamation-circle);
       }
 
       a,
@@ -430,20 +492,30 @@ body div.banner_area {
     }
   }
 
-  .banner_edit {
-    &,
+  div.banner_edit {
+    right: 5px;
+    bottom: 2px;
+    opacity: .8;
+
     &:hover {
-      opacity: 1 !important;
+      opacity: 1;
     }
 
     a {
+      @include variants.ti-icon-style;
+
       margin-left: 5px;
+
+      &::before {
+        margin-right: 3px;
+      }
     }
   }
 
   div.banner_more_info {
+    bottom: 2px;
     transform: translateX(50%);
-    opacity: .75;
+    opacity: .8;
     text-transform: uppercase;
 
     &:hover {
@@ -566,16 +638,20 @@ body div.banner_area {
 // Redmine Impersonate
 // https://www.redmine.org/plugins/redmine_impersonate
 
-#impersonate {
-  @include variants.fa-icon-style;
+#content > .contextual > a#impersonate {
+  @include variants.ti-icon-style;
+  @include variants.icon-variant("default", false);
+
+  padding: (variables.$btn-padding-vertical + 1px) variables.$btn-padding-horizontal-small;
+  line-height: 2em;
 
   &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-user-secret);
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-spy);
   }
 }
 
 #impersonation-bar {
-  @include variants.fa-icon-style;
+  @include variants.ti-icon-style;
 
   padding: variables.$padding-large-vertical variables.$padding-large-horizontal variables.$padding-large-vertical (variables.$padding-large-horizontal + 8px + 16px) !important;
   border-width: 1px !important;
@@ -612,8 +688,8 @@ body div.banner_area {
 // Redmine Recaptcha
 // https://www.redmine.org/plugins/recaptcha
 
-.new-user .g-recaptcha {
-  padding-left: 170px;
+.new_user .g-recaptcha {
+  padding-left: (variables.$label-width + variables.$label-space);
 
   @media screen and (max-width: variables.$redmine-responsive-max) {
     padding-left: 0;
@@ -626,10 +702,10 @@ body div.banner_area {
 
 #top-menu {
   a.redmine-silencer {
-    @include variants.fa-icon-style;
+    @include variants.ti-icon-style;
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-ban);
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-mail-off);
 
       margin-right: 4px;
     }
@@ -640,10 +716,10 @@ body div.banner_area {
   body {
     .js-profile-menu a {
       &.redmine-silencer {
-        @include variants.fa-icon-style;
+        @include variants.ti-icon-style;
 
         &::before {
-          @include variants.fa-icon-variant(fa-variables.$fa-var-ban);
+          @include variants.ti-icon-variant(tabler-icons.$ti-icon-mail-off);
 
           margin-right: 4px;
         }

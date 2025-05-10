@@ -1,6 +1,6 @@
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/variants";
+@use "../vendor/tabler-icons";
 
 // Flash messages
 
@@ -11,15 +11,21 @@
   text-align: left;
 
   @if $icon == "true" {
-    $icon: fa-variables.$fa-var-check;
+    $icon: tabler-icons.$ti-icon-check;
   } @else if $icon == "warning" {
-    $icon: fa-variables.$fa-var-warning;
+    $icon: tabler-icons.$ti-icon-alert-triangle;
   } @else if $icon == "exclamation" {
-    $icon: fa-variables.$fa-var-exclamation-circle;
+    $icon: tabler-icons.$ti-icon-exclamation-circle;
   }
 
-  &::before {
-    @include variants.fa-icon-variant($icon);
+  @if $icon != "false" {
+    &::before {
+      @include variants.ti-icon-variant($icon);
+    }
+  } @else {
+    svg {
+      stroke: $color;
+    }
   }
 
   a {

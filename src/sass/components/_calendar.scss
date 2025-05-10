@@ -1,5 +1,4 @@
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
 @use "../mixins/variants";
 
 // Calendar
@@ -140,45 +139,12 @@ ul.cal {
   }
 }
 
-table.cal .starting a,
-ul.cal .starting a,
-p.cal.legend .starting,
-table.cal .ending a,
-ul.cal .ending a,
-p.cal.legend .ending {
-  @include variants.fa-icon-style;
-  
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-caret-right);
-
-    width: 10px;
-    text-align: right;
-  }
-}
-
-table.cal .ending a,
-ul.cal .ending a,
-p.cal.legend .ending {
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-caret-left);
-
-    text-align: left;
-  }
-}
-
-table.cal .starting.ending a,
-ul.cal .starting.ending a,
-p.cal.legend .starting.ending {
-  &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-square);
-
-    transform: scale(.6) rotate(45deg);
-    text-align: center;
-  }
-}
-
 p.cal.legend {
   span {
     display: block;
+  }
+
+  svg + span {
+    display: inline-block;
   }
 }
