@@ -140,17 +140,8 @@ a.icon:empty {
 
   padding-left: 0;
 
-  &::before {
-    content: none;
-  }
-
   &::after {
     margin-left: .2em;
-  }
-
-  &.asc,
-  &.desc {
-    background-image: none;
   }
 
   &.asc::after {
@@ -173,10 +164,6 @@ a.icon:empty {
   .sort-by-subject & {
     &.asc::after  { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending-letters); }
     &.desc::after { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending-letters); }
-  }
-
-  svg {
-    display: none;
   }
 }
 

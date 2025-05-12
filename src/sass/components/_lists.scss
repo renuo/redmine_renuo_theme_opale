@@ -45,6 +45,14 @@ table.list {
     a {
       color: variables.$gray-900;
     }
+
+    .icon-svg {
+      display: none;
+    }
+
+    .icon-label {
+      margin-left: 0;
+    }
   }
 
   tr.ui-sortable-helper {
