@@ -419,12 +419,6 @@ body div.banner_area {
     background: variables.$component-bg;
     color: variables.$component-color;
 
-    @media screen and (min-width: variables.$redmine-responsive-min) {
-      &.global_banner {
-        border-radius: 0;
-      }
-    }
-
     &::before {
       margin-left: -(8px + 16px);
       float: left;
@@ -500,6 +494,12 @@ body div.banner_area {
     }
   }
 
+  @media screen and (min-width: variables.$redmine-responsive-min) {
+    &.global_banner .banner {
+      border-radius: 0;
+    }
+  }
+
   div.banner_edit {
     right: 5px;
     bottom: 2px;
@@ -532,6 +532,10 @@ body div.banner_area {
   }
 }
 
+#wrapper + .global_banner .banner {
+  border-radius: 0;
+}
+
 #main #content > .banner_area {
   margin-bottom: variables.$line-height-computed;
 }
@@ -555,12 +559,6 @@ body div.banner_area {
     .banner_area {
       width: variables.$width-lg;
     }
-  }
-}
-
-@media screen and (max-width: variables.$redmine-responsive-max) {
-  #wrapper + .global_banner .banner {
-    border-radius: 0;
   }
 }
 
