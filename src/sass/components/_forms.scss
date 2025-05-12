@@ -58,6 +58,10 @@ form {
       line-height: inherit;
     }
   }
+
+  .attributes select {
+    width: 60%;
+  }
 }
 
 button,
@@ -505,6 +509,10 @@ label[for="closed"] {
     width: 21.5em;
     margin-right: .5em;
     margin-bottom: variables.$line-height-computed * .25;
+
+    &.deleted_attachment {
+      width: auto;
+    }
   }
 
   .ajax-loading,
@@ -559,27 +567,10 @@ label[for="closed"] {
 
   .splitcontentleft,
   .splitcontentright {
-    width: 100%;
-    padding-right: 0;
-    padding-left: 0;
-    float: left;
-
-    @media screen and (min-width: variables.$screen-sm-min) {
-      width: auto;
-      min-width: 36em;
-    }
-
     textarea.text_cf,
     input.string_cf,
-    input.link_cf,
-    select {
-      width: 90%;
-    }
-  }
-
-  .splitcontentleft {
-    @media screen and (min-width: variables.$screen-sm-min) {
-      margin-right: variables.$padding-side;
+    input.link_cf {
+      width: 60%;
     }
   }
 
