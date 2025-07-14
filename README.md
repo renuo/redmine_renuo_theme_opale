@@ -21,7 +21,7 @@ A Redmine 6.x theme.
 
 ## Install
 
-To install this theme [download the lastest release](https://github.com/gagnieray/opale/archive/redmine-6.x.zip) and decompress the archive to your Redmine's `public/themes` folder.
+To install this theme [download the lastest release](https://github.com/gagnieray/opale/archive/redmine-6.x.zip) and decompress the archive to your Redmine's `themes` folder.
 
 Then go to `Redmine > Administration > Settings > Display` and select `Opale` from the theme's list and save the settings.
 
