@@ -10,13 +10,7 @@ A Redmine 6.x theme.
 
 ---
 
-[![Grunt](https://img.shields.io/badge/Grunt-E48632?logo=grunt&logoColor=white)](https://gruntjs.com/)
-[![Sass](https://img.shields.io/badge/Sass-CC6699?logo=sass&logoColor=white)](https://sass-lang.com/)
-[![Normalize.css](https://img.shields.io/badge/Normalize.css-e3695f?logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTIuMjM0IiBoZWlnaHQ9IjMyLjg5MyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogPHBhdGggZD0ibTE1LjY5NiAwdjE0Ljc3bC0xNS42OTYgMi4wNTUgMjAuNTg3IDIuNjk1di01LjU4M2wxNS45NSAxOC45NTZ2LTE0Ljc3bDE1LjY5Ny0yLjA1NC0yMC41ODctMi42OTV2NS41OHoiIGZpbGw9IiNmZmYiLz4KPC9zdmc+Cg==)](https://necolas.github.io/normalize.css/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-7A11F8?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![Tabler Icons](https://img.shields.io/badge/%3E__%20Tabler%20Icons-066fd1?logoColor=white)](https://tabler.io/icons)
-[![Stylelint](https://img.shields.io/badge/Stylelint-000?logo=stylelint&logoColor=white)](https://stylelint.io/)
-[![Husky](https://img.shields.io/badge/Husky-42b983?&logo=git&logoColor=white)](https://typicode.github.io/husky/)
+![Screenshot](./screenshots/issues.png)
 
 ## Main features
 
@@ -27,7 +21,7 @@ A Redmine 6.x theme.
 
 ## Install
 
-To install this theme [download the lastest release](https://github.com/gagnieray/opale/archive/master.zip) and decompress the archive to your Redmine's `public/themes` folder.
+To install this theme [download the lastest release](https://github.com/gagnieray/opale/archive/redmine-6.x.zip) and decompress the archive to your Redmine's `public/themes` folder.
 
 Then go to `Redmine > Administration > Settings > Display` and select `Opale` from the theme's list and save the settings.
 
@@ -37,11 +31,18 @@ If you want to customize Opale to your needs, first, make sure that you have ins
 
 Then, from the directory that contains Opale run:
 
-    npm install
+```bash
+npm install
+```
+
+> [!WARNING]
+> In production, never include the `node_module` folder created by this command. Otherwise, if present, it could cause a timeout during assets precompilation.
 
 Now all the dependencies should be ready to use. Run one more command:
 
-    npm run watch
+```bash
+npm run watch
+```
 
 And now the grunt is watching for changes in files placed in `src/` folder. Just change what you need, and it'll run Sass preprocessor automatically.
 
@@ -57,10 +58,6 @@ Please [read more about contributing](./CONTRIBUTING.md).
 ## Authors
 
 [Read more about the authors](./AUTHORS.md).
-
-## Changelog
-
-[Read the Changelog](./CHANGELOG.md).
 
 ## Copying
 
