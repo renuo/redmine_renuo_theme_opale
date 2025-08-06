@@ -467,16 +467,16 @@ $icon-opacity:                  .7 !default;
 $icon-hover-opacity:            1 !default;
 $icon-color-map: (
   default: (
-    normal:                     $brand-info,
-    hover:                      $brand-danger
+    normal:                     $black,
+    hover:                      $black
   ),
   info: (
-    normal:                     $brand-info,
-    hover:                      shade($brand-info, 500)
-  ),
-  success: (
     normal:                     $black,
     hover:                      shade($black, 500)
+  ),
+  success: (
+    normal:                     $blue,
+    hover:                      shade($blue, 500)
   ),
   warning: (
     normal:                     $brand-warning,
