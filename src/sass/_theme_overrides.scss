@@ -5,6 +5,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Montserrat";
+  src: url("../webfonts/montserrat-semi-bold.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../webfonts/montserrat-bold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
 table#time-report td {
   padding: 1px;
 }
