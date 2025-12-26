@@ -1,22 +1,41 @@
-@font-face {
-  font-family: "Montserrat";
-  src: url("../webfonts/montserrat-light.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
+// Normally one would use 400 for regular and 700 for bold, but
+// by the Renuo CI we use the Monserrat font 100 points lighter than intended
+// (e.g. in offer documents or on the website, the one exception to that are the Google Docs)
+// In Redmine this is difficult to consequently apply because of the small font sizes
+// (Montserrat 300 becomes difficult to read on few-pixel screens)
+// So we make a compromise: up to regular we use the font as intented, bolder goes in 50 point steps.
+$montserrat-weight-map: (
+  100: 100,
+  200: 200,
+  300: 300,
+  400: 400,
+  500: 450,
+  600: 500,
+  700: 550,
+  800: 600,
+  900: 650,
+);
+
+// Normal (upright) font faces
+@each $theme-weight, $real-weight in $montserrat-weight-map {
+  @font-face {
+    font-family: "Montserrat";
+    src: url("../webfonts/Montserrat-VariableFont_wght.ttf") format("truetype-variations");
+    font-style: normal;
+    font-weight: $theme-weight;
+    font-variation-settings: "wght" $real-weight;
+  }
 }
 
-@font-face {
-  font-family: "Montserrat";
-  src: url("../webfonts/montserrat-semi-bold.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("../webfonts/montserrat-bold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
+// Italic font faces
+@each $theme-weight, $real-weight in $montserrat-weight-map {
+  @font-face {
+    font-family: "Montserrat";
+    src: url("../webfonts/Montserrat-Italic-VariableFont_wght.ttf") format("truetype-variations");
+    font-style: italic;
+    font-weight: $theme-weight;
+    font-variation-settings: "wght" $real-weight;
+  }
 }
 
 table#time-report td {
