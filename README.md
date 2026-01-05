@@ -21,15 +21,15 @@ A Redmine 6.x theme.
 
 ## Releases
 
-* **Redmine 6.x** : use either the latest stable release ([1.6.1](https://github.com/gagnieray/opale/archive/refs/tags/1.6.1.zip)), or use the `redmine-6.x` branch of this repository.
+* **Redmine 6.x** : use either the latest stable release ([1.6.2](https://github.com/gagnieray/opale/archive/refs/tags/1.6.2.zip)), or use the `redmine-6.x` branch of this repository.
 * **Redmine 5.x** : use either the latest stable release ([1.5.1](https://github.com/gagnieray/opale/archive/refs/tags/1.5.1.zip)), or use the `redmine-5.x` branch of this repository.
 
 ## Install
 
 To install this theme :
 
-1. [download the lastest stable release](https://github.com/gagnieray/opale/archive/refs/tags/1.6.1.zip) and decompress the archive to your Redmine's `themes` folder,
-2. rename the folder `opale-1.6.1` to `opale`,
+1. [download the lastest stable release](https://github.com/gagnieray/opale/archive/refs/tags/1.6.2.zip) and decompress the archive to your Redmine's `themes` folder,
+2. rename the folder `opale-1.6.2` to `opale`,
 3. go to `Redmine > Administration > Settings > Display`, select `Opale` from the theme's list and save the settings.
 
 ## Customize
@@ -51,11 +51,11 @@ Now all the dependencies should be ready to use. Run one more command:
 npm run watch
 ```
 
-And now the grunt is watching for changes in files placed in `src/` folder. 
+And now the grunt is watching for changes in files placed in `src/` folder.
 
 Just change what you need, and it'll run Sass preprocessor automatically.
 
-Regrettably, optional file include is not possible in Sass, so I would recommend creating a new file, e.g. `src/sass/_custom-variables.scss` and importing it at the beginning of `src/sass/application.scss` using the following at-use rule : `@use "custom-variables";`. 
+Regrettably, optional file include is not possible in Sass, so I would recommend creating a new file, e.g. `src/sass/_custom-variables.scss` and importing it at the beginning of `src/sass/application.scss` using the following at-use rule : `@use "custom-variables";`.
 
 This way all the variables defined in `src/sass/_variables.scss` with the `!default` flag could be overridden in `src/sass/_custom-variables.scss`:
 
@@ -80,9 +80,9 @@ If not, run the command `bundle exec rake assets:precompile RAILS_ENV=production
 
 ## About Redmine Backlogs plugin
 
-This theme also features a new look for [Redmine Backlogs](https://github.com/maedadev/redmine_backlogs) plugin. 
+This theme also features a new look for [Redmine Backlogs](https://github.com/maedadev/redmine_backlogs) plugin.
 
-To install it, simply copy stylesheets from `opale/plugins/redmine_backlogs` and overwrite files in `{redmine}/plugins/redmine_backlogs/assets/stylesheets`. 
+To install it, simply copy stylesheets from `opale/plugins/redmine_backlogs` and overwrite files in `{redmine}/plugins/redmine_backlogs/assets/stylesheets`.
 
 Then restart Redmine.
 
