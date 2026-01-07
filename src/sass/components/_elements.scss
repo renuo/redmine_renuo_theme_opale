@@ -592,7 +592,8 @@ div#roadmap {
   }
 }
 
-body.controller-versions.action-show div#roadmap .related-issues {
+body.controller-versions.action-show div#roadmap .related-issues,
+body.controller-issue_categories.action-show div#roadmap .related-issues {
   width: 70%;
 }
 
