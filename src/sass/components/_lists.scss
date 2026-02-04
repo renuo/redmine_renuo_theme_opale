@@ -788,7 +788,7 @@ table.list.enumerations {
 #search-results {
   dt {
     svg,
-    span {
+    span:not(.highlight) {
       margin-right: .4em;
     }
   }
