@@ -20,6 +20,14 @@ span.private,
   text-transform: uppercase;
 }
 
+/* patched by renuo */
+.badge {
+  margin-left: 8px;
+  user-select: none;
+}
+
+/* patched by renuo */
+
 span.private,
 .badge-private {
   padding: (variables.$badge-padding-v + 1px) (variables.$badge-padding-h + 1px);
