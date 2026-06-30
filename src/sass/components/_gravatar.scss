@@ -42,9 +42,7 @@ h3 .avatar:not(.gravatar) {
 
 // Gravatars
 
-img.gravatar,
-img.anonymous-avatar,
-img.group-avatar {
+img.avatar {
   display: inline-block;
   position: relative;
   top: -.15em;

@@ -26,8 +26,7 @@
       .gravatar-with-child {
         position: relative;
 
-        > span[role="img"].avatar,
-        > img.gravatar {
+        > .avatar {
           top: 0;
           width: variables.$issue-gravatar-size;
           height: variables.$issue-gravatar-size;
@@ -47,7 +46,7 @@
         }
       }
 
-      > img.gravatar {
+      > .avatar {
         top: 0;
         width: variables.$issue-gravatar-size;
         height: variables.$issue-gravatar-size;
@@ -56,7 +55,7 @@
         float: left;
       }
 
-      .assigned-to img.gravatar {
+      .assigned-to .avatar {
         position: relative;
         top: -3px;
         margin-right: 5px;
@@ -662,7 +661,7 @@ div.thumbnails {
         border-right-color: variables.$bubble-border;
       }
 
-      > .gravatar {
+      > .avatar {
         top: 0;
         margin-top: variables.$line-height-computed - variables.$bubble-gravatar-size;
         margin-left: -(variables.$bubble-gravatar-size + variables.$bubble-gravatar-space + variables.$bubble-padding-horizontal + 1px);
@@ -672,8 +671,7 @@ div.thumbnails {
       .journal-info {
         margin-left: -(variables.$bubble-padding-horizontal + 14px);
 
-        > .gravatar,
-        > span[role="img"].avatar {
+        > .avatar {
           transform: translate3d(-(variables.$bubble-gravatar-size), -5px, 0);
         }
       }
