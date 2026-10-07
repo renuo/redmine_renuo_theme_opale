@@ -1,3 +1,5 @@
+@use "variables";
+
 // Normally one would use 400 for regular and 700 for bold, but
 // by the Renuo CI we use the Monserrat font 100 points lighter than intended
 // (e.g. in offer documents or on the website, the one exception to that are the Google Docs)
@@ -40,4 +42,53 @@ $montserrat-weight-map: (
 
 table#time-report td {
   padding: 1px;
+}
+
+// Keyboard shortcuts help (javascripts/theme.js)
+#hotkey-modal {
+  display: flex;
+  position: fixed;
+  z-index: 1004;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+  background: rgb(0 0 0 / 0.4);
+
+  .hotkey-modal-inner {
+    min-width: 320px;
+    max-width: 90vw;
+    padding: 1.5em 2em;
+    border-radius: 6px;
+    background: variables.$body-bg;
+    box-shadow: 0 10px 40px rgb(0 0 0 / 0.25);
+    color: variables.$text-color;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: .5em 1.5em;
+    margin: 0;
+  }
+
+  dt,
+  dd {
+    margin: 0;
+  }
+
+  kbd {
+    display: inline-block;
+    min-width: 1.2em;
+    margin-right: .3em;
+    padding: .1em .5em;
+    border: 1px solid variables.$gray-400;
+    border-radius: 3px;
+    background: variables.$gray-50;
+    font-size: .9em;
+    text-align: center;
+  }
 }
