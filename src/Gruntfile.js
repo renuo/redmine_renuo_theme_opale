@@ -1,13 +1,13 @@
 module.exports = function (grunt) {
   grunt.initConfig({
-    src: 'src/',
+    src: '',
 
     copy: {
       tablericons: {
         expand: true,
         cwd: 'node_modules/@tabler/icons-webfont/dist',
         src: 'tabler-icons.scss',
-        dest: 'src/sass/vendor/',
+        dest: 'sass/vendor/',
         options: {
           process: function (content, srcpath) {
             return content.replace(/\.\/fonts/g, '../webfonts');
@@ -21,7 +21,7 @@ module.exports = function (grunt) {
         expand: true,
         cwd: 'node_modules/@tabler/icons-webfont/dist/fonts',
         src: 'tabler-icons.*',
-        dest: 'webfonts'
+        dest: '../webfonts'
       }
     },
 
@@ -34,7 +34,7 @@ module.exports = function (grunt) {
 
       theme: {
         files: {
-          'stylesheets/application.css': '<%= src %>sass/application.scss'
+          '../stylesheets/application.css': '<%= src %>sass/application.scss'
         }
       },
 
@@ -44,7 +44,7 @@ module.exports = function (grunt) {
             expand: true,
             cwd: '<%= src %>sass/plugins/',
             src: '**/*.scss',
-            dest: 'plugins/',
+            dest: '../plugins/',
             ext: '.css',
             extDot: 'last'
           }
@@ -61,8 +61,8 @@ module.exports = function (grunt) {
 
       all: {
         src: [
-          'stylesheets/*.css',
-          'plugins/**/*.css'
+          '../stylesheets/*.css',
+          '../plugins/**/*.css'
         ]
       }
     },

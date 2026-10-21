@@ -36,14 +36,14 @@ To install this theme :
 
 If you want to customize Opale to your needs, first, make sure that you have installed [Node.js](https://nodejs.org/) and `npm` is available in your terminal.
 
-Then, from the directory that contains Opale run:
+Then, from the `src/` directory of Opale run:
 
 ```bash
 npm install
 ```
 
-> [!WARNING]
-> In production, never include the `node_module` folder created by this command. Otherwise, if present, it could cause a timeout during assets precompilation.
+> [!NOTE]
+> The npm tooling lives in `src/` on purpose: Redmine adds every top-level folder of a theme (except `src/`) to its asset paths, so a top-level `node_modules` folder would be scanned on every boot and during assets precompilation.
 
 Now all the dependencies should be ready to use. Run one more command:
 

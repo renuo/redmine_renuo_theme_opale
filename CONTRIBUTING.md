@@ -23,13 +23,11 @@ While it is not always possible to phrase every change in this manner, it is des
 
 ### Lint and build 
 
-**Pull requests that do not pass automated checks may not be reviewed**. Therefore, it is essential that you lint and build all the changes made in the `src` folder.
+It is essential that you lint and build all the changes made in the `src` folder, and commit the built assets.
 
-To do this, ensure you have installed all the required dependencies before committing your changes using the command `npm install` in your local repository.
+To do this, ensure you have installed all the required dependencies before committing your changes using the command `npm install` in the `src` folder of your local repository.
 
 This way, while you are developing, you can run the `npm run lint` and `npm run build` commands to properly write your code and build the final assets.
-
-In any case, thanks to [Husky](https://typicode.github.io/husky/), all your changes should be linted and built automatically at each commit.
 
 ### Commit messages
 
